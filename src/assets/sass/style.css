@@ -5,5 +5,43 @@ body #map {
   width: 400px;
   height: 400px;
 }
+body aside {
+  display: flex;
+  float: right;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+body aside #arrowNav {
+  width: 30px;
+  height: 30px;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-left: black 3px solid;
+  border-bottom: black 3px solid;
+  border-top: black 3px solid;
+  border-top-left-radius: 30%;
+  border-bottom-left-radius: 30%;
+}
+body aside nav {
+  border-left: black 3px solid;
+  border-bottom: black 3px solid;
+  border-top: black 3px solid;
+}
+body aside nav img {
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  padding: 10px 7px;
+}
+body section {
+  margin: 50px 15px;
+}
+body #echoMapPage form {
+  display: flex;
+  flex-direction: column;
+}
 
 /*# sourceMappingURL=style.css.map */

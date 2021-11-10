@@ -9,37 +9,50 @@
     >
     <link rel="stylesheet" type="text/css" href="assets/sass/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/sass/style.css">
-    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css">
+
 </head>
 <body>
 
 <header>
-    <h1>Welcome</h1>
-    <nav>
-        <a href="#" data-pageLocation="audio">Audio</a>
-        <a href="#" data-pageLocation="settings">Settings</a>
-        <a href="#" data-pageLocation="echoMap">EchoMap</a>
-        <a href="#" data-pageLocation="contacts">Contacts</a>
-    </nav>
+    <h1>Echolocation</h1>
 </header>
 <main>
-    <section>
-        <h2>Filter</h2>
+    <aside>
+        <img id="arrowNav" src="assets/images/ArrowIcon.png" alt="Icon of an arrow">
+        <nav>
+            <a href="#" data-pageLocation="audio"><img src="assets/images/SoundIcon.png" alt="Icon of a sound button"></a>
+            <a href="#" data-pageLocation="settings"><img src="assets/images/SettingIcon.jpg" alt="Icon of the settings"></a>
+            <a href="#" data-pageLocation="echoMap"><img src="assets/images/MapIcon.png" alt="Icon of a map"></a>
+            <a href="#" data-pageLocation="contacts"><img src="assets/images/ContactIcon.png" alt="Icon of contact"></a>
+        </nav>
+    </aside>
 
+    <section id="echoMapPage">
+
+        <h2>Echolocation</h2>
+        <h3>Filter</h3>
         <form>
-            <input type="checkbox" id="friends" name="filter" value="friend">
-            <label for="friends">Friends</label>
+            <div class="formGroup">
+                <input type="checkbox" id="friends" name="filter" value="friend">
+                <label for="friends">Friends</label>
+            </div>
 
-            <input type="checkbox" id="sound" name="filter" value="sound">
-            <label for="sound">Sound</label>
+            <div class="formGroup">
+                <input type="checkbox" id="sound" name="filter" value="sound">
+                <label for="sound">Sound</label>
+            </div>
 
-            <input type="checkbox" id="otherUsers" name="filter" value="otherUsers">
-            <label for="otherUsers">Other users</label>
+            <div class="formGroup">
+                <input type="checkbox" id="otherUsers" name="filter" value="otherUsers">
+                <label for="otherUsers">Other users</label>
+            </div>
+            <div class="formGroup">
 
-            <input type="checkbox" id="you" name="filter" value="you">
-            <label for="you">You</label>
+                <input type="checkbox" id="you" name="filter" value="you">
+                <label for="you">You</label>
+            </div>
         </form>
+
     </section>
 
     <section id="audioPage">
@@ -64,14 +77,6 @@
 
     </section>
 
-    <section id="echoMapPage">
-
-        <h2>Echolocation</h2>
-
-        <div id="map" ></div>
-
-    </section>
-
     <section id="contactsPage">
         <h2>List of contacts</h2>
 
@@ -81,7 +86,7 @@
 
 <script src="assets/js/main.js"></script>
 <script src="assets/js/api.js"></script>
-<script type="module" src="assets/js/maps.js"></script>
+
 </body>
 
 
