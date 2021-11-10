@@ -9,6 +9,8 @@
     >
     <link rel="stylesheet" type="text/css" href="assets/sass/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/sass/style.css">
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css">
 
 </head>
 <body>
@@ -28,9 +30,9 @@
     </aside>
 
     <section id="echoMapPage">
-
         <h2>Echolocation</h2>
         <h3>Filter</h3>
+
         <form>
             <div class="formGroup">
                 <input type="checkbox" id="friends" name="filter" value="friend">
@@ -46,13 +48,14 @@
                 <input type="checkbox" id="otherUsers" name="filter" value="otherUsers">
                 <label for="otherUsers">Other users</label>
             </div>
-            <div class="formGroup">
 
+            <div class="formGroup">
                 <input type="checkbox" id="you" name="filter" value="you">
                 <label for="you">You</label>
             </div>
         </form>
 
+        <div id="map" ></div>
     </section>
 
     <section id="audioPage">
@@ -86,6 +89,7 @@
 
 <script src="assets/js/main.js"></script>
 <script src="assets/js/api.js"></script>
+<script type="module" src="assets/js/maps.js"></script>
 
 </body>
 
