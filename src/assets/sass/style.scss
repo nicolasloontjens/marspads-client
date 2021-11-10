@@ -42,14 +42,16 @@ body{
   }
 
   #echoMapPage{
+    display: flex;
     form{
       display: flex;
       flex-direction: column;
+      margin-right: 20px;
     }
 
     #map{
-      width: 400px;
-      height: 400px;
+      width: 700px;
+      height: 380px;
     }
 
   }

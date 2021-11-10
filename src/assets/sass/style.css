@@ -35,13 +35,17 @@ body aside nav img {
 body section {
   margin: 50px 15px;
 }
+body #echoMapPage {
+  display: flex;
+}
 body #echoMapPage form {
   display: flex;
   flex-direction: column;
+  margin-right: 20px;
 }
 body #echoMapPage #map {
-  width: 400px;
-  height: 400px;
+  width: 700px;
+  height: 380px;
 }
 
 /*# sourceMappingURL=style.css.map */
