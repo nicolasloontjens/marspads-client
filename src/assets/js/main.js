@@ -8,7 +8,7 @@ async function init() {
     api = `${config.host ? config.host + '/': ''}${config.group ? config.group + '/' : ''}api/`;
 
     // Very small proof of concept.
-    poc();
+    checkIfUserIDEmpty();
 }
 
 async function loadConfig() {

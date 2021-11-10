@@ -81,18 +81,10 @@ function addProximityLayer(map, longitude, latitude) {
     let randomLong = longitude - number/111320 * Math.cos(latitude);
     let randomLat = latitude - number/110574;
 
-    console.log(randomLong, randomLat);
-
     addMarkerLayer(map, randomLong, randomLat)
 
-    const P = {
-        latitude: latitude,
-        longitude: longitude
-    }
 
-    const R = 3900 // meters
 
-    const randomPoint = randomLocation.randomCirclePoint(P, R)
 }
 
 function randomIntFromInterval(min, max) { // min and max included
