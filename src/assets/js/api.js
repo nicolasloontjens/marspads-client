@@ -52,7 +52,7 @@ function remove(uri, successHandler = logJson, failureHandler = logError) {
 
 function logJson(response) {
     response.json().then(response => {
-        console.log(response.value)
+        console.log(response.value);
     });
 }
 
@@ -72,7 +72,7 @@ function checkIfUserIDEmpty() {
             //get(`user/${getUserID}`);
             //get(`quotes/${getUserID()}`);
             fetch(`https://project-ii.ti.howest.be/mars-17/api/quotes/${getUserID()}`).then(response => response.json().then(data => {
-                console.log(data)
+                console.log(data);
             }));
         }
     } else {
@@ -87,12 +87,12 @@ function getUserID() {
 }
 
 function createNewUser() {
-    let newUserNumber = Math.floor(Math.random() * 100);
+    const newUserNumber = Math.floor(Math.random() * 100);
 
     localStorage.setItem("User ID", newUserNumber.toString());
 
 
-    post(`user/${getUserID()}`)
+    post(`user/${getUserID()}`);
 
 }
 
@@ -109,12 +109,12 @@ function addUserContact(contactID) {
 }
 
 function removeUserContact(contactID) {
-    remove(`user/${getUserID()}/contacts/remove/${contactID}`)
+    remove(`user/${getUserID()}/contacts/remove/${contactID}`);
 
 }
 
 function gitAllChats() { //get a list of all chatid's and their corresponding user
-    get(`user/${getUserID()}/chats`)
+    get(`user/${getUserID()}/chats`);
 }
 
 //one not included!
