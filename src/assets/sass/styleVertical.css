@@ -17,11 +17,13 @@ body #searchContainer {
   text-align: center;
 }
 body #searchContainer input {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-size: contain;
+  background: rgba(0, 0, 0, 0.3) url("../images/magnifyingGlassIcon.png") no-repeat right;
+  background-size: contain;
   border: none;
   border-bottom: black solid;
   height: 35px;
-  border-radius: 30px;
+  border-radius: 10px;
   padding: 5px;
   font-size: 3rem;
   letter-spacing: 1px;
