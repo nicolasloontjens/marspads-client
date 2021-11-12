@@ -88,3 +88,7 @@ function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 
 }
+
+// function hiddenPages(){
+//     document.querySelectorAll('section').forEach(item => item.classList.toggle('hidden'));
+// }
