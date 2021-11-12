@@ -15,21 +15,27 @@ body {
     padding-left: 10%
   }
 
-  #searchContainer input {
+  #searchContainer{
+    text-align: center;
+
+
+  input {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: none;
+    border-bottom: black solid;
     height: 35px;
-    border-radius: 5px;
-    border: 2px solid #130e0e;
-    background-color: #cc8612;
+    border-radius: 30px;
     padding: 5px;
     font-size: 3rem;
     letter-spacing: 1px;
     color: #FFFFFF;
-  }
+  }}
 
   #contactList {
     background: gray;
     margin: auto;
     width: 85%;
+    border-radius: 30px;
     ul li {
       background: #cc8612;
       margin: auto;
@@ -37,8 +43,8 @@ body {
     }
 
     ul li:hover{
-      transform: scale(1.06);
-      background-color: #FFFFFF;
+      transform: scale(1.30);
+      background-color: navajowhite;
     }
   }
 }
