@@ -1,11 +1,15 @@
+let statusCode;
+
 function poc() {
     const messageBody = {
         "quote": "some quote"
     };
+
     get("quotes");
     get("quotes/1");
     post("quotes", messageBody);
     put("quotes/1", messageBody);
+
 }
 
 function get(uri, successHandler = logJson, failureHandler = logError) {
@@ -14,6 +18,7 @@ function get(uri, successHandler = logJson, failureHandler = logError) {
     });
 
     call(request, successHandler, failureHandler);
+
 }
 
 function post(uri, body, successHandler = logJson, failureHandler = logError) {
@@ -57,5 +62,74 @@ function logError(error) {
 }
 
 function call(request, successHandler, errorHandler) {
-   fetch(request).then(successHandler).catch(errorHandler);
+    fetch(request).then(successHandler).catch(errorHandler);
+}
+
+/*Our code:*/
+
+function checkIfUserIDEmptyOrCreateNewUser() {
+    if (localStorage.getItem("User ID")) {
+        checkOnServerIfIdExistsOrCreateNewUser();
+
+    }
+}
+
+function checkOnServerIfIdExistsOrCreateNewUser() {
+    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}`).then(function (statusCode) {
+            if (statusCode.ok) {
+                getUserInfo();
+            } else {
+                createNewUser();
+                console.log("created new user.");
+            }
+        }
+    );
+}
+
+
+function getUserID() {
+    return localStorage.getItem("User ID");
+}
+
+function createNewUser() {
+    const newUserNumber = Math.floor(Math.random() * 100); /* Will need to change!*/
+
+    localStorage.setItem("User ID", newUserNumber.toString());
+
+    post(`/create/${getUserID()}`);
+
+}
+
+function getUserInfo() {
+    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}`).then(userInfo => userInfo.json().then(data => {
+        console.log(data);
+    }));
+
+}
+
+function getUserContacts() {
+    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}/contacts`).then(userContacts => userContacts.json().then(data => {
+        console.log(data);
+    }));
+}
+
+function addUserContact(idToAdd) {
+    post(`user/${getUserID()}/contacts/add/${idToAdd}`);
+}
+
+function removeUserContact(idToRemove) {
+    remove(`user/${getUserID()}/contacts/remove/${idToRemove}`);
+
+}
+
+function getAllChats() { //get a list of all chatid's and their corresponding user
+    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}/chats`).then(allChats => allChats.json().then(data => {
+        console.log(data);
+    }));
+}
+
+function getAllChatsWithUser(userId) {
+    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}/chats/${userId}`).then(allChatsWithUser => allChatsWithUser.json().then(data => {
+        console.log(data);
+    }));
 }
