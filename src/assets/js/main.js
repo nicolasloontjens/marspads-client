@@ -8,7 +8,11 @@ async function init() {
     api = `${config.host ? config.host + '/': ''}${config.group ? config.group + '/' : ''}api/`;
 
     // Very small proof of concept.
-    checkIfUserIDEmpty();
+    checkIfUserIDEmptyOrCreateNewUser();
+    getUserContacts();
+    addUserContact();
+    //removeUserContact();
+    //gitAllChats();
 }
 
 async function loadConfig() {

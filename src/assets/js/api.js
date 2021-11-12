@@ -1,3 +1,5 @@
+let statusCode;
+
 function poc() {
     const messageBody = {
         "quote": "some quote"
@@ -66,60 +68,71 @@ function call(request, successHandler, errorHandler) {
 
 /*Our code:*/
 
-function checkIfUserIDEmpty() {
+function checkIfUserIDEmptyOrCreateNewUser() {
     if (localStorage.getItem("User ID")) {
-        if (checkOnServerIfIdExists()) {
-            //get(`user/${getUserID}`);
-            //get(`quotes/${getUserID()}`);
-            fetch(`https://project-ii.ti.howest.be/mars-17/api/quotes/${getUserID()}`).then(response => response.json().then(data => {
-                console.log(data);
-            }));
-        }
-    } else {
-        createNewUser();
-        //console.log("User ID hasn't been set.");
-    }
+        checkOnServerIfIdExistsOrCreateNewUser();
 
+}}
+
+function checkOnServerIfIdExistsOrCreateNewUser() {
+    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}`).then(function (response) {
+            //console.log(response.status);
+            if (response.ok) {
+                getUserInfo();
+            } else {
+                createNewUser();
+                console.log("created new user.")
+            }
+        }
+    )
 }
+
 
 function getUserID() {
     return localStorage.getItem("User ID");
 }
 
 function createNewUser() {
-    const newUserNumber = Math.floor(Math.random() * 100);
+    const newUserNumber = Math.floor(Math.random() * 100); /* Will need to change!*/
 
     localStorage.setItem("User ID", newUserNumber.toString());
 
 
-    post(`user/${getUserID()}`);
+    post(`/create/${getUserID()}`);
 
 }
 
-function getUserInfo(id) {
-    return get(`user/${id}`);
+function getUserInfo() {
+    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}`).then(response => response.json().then(data => {
+        console.log(data);
+    }))
 }
 
-function getUserContact(id) {
-    return get(`user/${id}/contacts`);
+function getUserContacts(id) {
+    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}/contacts`).then(response => response.json().then(data => {
+        console.log(data);
+    }))
 }
 
-function addUserContact(contactID) {
-    post(`user/${getUserID()}/contacts/add/${contactID}`);
+function addUserContact() {
+    post(`user/${getUserID()}/contacts/add/66`);
 }
 
 function removeUserContact(contactID) {
-    remove(`user/${getUserID()}/contacts/remove/${contactID}`);
+    remove(`api/user/${getUserID()}/contacts/remove/${contactID}`);
 
 }
 
 function gitAllChats() { //get a list of all chatid's and their corresponding user
-    get(`user/${getUserID()}/chats`);
+    get(`api/user/${getUserID()}/chats`);
 }
+
 
 //one not included!
-function checkOnServerIfIdExists() {
-    return true; //tijdelijk
-}
 
 
+/*
+ fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}`).then(response => response.json().then(data => {
+     console.log(data.status);
+ }));
+*/
