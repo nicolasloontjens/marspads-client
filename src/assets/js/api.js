@@ -72,7 +72,8 @@ function checkIfUserIDEmptyOrCreateNewUser() {
     if (localStorage.getItem("User ID")) {
         checkOnServerIfIdExistsOrCreateNewUser();
 
-}}
+    }
+}
 
 function checkOnServerIfIdExistsOrCreateNewUser() {
     fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}`).then(function (response) {
@@ -96,7 +97,6 @@ function createNewUser() {
     const newUserNumber = Math.floor(Math.random() * 100); /* Will need to change!*/
 
     localStorage.setItem("User ID", newUserNumber.toString());
-
 
     post(`/create/${getUserID()}`);
 
@@ -123,11 +123,19 @@ function removeUserContact(idToRemove) {
 
 }
 
-function gitAllChats() { //get a list of all chatid's and their corresponding user
-    get(`api/user/${getUserID()}/chats`);
+function getAllChats() { //get a list of all chatid's and their corresponding user
+    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}/chats`).then(response => response.json().then(data => {
+        console.log(data);
+    }))
+
 }
 
+function getAllChatsWithUser(userId) {
+    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}/chats/${userId}`).then(response => response.json().then(data => {
+        console.log(data);
+    }))
 
+}
 
 /*
 

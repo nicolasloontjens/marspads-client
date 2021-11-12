@@ -5,12 +5,10 @@ document.addEventListener("DOMContentLoaded", init);
 
 async function init() {
     config = await loadConfig();
-    api = `${config.host ? config.host + '/': ''}${config.group ? config.group + '/' : ''}api/`;
+    api = `${config.host ? config.host + '/' : ''}${config.group ? config.group + '/' : ''}api/`;
 
     // Very small proof of concept.
     checkIfUserIDEmptyOrCreateNewUser();
-
-    //gitAllChats();
 }
 
 async function loadConfig() {
