@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", init);
 async function init() {
     console.log("Maps loaded");
     getLocation();
+    hiddenPages();
 }
 
 function getLocation() {
@@ -89,6 +90,7 @@ function randomIntFromInterval(min, max) {
 
 }
 
-// function hiddenPages(){
-//     document.querySelectorAll('section').forEach(item => item.classList.toggle('hidden'));
-// }
+function hiddenPages(){
+    document.querySelectorAll('section').forEach(item => item.classList.toggle('hidden'));
+    document.querySelector('#echoMapPage').classList.toggle('hidden')
+}
