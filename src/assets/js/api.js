@@ -108,18 +108,18 @@ function getUserInfo() {
     }))
 }
 
-function getUserContacts(id) {
+function getUserContacts() {
     fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}/contacts`).then(response => response.json().then(data => {
         console.log(data);
     }))
 }
 
-function addUserContact() {
-    post(`user/${getUserID()}/contacts/add/66`);
+function addUserContact(idToAdd) {
+    post(`user/${getUserID()}/contacts/add/${idToAdd}`);
 }
 
-function removeUserContact(contactID) {
-    remove(`api/user/${getUserID()}/contacts/remove/${contactID}`);
+function removeUserContact(idToRemove) {
+    remove(`user/${getUserID()}/contacts/remove/${idToRemove}`);
 
 }
 
@@ -128,10 +128,9 @@ function gitAllChats() { //get a list of all chatid's and their corresponding us
 }
 
 
-//one not included!
-
 
 /*
+
  fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}`).then(response => response.json().then(data => {
      console.log(data.status);
  }));

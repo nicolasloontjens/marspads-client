@@ -9,9 +9,7 @@ async function init() {
 
     // Very small proof of concept.
     checkIfUserIDEmptyOrCreateNewUser();
-    getUserContacts();
-    addUserContact();
-    //removeUserContact();
+
     //gitAllChats();
 }
 
