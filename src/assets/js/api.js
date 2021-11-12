@@ -18,6 +18,7 @@ function get(uri, successHandler = logJson, failureHandler = logError) {
     });
 
     call(request, successHandler, failureHandler);
+
 }
 
 function post(uri, body, successHandler = logJson, failureHandler = logError) {
@@ -53,9 +54,7 @@ function remove(uri, successHandler = logJson, failureHandler = logError) {
 }
 
 function logJson(response) {
-    response.json().then(response => {
-        console.log(response.value);
-    });
+    response.json().then(console.log);
 }
 
 function logError(error) {
@@ -76,16 +75,15 @@ function checkIfUserIDEmptyOrCreateNewUser() {
 }
 
 function checkOnServerIfIdExistsOrCreateNewUser() {
-    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}`).then(function (response) {
-            //console.log(response.status);
-            if (response.ok) {
+    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}`).then(function (statusCode) {
+            if (statusCode.ok) {
                 getUserInfo();
             } else {
                 createNewUser();
-                console.log("created new user.")
+                console.log("created new user.");
             }
         }
-    )
+    );
 }
 
 
@@ -103,15 +101,16 @@ function createNewUser() {
 }
 
 function getUserInfo() {
-    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}`).then(response => response.json().then(data => {
+    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}`).then(userInfo => userInfo.json().then(data => {
         console.log(data);
-    }))
+    }));
+
 }
 
 function getUserContacts() {
-    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}/contacts`).then(response => response.json().then(data => {
+    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}/contacts`).then(userContacts => userContacts.json().then(data => {
         console.log(data);
-    }))
+    }));
 }
 
 function addUserContact(idToAdd) {
@@ -124,22 +123,13 @@ function removeUserContact(idToRemove) {
 }
 
 function getAllChats() { //get a list of all chatid's and their corresponding user
-    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}/chats`).then(response => response.json().then(data => {
+    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}/chats`).then(allChats => allChats.json().then(data => {
         console.log(data);
-    }))
-
+    }));
 }
 
 function getAllChatsWithUser(userId) {
-    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}/chats/${userId}`).then(response => response.json().then(data => {
+    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}/chats/${userId}`).then(allChatsWithUser => allChatsWithUser.json().then(data => {
         console.log(data);
-    }))
-
+    }));
 }
-
-/*
-
- fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getUserID()}`).then(response => response.json().then(data => {
-     console.log(data.status);
- }));
-*/
