@@ -1,0 +1,44 @@
+body {
+  font-size: 5rem;
+
+  img {
+    margin: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    padding: 10px 7px;
+  }
+
+  #contacts {
+    background: url("../images/ContactIcon.png") no-repeat;
+    background-size: contain;
+    padding-left: 10%
+  }
+
+  #searchContainer input {
+    height: 35px;
+    border-radius: 5px;
+    border: 2px solid #130e0e;
+    background-color: #cc8612;
+    padding: 5px;
+    font-size: 3rem;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+  }
+
+  #contactList {
+    background: gray;
+    margin: auto;
+    width: 85%;
+    ul li {
+      background: #cc8612;
+      margin: auto;
+      width: 50%;
+    }
+
+    ul li:hover{
+      transform: scale(1.06);
+      background-color: #FFFFFF;
+    }
+  }
+}
