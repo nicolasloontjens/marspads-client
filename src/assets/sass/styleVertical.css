@@ -42,5 +42,9 @@ body #contactList ul li:hover {
   transform: scale(1.3);
   background-color: navajowhite;
 }
+body #contactList a {
+  text-decoration: none;
+  color: blue;
+}
 
 /*# sourceMappingURL=styleVertical.css.map */
