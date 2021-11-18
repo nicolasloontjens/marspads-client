@@ -7,7 +7,7 @@ async function init() {
         item.addEventListener("click", getSelectedContactName);
     });
 
-    document.querySelector("#search").addEventListener("keyup", searchInputfield);
+    document.querySelector("#search").addEventListener("keyup", searchInputField);
 
 }
 
@@ -16,11 +16,11 @@ function getSelectedContactName(e) {
     console.log(contactName);
 }
 
-function searchInputfield() {
+function searchInputField() {
     let input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("search");
+    input = document.querySelector("#search");
     filter = input.value.toUpperCase();
-    ul = document.getElementById("ulContactList");
+    ul = document.querySelector("#ulContactList");
     li = ul.getElementsByTagName("li");
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0];

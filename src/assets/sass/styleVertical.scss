@@ -1,5 +1,7 @@
 body {
   font-size: 5rem;
+  font-family: 'Spartan', sans-serif;
+  color: #9b7241;
 
   img {
     margin: 0;
@@ -13,6 +15,8 @@ body {
     background: url("../images/ContactIcon.png") no-repeat;
     background-size: contain;
     padding-left: 10%;
+    margin-bottom: 2%;
+    margin-top: 2%;
   }
 
   #searchContainer {
@@ -20,29 +24,34 @@ body {
 
     input {
       background-size: contain;
-      background: rgba(0, 0, 0, 0.3) url("../images/magnifyingGlassIcon.png") no-repeat right;
+      background: url("../images/magnifyingGlassIcon.png") no-repeat right;
       background-size: contain;
       border: none;
       border-bottom: black solid;
-      height: 35px;
       border-radius: 10px;
       padding: 5px;
-      font-size: 3rem;
+      font-size: 4rem;
       letter-spacing: 1px;
-      color: #FFFFFF;
+      color: #9b7241;
     }
   }
 
   #contactList {
-    background: gray;
-    margin: auto;
-    width: 85%;
+    background: #d0a3023b;
+    //margin: auto;
+    //width: 85%;
     border-radius: 30px;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    margin: 10%;
 
     ul li {
-      background: #cc8612;
-      margin: auto;
-      width: 50%;
+      background: #cc95128a;
+      text-align: center;
+
+      padding: 20px;
+      width: 650px;
     }
 
     ul li:hover {
@@ -52,7 +61,7 @@ body {
 
     a {
       text-decoration: none;
-      color: blue;
+      color: #845a35;
     }
 
   }
