@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", init);
 
 async function init() {
-    document.querySelector("#map").addEventListener("click", toggleFullScreen);
+    document.querySelector("#map").addEventListener("dblclick", toggleFullScreen);
     document.querySelector("#fullscreenLogo").addEventListener("click", disableFullScreen);
 }
 
