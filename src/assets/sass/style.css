@@ -47,5 +47,20 @@ body #echoMapPage #map {
   width: 700px;
   height: 380px;
 }
+body .hide {
+  display: none;
+}
+body #fullscreenLogo {
+  display: none;
+  background-image: url("../images/fullscreen.png");
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 80px;
+}
+body #fullscreenLogo:hover {
+  cursor: pointer;
+}
 
 /*# sourceMappingURL=style.css.map */

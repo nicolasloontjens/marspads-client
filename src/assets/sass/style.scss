@@ -1,13 +1,13 @@
-body{
+body {
   background: whitesmoke;
 
-  aside{
+  aside {
     display: flex;
     float: right;
     margin-top: auto;
     margin-bottom: auto;
 
-    #arrowNav{
+    #arrowNav {
       width: 30px;
       height: 30px;
       margin-top: auto;
@@ -21,38 +21,58 @@ body{
       border-bottom-left-radius: 30%;
     }
 
-    nav{
+    nav {
       border-left: black 3px solid;
       border-bottom: black 3px solid;
       border-top: black 3px solid;
 
-      img{
+      img {
         margin: 0;
         width: 30px;
         height: 30px;
         display: flex;
-        padding:10px 7px;
+        padding: 10px 7px;
       }
     }
 
   }
 
-  section{
-    margin:50px 15px;
+  section {
+    margin: 50px 15px;
   }
 
-  #echoMapPage{
+  #echoMapPage {
     display: flex;
-    form{
+
+    form {
       display: flex;
       flex-direction: column;
       margin-right: 20px;
     }
 
-    #map{
+    #map {
       width: 700px;
       height: 380px;
     }
 
   }
+
+  .hide {
+    display: none;
+  }
+
+  #fullscreenLogo {
+    display: none;
+    background-image: url("../images/fullscreen.png");
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 80px;
+  }
+
+  #fullscreenLogo:hover {
+    cursor: pointer;
+  }
+
 }
