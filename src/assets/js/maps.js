@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", init);
 async function init() {
     console.log("Maps loaded");
     getLocation();
+    addOverlay();
 }
 
 function getLocation() {
@@ -31,7 +32,7 @@ function creatingMaps(position) {
         })
 
     });
-    addMarkerLayer(map, position.coords.longitude, position.coords.latitude);
+    addMarkerLayer(map, position.coords.longitude, position.coords.latitude, 'Your marker');
     addProximityLayer(map, position.coords.longitude, position.coords.latitude);
 }
 
@@ -81,12 +82,16 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
             let coordinate = event.coordinate;
             content.innerHTML = '<b>Hello world!</b><br />I am a popup.';
             overlay.setPosition(coordinate);
-            console.log(feature.getProperties()['name']);
         } else {
             overlay.setPosition(undefined);
             closer.blur();
         }
     });
+
+}
+
+function addOverlay(){
+
 }
 
 function addProximityLayer(map, longitude, latitude) {
@@ -94,7 +99,10 @@ function addProximityLayer(map, longitude, latitude) {
     const proxlayer = new ol.layer.Vector({
         source: new ol.source.Vector({
             projection: 'EPSG:4326',
-            features: [new ol.Feature(new ol.geom.Circle(centerLongitudeLatitude, 4000))]
+            features: [
+                new ol.Feature({geometry: new ol.geom.Circle(centerLongitudeLatitude, 4000),
+                name: 'Your range'})
+            ]
         }),
         style: [
             new ol.style.Style({
@@ -114,7 +122,7 @@ function addProximityLayer(map, longitude, latitude) {
     const randomLong = longitude - number / 111320 * Math.cos(latitude);
     const randomLat = latitude - number / 110574;
 
-    addMarkerLayer(map, randomLong, randomLat);
+    addMarkerLayer(map, randomLong, randomLat, 'Your friend');
 
 }
 
