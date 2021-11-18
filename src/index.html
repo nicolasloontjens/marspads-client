@@ -23,8 +23,10 @@
     <aside>
         <img id="arrowNav" src="assets/images/ArrowIcon.png" alt="Icon of an arrow">
         <nav>
-            <a href="#" data-pageLocation="audio"><img src="assets/images/SoundIcon.png" alt="Icon of a sound button"></a>
-            <a href="#" data-pageLocation="settings"><img src="assets/images/SettingIcon.jpg" alt="Icon of the settings"></a>
+            <a href="#" data-pageLocation="audio"><img src="assets/images/SoundIcon.png"
+                                                       alt="Icon of a sound button"></a>
+            <a href="#" data-pageLocation="settings"><img src="assets/images/SettingIcon.jpg"
+                                                          alt="Icon of the settings"></a>
             <a href="#" data-pageLocation="echoMap"><img src="assets/images/MapIcon.png" alt="Icon of a map"></a>
             <a href="#" data-pageLocation="contacts"><img src="assets/images/ContactIcon.png" alt="Icon of contact"></a>
         </nav>
@@ -63,6 +65,7 @@
     <section id="audioPage">
         <h2>Audio Page</h2>
         <button id="muteAll" type="button">Mute All!</button>
+        <button class="hide" id="play" type="button">play!</button>
         <!-- Mute all een button maken?  -->
         <div>
             <input data-slider="media" class="slider" type="range" id="media" name="media"
@@ -77,7 +80,8 @@
         </div>
 
         <div>
-            <input data-slider="constructionNoises" class="slider" type="range" id="constructionNoises" name="constructionNoises"
+            <input data-slider="constructionNoises" class="slider" type="range" id="constructionNoises"
+                   name="constructionNoises"
                    min="0" max="10" step="0.01" value="0">
             <label for="constructionNoises">Construction noises:</label>
         </div>
@@ -110,6 +114,10 @@
     <section id="contactsPage">
         <h2>List of contacts</h2>
     </section>
+
+    <audio id="trafficAudioFile">
+        <source src="assets/audio/trafficAudio.mp3" type="audio/mpeg">
+    </audio>
 
 </main>
 
