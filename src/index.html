@@ -62,27 +62,28 @@
 
     <section id="audioPage">
         <h2>Audio Page</h2>
+        <button id="muteAll" type="button">Mute All!</button>
         <!-- Mute all een button maken?  -->
         <div>
-            <input type="range" id="media" name="media"
+            <input data-slider="media" class="slider" type="range" id="media" name="media"
                    min="0" max="10" step="0.01" value="0">
             <label for="media">Media:</label>
         </div>
 
         <div>
-            <input type="range" id="talking" name="talking"
+            <input data-slider="talking" class="slider" type="range" id="talking" name="talking"
                    min="0" max="10" step="0.01" value="0">
             <label for="talking">Talking:</label>
         </div>
 
         <div>
-            <input type="range" id="constructionNoises" name="constructionNoises"
+            <input data-slider="constructionNoises" class="slider" type="range" id="constructionNoises" name="constructionNoises"
                    min="0" max="10" step="0.01" value="0">
             <label for="constructionNoises">Construction noises:</label>
         </div>
 
         <div>
-            <input type="range" id="traffic" name="traffic"
+            <input data-slider="traffic" class="slider" type="range" id="traffic" name="traffic"
                    min="0" max="10" step="0.01" value="0">
             <label for="traffic">Traffic:</label>
         </div>
@@ -116,7 +117,7 @@
 <script src="assets/js/api.js"></script>
 <script type="module" src="assets/js/maps.js"></script>
 <script src="assets/js/fullScreenAPI.js"></script>
-
+<script src="assets/js/audioControl.js"></script>
 </body>
 
 
