@@ -117,3 +117,8 @@ function switchPage(previousPage, nextPage){
     previousPage.classList.toggle('hidden');
     nextPage.classList.toggle('hidden');
 }
+
+function MakeNavigationRetract(e){
+e.preventDefault();
+document.querySelector('main aside nav').classList.toggle('hidden');
+}
