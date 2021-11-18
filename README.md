@@ -1,4 +1,4 @@
-val# Mars web project group-17
+# Mars web project group-17
 This is the client-side start project for the Analysis and Development project.
 
 Create your client-side project in this repo.

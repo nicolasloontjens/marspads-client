@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", init);
 async function init() {
     console.log("Maps loaded");
     getLocation();
-    addOverlay();
 }
 
 function getLocation() {
@@ -87,10 +86,6 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
             closer.blur();
         }
     });
-
-}
-
-function addOverlay(){
 
 }
 
