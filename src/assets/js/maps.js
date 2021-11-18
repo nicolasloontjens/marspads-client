@@ -1,6 +1,5 @@
-"use strict"
+"use strict";
 
-//const randomLocation = require("random-location");
 document.addEventListener("DOMContentLoaded", init);
 
 async function init() {
@@ -31,9 +30,9 @@ function creatingMaps(position) {
             zoom: 13
         })
 
-    })
-    addMarkerLayer(map, position.coords.longitude, position.coords.latitude, "you")
-    // addProximityLayer(map, position.coords.longitude, position.coords.latitude)
+    });
+    addMarkerLayer(map, position.coords.longitude, position.coords.latitude);
+    addProximityLayer(map, position.coords.longitude, position.coords.latitude);
 }
 
 function addMarkerLayer(map, longitude, latitude, markerName) {
@@ -41,7 +40,7 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
             geometry: new ol.geom.Point(ol.proj.fromLonLat([longitude, latitude])),
             name: markerName,
         });
-    
+
     let markerLayer = new ol.layer.Vector({
         source: new ol.source.Vector({
                 features: [
@@ -91,8 +90,8 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
 }
 
 function addProximityLayer(map, longitude, latitude) {
-    let centerLongitudeLatitude = ol.proj.fromLonLat([longitude, latitude]);
-    let proxlayer = new ol.layer.Vector({
+    const centerLongitudeLatitude = ol.proj.fromLonLat([longitude, latitude]);
+    const proxlayer = new ol.layer.Vector({
         source: new ol.source.Vector({
             projection: 'EPSG:4326',
             features: [new ol.Feature(new ol.geom.Circle(centerLongitudeLatitude, 4000))]
@@ -111,31 +110,15 @@ function addProximityLayer(map, longitude, latitude) {
     });
     map.addLayer(proxlayer);
 
-    let number = randomIntFromInterval(-4000, 4000);
-    let randomLong = longitude - number/111320 * Math.cos(latitude);
-    let randomLat = latitude - number/110574;
+    const number = randomIntFromInterval(-4000, 4000);
+    const randomLong = longitude - number / 111320 * Math.cos(latitude);
+    const randomLat = latitude - number / 110574;
 
     addMarkerLayer(map, randomLong, randomLat);
-    
-
-    const P = {
-        latitude: latitude,
-        longitude: longitude
-    }
-
-    const R = 3900 // meters
-
-    const randomPoint = randomLocation.randomCirclePoint(P, R)
-}
-
-function randomIntFromInterval(min, max) { // min and max included
-    return Math.floor(Math.random() * (max - min + 1) + min)
 
 }
 
+function randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 
-
-
-
-
-
+}
