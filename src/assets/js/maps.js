@@ -2,9 +2,18 @@
 
 document.addEventListener("DOMContentLoaded", init);
 
+let currentPage = document.querySelector('#echoMapPage');
+
 async function init() {
     console.log("Maps loaded");
     getLocation();
+    hiddenPages();
+    document.querySelectorAll('main aside nav a').forEach(
+        item => item.addEventListener('click', navigation)
+    );
+
+    document.querySelector('#arrowNav').addEventListener('click', MakeNavigationRetract);
+
 }
 
 function getLocation() {
@@ -124,4 +133,29 @@ function addProximityLayer(map, longitude, latitude) {
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 
+}
+
+function hiddenPages(){
+    document.querySelectorAll('section').forEach(item => item.classList.toggle('hidden'));
+    document.querySelector('#echoMapPage').classList.toggle('hidden');
+    document.querySelector('main aside nav').classList.toggle('hidden');
+
+}
+
+function navigation(e){
+    e.preventDefault();
+    const pageId = e.target.parentElement.getAttribute('href');
+    const nextPage = document.querySelector(`${pageId}`);
+    switchPage(currentPage, nextPage);
+    currentPage = nextPage;
+}
+
+function switchPage(previousPage, nextPage){
+    previousPage.classList.toggle('hidden');
+    nextPage.classList.toggle('hidden');
+}
+
+function MakeNavigationRetract(e){
+e.preventDefault();
+document.querySelector('main aside nav').classList.toggle('hidden');
 }
