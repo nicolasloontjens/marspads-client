@@ -1,0 +1,141 @@
+body {
+  background: #ffffff;
+  height: max-content;
+  /*-----------------------------------------------*/
+  /* Code to style the slider is not our own https://www.cssportal.com/style-input-range/ and https://www.w3schools.com/howto/howto_js_rangeslider.asp*/
+}
+body div {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+body #allSliders {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 90%;
+  flex-flow: wrap;
+}
+body main {
+  display: flex;
+  justify-content: end;
+  margin-top: 2rem;
+}
+body label {
+  font-size: 2.2rem;
+  margin-right: 10%;
+  margin-bottom: 1.5rem;
+}
+body header {
+  padding: 1rem;
+}
+body button {
+  border-radius: 10px;
+  margin: 1rem;
+  width: 70px;
+  height: 25px;
+}
+body h2 {
+  font-size: 2rem;
+}
+body #audioButtons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+}
+body aside {
+  display: flex;
+  justify-content: right;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+body #arrowNav {
+  width: 30px;
+  height: 30px;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-left: black 3px solid;
+  border-bottom: black 3px solid;
+  border-top: black 3px solid;
+  border-top-left-radius: 30%;
+  border-bottom-left-radius: 30%;
+}
+body nav {
+  border-left: black 3px solid;
+  border-bottom: black 3px solid;
+  border-top: black 3px solid;
+}
+body img {
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  padding: 10px 7px;
+}
+body #echoMapPage {
+  display: flex;
+}
+body form {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+body #map {
+  width: 700px;
+  height: 380px;
+}
+body .hide {
+  display: none !important;
+}
+body #fullscreenLogo {
+  display: none;
+  background-image: url("../images/fullscreen.png");
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 80px;
+}
+body #fullscreenLogo:hover {
+  cursor: pointer;
+}
+body label {
+  font-size: 2.2rem;
+  margin-right: 10%;
+}
+body .slider {
+  -webkit-appearance: none;
+  width: 80%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+body .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #f38102;
+  cursor: pointer;
+}
+body .slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #f38102;
+  cursor: pointer;
+}
+body .slider:hover {
+  opacity: 1;
+}
+
+/*# sourceMappingURL=audioPage.scc.css.map */
