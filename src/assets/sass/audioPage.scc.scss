@@ -1,0 +1,167 @@
+
+body {
+  background: #ffffff;
+  height: max-content;
+
+
+  div {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    padding: 2.5% 5%;
+  }
+
+  #allSliders {
+    display: flex;
+    text-align: center;
+    width: 90%;
+    flex-flow: wrap;
+  }
+
+  main {
+    display: flex;
+    justify-content: end;
+    margin-top: 2rem;
+  }
+
+  label {
+    font-size: 2.2rem;
+    margin-right: 10%;
+    margin-bottom: 1.5rem;
+  }
+
+  section {
+    display: flex;
+    justify-content: center;
+  }
+
+  header {
+    padding: 1rem;
+  }
+
+  button {
+    border-radius: 10px;
+    margin: 1rem;
+    width: 70px;
+    height: 25px;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  /*-----------------------------------------------*/
+
+  aside {
+    display: flex;
+    justify-content: right;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  #arrowNav {
+    width: 30px;
+    height: 30px;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-left: black 3px solid;
+    border-bottom: black 3px solid;
+    border-top: black 3px solid;
+    border-top-left-radius: 30%;
+    border-bottom-left-radius: 30%;
+  }
+
+  nav {
+    border-left: black 3px solid;
+    border-bottom: black 3px solid;
+    border-top: black 3px solid;
+  }
+
+  img {
+    margin: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    padding: 10px 7px;
+  }
+
+
+  #echoMapPage {
+    display: flex;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+  }
+
+  #map {
+    width: 700px;
+    height: 380px;
+  }
+
+  .hide {
+    display: none !important;
+  }
+
+  #fullscreenLogo {
+    display: none;
+    background-image: url("../images/fullscreen.png");
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 80px;
+  }
+
+  #fullscreenLogo:hover {
+    cursor: pointer;
+  }
+
+
+  label {
+    font-size: 2.2rem;
+    margin-right: 10%;
+  }
+
+  /* Code to style the slider is not our own https://www.cssportal.com/style-input-range/ and https://www.w3schools.com/howto/howto_js_rangeslider.asp*/
+
+
+  .slider {
+    -webkit-appearance: none;
+    width: 80%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #f38102;
+    cursor: pointer;
+  }
+
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #f38102;
+    cursor: pointer;
+  }
+
+  .slider:hover {
+    opacity: 1;
+  }
+}
