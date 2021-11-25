@@ -23,12 +23,10 @@
     <aside>
         <img id="arrowNav" src="assets/images/ArrowIcon.png" alt="Icon of an arrow">
         <nav>
-            <a href="#" data-pageLocation="audio"><img src="assets/images/SoundIcon.png"
-                                                       alt="Icon of a sound button"></a>
-            <a href="#" data-pageLocation="settings"><img src="assets/images/SettingIcon.jpg"
-                                                          alt="Icon of the settings"></a>
-            <a href="#" data-pageLocation="echoMap"><img src="assets/images/MapIcon.png" alt="Icon of a map"></a>
-            <a href="#" data-pageLocation="contacts"><img src="assets/images/ContactIcon.png" alt="Icon of contact"></a>
+            <a href="#audioPage" data-pageLocation="audio"><img src="assets/images/SoundIcon.png" alt="Icon of a sound button"></a>
+            <a href="#settingsPage" data-pageLocation="settings"><img src="assets/images/SettingIcon.jpg" alt="Icon of the settings"></a>
+            <a href="#echoMapPage" data-pageLocation="echoMap"><img src="assets/images/MapIcon.png" alt="Icon of a map"></a>
+            <a href="#contactsPage" data-pageLocation="contacts"><img src="assets/images/ContactIcon.png" alt="Icon of contact"></a>
         </nav>
     </aside>
 
@@ -58,6 +56,11 @@
 
         <div id="map">
             <img id="fullscreenLogo" src="assets/images/fullscreen.png" alt="fullscreenLogo">
+        </div>
+
+        <div id="popup" class="ol-popup">
+            <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+            <div id="popup-content"></div>
         </div>
 
     </section>
