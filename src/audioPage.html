@@ -20,7 +20,7 @@
     <h2>Audio Page</h2>
 </header>
 <main>
-    <section id="allSliders">
+    <div id="allSliders">
         <div>
             <label for="media">Media:</label>
             <input data-slider="media" class="slider" type="range" id="media" name="media"
@@ -45,7 +45,7 @@
             <input data-slider="traffic" class="slider" type="range" id="traffic" name="traffic"
                    min="0" max="10" step="0.01" value="3">
         </div>
-    </section>
+    </div>
     <aside>
         <img id="arrowNav" src="assets/images/ArrowIcon.png" alt="Icon of an arrow">
         <nav>
@@ -58,11 +58,11 @@
         </nav>
     </aside>
 </main>
-<section id="audioPage">
+<div id="audioButtons">
     <button id="muteAll" type="button">Mute All!</button>
     <button id="play" type="button">play!</button>
     <!-- Mute all een button maken?  -->
-</section>
+</div>
 <audio id="trafficAudioFile">
     <source src="assets/audio/trafficAudio.mp3" type="audio/mpeg">
 </audio>

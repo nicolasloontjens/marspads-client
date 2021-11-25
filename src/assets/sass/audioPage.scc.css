@@ -9,10 +9,10 @@ body div {
   display: flex;
   flex-direction: column;
   align-items: baseline;
-  padding: 2.5% 5%;
 }
 body #allSliders {
   display: flex;
+  justify-content: center;
   text-align: center;
   width: 90%;
   flex-flow: wrap;
@@ -27,10 +27,6 @@ body label {
   margin-right: 10%;
   margin-bottom: 1.5rem;
 }
-body section {
-  display: flex;
-  justify-content: center;
-}
 body header {
   padding: 1rem;
 }
@@ -42,6 +38,12 @@ body button {
 }
 body h2 {
   font-size: 2rem;
+}
+body #audioButtons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
 }
 body aside {
   display: flex;
