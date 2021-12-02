@@ -3,18 +3,14 @@
 document.addEventListener("DOMContentLoaded", init);
 
 async function init() {
-    document.querySelector("#map").addEventListener("dblclick", toggleFullScreen);
-    document.querySelector("#fullscreenLogo").addEventListener("click", disableFullScreen);
-}
+    document.querySelector("#map").addEventListener("dblclick", toggleFullScreen);}
 
 function toggleFullScreen() {
     if (!document.fullscreenElement) {
         document.querySelector("#map").requestFullscreen().catch(console.log);
-        document.querySelector("#fullscreenLogo").style.display = "block";
     }
 }
 
 function disableFullScreen() {
     document.exitFullscreen().catch(console.log);
-    document.querySelector("#fullscreenLogo").style.display = "none";
 }
