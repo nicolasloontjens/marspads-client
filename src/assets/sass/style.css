@@ -1,7 +1,14 @@
+@charset "UTF-8";
 body {
   background: whitesmoke;
   font-size: 2rem;
   color: #9b7241;
+}
+body h1 {
+  color: red;
+}
+body .grabby {
+  cursor: grab;
 }
 body aside {
   display: flex;
@@ -55,7 +62,7 @@ body .hide {
 
 body .hidden {
   display: none !important;
-=======
+}
 body .hide {
   display: none;
 }
@@ -70,6 +77,47 @@ body #fullscreenLogo {
 }
 body #fullscreenLogo:hover {
   cursor: pointer;
+}
+body .ol-popup {
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  bottom: 12px;
+  left: -50px;
+  min-width: 280px;
+}
+body .ol-popup:after, body .ol-popup:before {
+  top: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+body .ol-popup:after {
+  border-top-color: white;
+  border-width: 10px;
+  left: 48px;
+  margin-left: -10px;
+}
+body .ol-popup:before {
+  border-top-color: #cccccc;
+  border-width: 11px;
+  left: 48px;
+  margin-left: -11px;
+}
+body .ol-popup-closer {
+  text-decoration: none;
+  position: absolute;
+  top: 2px;
+  right: 8px;
+}
+body .ol-popup-closer:after {
+  content: "✖";
 }
 
 /*# sourceMappingURL=style.css.map */

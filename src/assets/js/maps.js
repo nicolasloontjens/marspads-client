@@ -46,9 +46,10 @@ function creatingMaps(position) {
 
 function addMarkerLayer(map, longitude, latitude, markerName) {
     let feature = new ol.Feature({
-            geometry: new ol.geom.Point(ol.proj.fromLonLat([longitude, latitude])),
-            name: markerName,
-        });
+        geometry: new ol.geom.Point(ol.proj.fromLonLat([longitude, latitude])),
+        name: markerName,
+        type: "marker",
+    });
 
     let markerLayer = new ol.layer.Vector({
         source: new ol.source.Vector({
@@ -79,20 +80,41 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
     });
     map.addOverlay(overlay);
 
-    closer.onclick = function() {
+    closer.onclick = function () {
         overlay.setPosition(undefined);
         closer.blur();
         return false;
     };
 
-    map.on('singleclick', function (event) {
-        if (map.hasFeatureAtPixel(event.pixel) === true) {
-            let coordinate = event.coordinate;
-            content.innerHTML = '<b>Hello world!</b><br />I am a popup.';
+    /**
+     * Add a click handler to the map to render the popup.
+     */
+    map.on('singleclick', function (evt) {
+        const coordinate = evt.coordinate;
+        const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+            return feature;
+        });
+        if (feature && feature.A.type === "marker") {
+            content.innerHTML = '<p>You clicked here:</p><code>' + '</code>';
             overlay.setPosition(coordinate);
-        } else {
+        }else {
             overlay.setPosition(undefined);
             closer.blur();
+        }
+    });
+
+    /**
+     * Making the pointer change when hovering a marker.
+     */
+
+    map.on('pointermove', function (evt) {
+        const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+            return feature;
+        });
+        if (feature && feature.A.type === "marker") {
+            document.body.style.cursor = "pointer";
+        } else {
+            document.body.style.cursor = "";
         }
     });
 
@@ -104,8 +126,10 @@ function addProximityLayer(map, longitude, latitude) {
         source: new ol.source.Vector({
             projection: 'EPSG:4326',
             features: [
-                new ol.Feature({geometry: new ol.geom.Circle(centerLongitudeLatitude, 4000),
-                name: 'Your range'})
+                new ol.Feature({
+                    geometry: new ol.geom.Circle(centerLongitudeLatitude, 4000),
+                    name: 'Your range'
+                })
             ]
         }),
         style: [
@@ -127,7 +151,15 @@ function addProximityLayer(map, longitude, latitude) {
     const randomLat = latitude - number / 110574;
 
     addMarkerLayer(map, randomLong, randomLat, 'Your friend');
+    randomLocation(map, longitude, latitude);
+}
 
+
+function randomLocation(map, longitude, latitude) {
+    const number = randomIntFromInterval(-4000, 4000);
+    const randomLong = longitude - number / 111320 * Math.cos(latitude);
+    const randomLat = latitude - number / 110574;
+    addMarkerLayer(map, randomLong, randomLat, 'test');
 }
 
 function randomIntFromInterval(min, max) {
@@ -135,14 +167,14 @@ function randomIntFromInterval(min, max) {
 
 }
 
-function hiddenPages(){
+function hiddenPages() {
     document.querySelectorAll('section').forEach(item => item.classList.toggle('hidden'));
     document.querySelector('#echoMapPage').classList.toggle('hidden');
     document.querySelector('main aside nav').classList.toggle('hidden');
 
 }
 
-function navigation(e){
+function navigation(e) {
     e.preventDefault();
     const pageId = e.target.parentElement.getAttribute('href');
     const nextPage = document.querySelector(`${pageId}`);
@@ -150,12 +182,12 @@ function navigation(e){
     currentPage = nextPage;
 }
 
-function switchPage(previousPage, nextPage){
+function switchPage(previousPage, nextPage) {
     previousPage.classList.toggle('hidden');
     nextPage.classList.toggle('hidden');
 }
 
-function MakeNavigationRetract(e){
-e.preventDefault();
-document.querySelector('main aside nav').classList.toggle('hidden');
+function MakeNavigationRetract(e) {
+    e.preventDefault();
+    document.querySelector('main aside nav').classList.toggle('hidden');
 }
