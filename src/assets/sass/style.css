@@ -1,5 +1,7 @@
 body {
   background: whitesmoke;
+  font-size: 2rem;
+  color: #9b7241;
 }
 body aside {
   display: flex;
@@ -46,6 +48,9 @@ body #echoMapPage form {
 body #echoMapPage #map {
   width: 700px;
   height: 380px;
+}
+body .hide {
+  display: none;
 }
 
 body .hidden {
