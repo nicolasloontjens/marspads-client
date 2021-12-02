@@ -7,6 +7,9 @@ body h1 {
   color: #9b7241;
   font-size: 2rem;
 }
+body #popup-content p {
+  font-size: 20px;
+}
 body aside {
   display: flex;
   float: right;

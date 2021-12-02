@@ -7,13 +7,6 @@ let currentPage = document.querySelector('#echoMapPage');
 async function init() {
     console.log("Maps loaded");
     getLocation();
-    hiddenPages();
-    document.querySelectorAll('main aside nav a').forEach(
-        item => item.addEventListener('click', navigation)
-    );
-
-    document.querySelector('#arrowNav').addEventListener('click', MakeNavigationRetract);
-
 }
 
 function getLocation() {
@@ -50,6 +43,8 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
         geometry: new ol.geom.Point(ol.proj.fromLonLat([longitude, latitude])),
         name: markerName,
         type: "marker",
+        fullName: "Bilal Ben Mohammadi",
+        soundName: "Hammering"
     });
 
     let markerLayer = new ol.layer.Vector({
@@ -96,7 +91,15 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
             return feature;
         });
         if (feature && feature.A.type === "marker") {
-            content.innerHTML = '<p>You clicked here:</p><code>' + '</code>';
+            if(feature.A.name === "friend"){
+                content.innerHTML = '<p>' + feature.get('fullName') + '</p><code>' + feature.get('name')
+                    +  '</code>' + '<br><button>Chat</button> <button>Fastest route</button>';
+            }
+            else {
+                content.innerHTML = '<p>' + feature.get('soundName') + '</p><code>' + feature.get('name')
+                    +  '</code>' + '<br><button>Mute</button> <button id="goToAudioPage" >See all noises</button>';
+            }
+
             overlay.setPosition(coordinate);
         }else {
             overlay.setPosition(undefined);
@@ -151,16 +154,15 @@ function addProximityLayer(map, longitude, latitude) {
     const randomLong = longitude - number / 111320 * Math.cos(latitude);
     const randomLat = latitude - number / 110574;
 
-    addMarkerLayer(map, randomLong, randomLat, 'Your friend');
+    addMarkerLayer(map, randomLong, randomLat, 'friend');
     randomLocation(map, longitude, latitude);
 }
-
 
 function randomLocation(map, longitude, latitude) {
     const number = randomIntFromInterval(-4000, 4000);
     const randomLong = longitude - number / 111320 * Math.cos(latitude);
     const randomLat = latitude - number / 110574;
-    addMarkerLayer(map, randomLong, randomLat, 'test');
+    addMarkerLayer(map, randomLong, randomLat, 'sound');
 }
 
 function randomIntFromInterval(min, max) {
@@ -168,27 +170,15 @@ function randomIntFromInterval(min, max) {
 
 }
 
-function hiddenPages() {
-    document.querySelectorAll('section').forEach(item => item.classList.toggle('hidden'));
-    document.querySelector('#echoMapPage').classList.toggle('hidden');
-    document.querySelector('main aside nav').classList.toggle('hidden');
+function switchToSoundPage() {
+    if (document.querySelector("#goToAudioPage")){
+        console.log("test")
 
-}
+    }
+    // location.replace("audio.html");
+    console.log("test");
+    if (document.querySelector("#goToAudioPage")){
+        document.querySelector("#goToAudioPage").addEventListener("click", switchToSoundPage);
+    }
 
-function navigation(e) {
-    e.preventDefault();
-    const pageId = e.target.parentElement.getAttribute('href');
-    const nextPage = document.querySelector(`${pageId}`);
-    switchPage(currentPage, nextPage);
-    currentPage = nextPage;
-}
-
-function switchPage(previousPage, nextPage) {
-    previousPage.classList.toggle('hidden');
-    nextPage.classList.toggle('hidden');
-}
-
-function MakeNavigationRetract(e) {
-    e.preventDefault();
-    document.querySelector('main aside nav').classList.toggle('hidden');
 }

@@ -7,9 +7,13 @@ body {
   
   }
   
-    cursor:grab;
+  cursor:grab;
 
-
+  #popup-content{
+    p{
+      font-size: 20px;
+    }
+  }
   aside {
     display: flex;
     float: right;
