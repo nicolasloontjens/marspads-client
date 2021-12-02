@@ -48,6 +48,7 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
     let feature = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.fromLonLat([longitude, latitude])),
         name: markerName,
+        type: "marker",
     });
 
     let markerLayer = new ol.layer.Vector({
@@ -85,7 +86,20 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
         return false;
     };
 
-    onclick(map, content, overlay, closer);
+
+    map.on('singleclick', function (evt) {
+        let feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+            return feature;
+        }, {
+            layerFilter: function (layer) {
+                return layer === markerLayer
+            }
+        })
+        if (feature && feature.A.type === "marker") {
+            content.innerHTML = '<b>Hello world!</b><br />I am a popup.';
+            console.log("marker");
+        }
+    })
 
 
 }

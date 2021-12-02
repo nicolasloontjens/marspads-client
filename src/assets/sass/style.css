@@ -1,6 +1,9 @@
 body {
   background: whitesmoke;
 }
+body h1 {
+  color: red;
+}
 body aside {
   display: flex;
   float: right;
