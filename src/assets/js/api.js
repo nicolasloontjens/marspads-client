@@ -92,10 +92,15 @@ function getMarsID(){
     return JSON.parse(localStorage.getItem("user")).marsid
 }
 
-function getUserContacts() {
-    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getMarsID()}/contacts`).then(userContacts => userContacts.json().then(data => {
-        console.log(data);
-    }));
+async function getUserContacts() {
+    try{
+        const api_response = await fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getMarsID()}/contacts`)
+        return await api_response.json();
+       
+    }catch(error){
+        console.log(error)
+    }
+    
 }
 
 function addUserContact(idToAdd) {
@@ -106,10 +111,13 @@ function removeUserContact(idToRemove) {
     remove(`user/${getMarsID()}/contacts/remove/${idToRemove}`);
 }
 
-function getAllChats() { //get a list of all chatid's and their corresponding user
-    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getMarsID()}/chats`).then(allChats => allChats.json().then(data => {
-        console.log(data);
-    }));
+async function getAllChats() { //get a list of all chatid's and their corresponding user
+    try{
+        const api_resp = await fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getMarsID()}/chats`)
+        return await api_resp.json();
+    }catch(error){
+        console.log(error)
+    }
 }
 
 function getAllChatsWithUser(chatid) {
