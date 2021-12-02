@@ -28,6 +28,7 @@ function getLocation() {
 function creatingMaps(position) {
 
     const map = new ol.Map({
+        controls: [new ol.control.FullScreen(), new ol.control.Zoom()],
         target: 'map',
         layers: [
             new ol.layer.Tile({
