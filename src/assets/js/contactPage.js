@@ -3,12 +3,28 @@
 document.addEventListener("DOMContentLoaded", init);
 
 async function init() {
+    const contacts = await getUserContacts();
+    console.log(await getAllChats())
+    insertContactsIntoHTML(contacts)
     document.querySelectorAll(".contactItem").forEach(item => {
         item.addEventListener("click", getSelectedContactName);
     });
-
+    /*
+    todo:
+    load contacts from api
+    filter contacts if they have a chat already
+    add remove functionality
+    */
     document.querySelector("#search").addEventListener("keyup", searchInputField);
 
+}
+
+function insertContactsIntoHTML(contacts){
+    
+
+    contacts.forEach(contact => {
+        document.querySelector("#ulContactList").innerHTML  += `<li><a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a></li>`
+    })
 }
 
 function getSelectedContactName(e) {
