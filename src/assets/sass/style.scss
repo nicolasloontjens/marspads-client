@@ -87,6 +87,29 @@ body {
     cursor: pointer;
   }
 
+  #chatroom{
+    height: 100vh;
+    width: 100vw;
+    #messages{
+      display:block;
+      height:90vh
+    }
+    #communication-panel {
+      height: 10vh;      
+      display: grid;
+      grid-template-columns: max-content auto max-content;
+      column-gap: 10px;
+      button{
+        font-size: 4rem;
+        width: 20vw;
+      }
+      input{
+        display: block;
+        width: 80vw;
+      }
+  }
+  }
+
 
   .ol-popup {
     position: absolute;

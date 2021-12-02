@@ -71,6 +71,28 @@ body #fullscreenLogo {
 body #fullscreenLogo:hover {
   cursor: pointer;
 }
+body #chatroom {
+  height: 100vh;
+  width: 100vw;
+}
+body #chatroom #messages {
+  display: block;
+  height: 90vh;
+}
+body #chatroom #communication-panel {
+  height: 10vh;
+  display: grid;
+  grid-template-columns: max-content auto max-content;
+  column-gap: 10px;
+}
+body #chatroom #communication-panel button {
+  font-size: 4rem;
+  width: 20vw;
+}
+body #chatroom #communication-panel input {
+  display: block;
+  width: 80vw;
+}
 body .ol-popup {
   position: absolute;
   background-color: white;
