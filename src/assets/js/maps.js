@@ -86,31 +86,26 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
         return false;
     };
 
-
-//popup
-    const element = document.getElementById('popup-content');
-
-
-    const popup = new ol.Overlay({
-        element: element,
-        positioning: 'bottom-center',
-        stopEvent: false,
-    });
-    map.addOverlay(popup);
-
-// display popup on click
-    map.on('click', function (evt) {
+    /**
+     * Add a click handler to the map to render the popup.
+     */
+    map.on('singleclick', function (evt) {
+        const coordinate = evt.coordinate;
         const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
             return feature;
         });
         if (feature && feature.A.type === "marker") {
-            popup.setPosition(evt.coordinate);
-            content.innerHTML = '<b>I am a popup.</b>';
-        } else {
-            content.innerHTML = '';
+            content.innerHTML = '<p>You clicked here:</p><code>' + '</code>';
+            overlay.setPosition(coordinate);
+        }else {
+            overlay.setPosition(undefined);
+            closer.blur();
         }
     });
 
+    /**
+     * Making the pointer change when hovering a marker.
+     */
 
     map.on('pointermove', function (evt) {
         const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
@@ -122,20 +117,7 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
             document.body.style.cursor = "";
         }
     });
-}
 
-
-function onclick(map, content, overlay, closer) {
-    map.on('singleclick', function (event) {
-        if (map.hasFeatureAtPixel(event.pixel) === true) {
-            let coordinate = event.coordinate;
-            content.innerHTML = '<b>Hello world!</b><br />I am a popup.';
-            overlay.setPosition(coordinate);
-        } else {
-            overlay.setPosition(undefined);
-            closer.blur();
-        }
-    });
 }
 
 function addProximityLayer(map, longitude, latitude) {
