@@ -47,10 +47,9 @@ body #echoMapPage #map {
   width: 700px;
   height: 380px;
 }
-
 body .hidden {
   display: none !important;
-=======
+}
 body .hide {
   display: none;
 }

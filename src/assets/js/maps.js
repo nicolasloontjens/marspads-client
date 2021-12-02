@@ -46,9 +46,9 @@ function creatingMaps(position) {
 
 function addMarkerLayer(map, longitude, latitude, markerName) {
     let feature = new ol.Feature({
-            geometry: new ol.geom.Point(ol.proj.fromLonLat([longitude, latitude])),
-            name: markerName,
-        });
+        geometry: new ol.geom.Point(ol.proj.fromLonLat([longitude, latitude])),
+        name: markerName,
+    });
 
     let markerLayer = new ol.layer.Vector({
         source: new ol.source.Vector({
@@ -79,12 +79,18 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
     });
     map.addOverlay(overlay);
 
-    closer.onclick = function() {
+    closer.onclick = function () {
         overlay.setPosition(undefined);
         closer.blur();
         return false;
     };
 
+    onclick(map, content, overlay, closer);
+
+
+}
+
+function onclick(map, content, overlay, closer) {
     map.on('singleclick', function (event) {
         if (map.hasFeatureAtPixel(event.pixel) === true) {
             let coordinate = event.coordinate;
@@ -95,7 +101,6 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
             closer.blur();
         }
     });
-
 }
 
 function addProximityLayer(map, longitude, latitude) {
@@ -104,8 +109,10 @@ function addProximityLayer(map, longitude, latitude) {
         source: new ol.source.Vector({
             projection: 'EPSG:4326',
             features: [
-                new ol.Feature({geometry: new ol.geom.Circle(centerLongitudeLatitude, 4000),
-                name: 'Your range'})
+                new ol.Feature({
+                    geometry: new ol.geom.Circle(centerLongitudeLatitude, 4000),
+                    name: 'Your range'
+                })
             ]
         }),
         style: [
@@ -127,7 +134,15 @@ function addProximityLayer(map, longitude, latitude) {
     const randomLat = latitude - number / 110574;
 
     addMarkerLayer(map, randomLong, randomLat, 'Your friend');
+    randomLocation(map, longitude, latitude);
+}
 
+
+function randomLocation(map, longitude, latitude) {
+    const number = randomIntFromInterval(-4000, 4000);
+    const randomLong = longitude - number / 111320 * Math.cos(latitude);
+    const randomLat = latitude - number / 110574;
+    addMarkerLayer(map, randomLong, randomLat, 'test');
 }
 
 function randomIntFromInterval(min, max) {
@@ -135,14 +150,14 @@ function randomIntFromInterval(min, max) {
 
 }
 
-function hiddenPages(){
+function hiddenPages() {
     document.querySelectorAll('section').forEach(item => item.classList.toggle('hidden'));
     document.querySelector('#echoMapPage').classList.toggle('hidden');
     document.querySelector('main aside nav').classList.toggle('hidden');
 
 }
 
-function navigation(e){
+function navigation(e) {
     e.preventDefault();
     const pageId = e.target.parentElement.getAttribute('href');
     const nextPage = document.querySelector(`${pageId}`);
@@ -150,12 +165,12 @@ function navigation(e){
     currentPage = nextPage;
 }
 
-function switchPage(previousPage, nextPage){
+function switchPage(previousPage, nextPage) {
     previousPage.classList.toggle('hidden');
     nextPage.classList.toggle('hidden');
 }
 
-function MakeNavigationRetract(e){
-e.preventDefault();
-document.querySelector('main aside nav').classList.toggle('hidden');
+function MakeNavigationRetract(e) {
+    e.preventDefault();
+    document.querySelector('main aside nav').classList.toggle('hidden');
 }
