@@ -87,22 +87,33 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
     };
 
 
-    map.on('singleclick', function (evt) {
-        let feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
-            return feature;
-        }, {
-            layerFilter: function (layer) {
-                return layer === markerLayer
-            }
-        })
-        if (feature && feature.A.type === "marker") {
-            content.innerHTML = '<b>Hello world!</b><br />I am a popup.';
-            console.log("marker");
-        }
-    })
+//popup
+    const element = document.getElementById('popup-content');
 
+
+
+    const popup = new ol.Overlay({
+        element: element,
+        positioning: 'bottom-center',
+        stopEvent: false,
+    });
+    map.addOverlay(popup);
+
+// display popup on click
+    map.on('click', function (evt) {
+        const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+            return feature;
+        });
+        if(feature && feature.A.type === "marker"){
+            popup.setPosition(evt.coordinate);
+            content.innerHTML = '<b>I am a popup.</b>';
+        } else {
+            content.innerHTML = '';
+        }
+    });
 
 }
+
 
 function onclick(map, content, overlay, closer) {
     map.on('singleclick', function (event) {
