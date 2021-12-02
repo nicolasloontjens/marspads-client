@@ -4,6 +4,9 @@ body {
 body h1 {
   color: red;
 }
+body .grabby {
+  cursor: grab;
+}
 body aside {
   display: flex;
   float: right;

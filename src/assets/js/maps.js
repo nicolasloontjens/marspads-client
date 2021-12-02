@@ -91,7 +91,6 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
     const element = document.getElementById('popup-content');
 
 
-
     const popup = new ol.Overlay({
         element: element,
         positioning: 'bottom-center',
@@ -104,7 +103,7 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
         const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
             return feature;
         });
-        if(feature && feature.A.type === "marker"){
+        if (feature && feature.A.type === "marker") {
             popup.setPosition(evt.coordinate);
             content.innerHTML = '<b>I am a popup.</b>';
         } else {
@@ -112,6 +111,17 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
         }
     });
 
+
+    map.on('pointermove', function (evt) {
+        const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+            return feature;
+        });
+        if (feature && feature.A.type === "marker") {
+            document.body.style.cursor = "pointer";
+        } else {
+            document.body.style.cursor = "";
+        }
+    });
 }
 
 
