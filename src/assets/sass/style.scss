@@ -1,11 +1,15 @@
 body {
   background: whitesmoke;
+
   h1{
-    color: red;
+    color: #9b7241;
+    font-size: 2rem;
+  
   }
   .grabby{
     cursor:grab;
-  }
+
+
   aside {
     display: flex;
     float: right;

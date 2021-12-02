@@ -1,6 +1,8 @@
 @charset "UTF-8";
 body {
   background: whitesmoke;
+  font-size: 2rem;
+  color: #9b7241;
 }
 body h1 {
   color: red;
@@ -54,6 +56,10 @@ body #echoMapPage #map {
   width: 700px;
   height: 380px;
 }
+body .hide {
+  display: none;
+}
+
 body .hidden {
   display: none !important;
 }
