@@ -3,7 +3,8 @@
 document.addEventListener("DOMContentLoaded", init);
 
 async function init() {
-    const contacts = await getUserContacts();
+    let contacts = await getUserContacts();
+    contacts.sort((a,b) => a.name.localeCompare(b.name));
     console.log(await getAllChats())
     insertContactsIntoHTML(contacts)
     document.querySelectorAll(".contactItem").forEach(item => {
@@ -11,7 +12,6 @@ async function init() {
     });
     /*
     todo:
-    load contacts from api
     filter contacts if they have a chat already
     add remove functionality
     */

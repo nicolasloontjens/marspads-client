@@ -11,7 +11,8 @@ async function init() {
 
     initUser();
     addNavRedirects();
-    
+    document.querySelector('#arrowNav').addEventListener('click', MakeNavigationRetract);
+
 
 }
 
@@ -21,16 +22,29 @@ async function loadConfig() {
 }
 
 function addNavRedirects(){
-    document.querySelector('#audioPage').addEventListener("click", () => {
+    document.querySelector('#audioPage').addEventListener("click", (e) => {
+        e.stopPropagation();
+        e.preventDefault();
         location.replace("audio.html");
     })
-    document.querySelector("#settingsPage").addEventListener("click",()=>{
+    document.querySelector("#settingsPage").addEventListener("click",(e)=>{
+        e.stopPropagation();
+        e.preventDefault();
         location.replace("settings.html");
     })
-    document.querySelector("#mapPage").addEventListener("click",()=>{
+    document.querySelector("#mapPage").addEventListener("click",(e)=>{
+        e.stopPropagation();
+        e.preventDefault();
         location.replace("index.html");
     })
-    document.querySelector("#contactsPage").addEventListener("click",()=>{
+    document.querySelector("#contactsPage").addEventListener("click",(e)=>{
+        e.stopPropagation();
+        e.preventDefault();
         location.replace("contacts.html");
     })
+}
+
+function MakeNavigationRetract(e) {
+    e.preventDefault();
+    document.querySelector('main aside nav').classList.toggle('hidden');
 }
