@@ -6,7 +6,14 @@ let currentPage = document.querySelector('#echoMapPage');
 
 async function init() {
     console.log("Maps loaded");
+    document.querySelector("#proximitychat").addEventListener("click", goToGeneralChat);
     getLocation();
+}
+
+function goToGeneralChat(e){
+    e.preventDefault();
+    localStorage.setItem("currentchattype","public")
+    location.replace("chatroom.html")
 }
 
 function getLocation() {

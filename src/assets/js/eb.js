@@ -33,7 +33,6 @@ function openSocket() {
 }
 
 function onPublicMessage(error, message) {
-	console.log(message)
 	document.querySelector("#messages").innerHTML +=
 		`   <p class="chatMessage">
                 ${message.body}

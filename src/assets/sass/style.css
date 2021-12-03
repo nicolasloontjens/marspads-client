@@ -78,6 +78,12 @@ body #chatroom {
 body #chatroom #messages {
   display: block;
   height: 90vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+body #chatroom #messages p {
+  font-size: 4rem;
+  padding: 1rem;
 }
 body #chatroom #communication-panel {
   height: 10vh;
@@ -91,6 +97,7 @@ body #chatroom #communication-panel button {
 }
 body #chatroom #communication-panel input {
   display: block;
+  font-size: 4rem;
   width: 80vw;
 }
 body .ol-popup {
