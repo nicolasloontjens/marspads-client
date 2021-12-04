@@ -44,7 +44,7 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
         name: markerName,
         type: "marker",
         fullName: "Bilal Ben Mohammadi",
-        soundName: "Hammering"
+        soundName: "Traffic"
     });
 
     let markerLayer = new ol.layer.Vector({
