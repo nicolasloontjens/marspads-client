@@ -6,13 +6,19 @@ let currentPage = document.querySelector('#echoMapPage');
 
 async function init() {
     console.log("Maps loaded");
+    document.querySelector("#proximitychat").addEventListener("click", goToGeneralChat);
     getLocation();
+}
+
+function goToGeneralChat(e){
+    e.preventDefault();
+    localStorage.setItem("currentchattype","public")
+    location.replace("chatroom.html")
 }
 
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(creatingMaps);
-        console.log(navigator.geolocation);
     } else {
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
@@ -170,5 +176,4 @@ function randomLocation(map, longitude, latitude) {
 
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
-
 }
