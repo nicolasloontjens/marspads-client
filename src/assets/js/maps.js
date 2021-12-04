@@ -49,6 +49,8 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
         geometry: new ol.geom.Point(ol.proj.fromLonLat([longitude, latitude])),
         name: markerName,
         type: "marker",
+        fullName: "Bilal Ben Mohammadi",
+        soundName: "Traffic"
     });
 
     let markerLayer = new ol.layer.Vector({
@@ -95,7 +97,18 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
             return feature;
         });
         if (feature && feature.A.type === "marker") {
-            content.innerHTML = '<p>You clicked here:</p><code>' + '</code>';
+            if(feature.A.name === "friend"){
+                content.innerHTML = '<p>' + feature.get('fullName') + '</p><code>' + feature.get('name')
+                    +  '</code>' + '<br><button>Chat</button> <button>Fastest route</button>';
+
+            }
+            else {
+                content.innerHTML = '<p>' + feature.get('soundName') + '</p><code>' + feature.get('name')
+                    +  '</code>' + '<br><button>Mute</button> <button id="goToAudioPage" >See all noises</button>';
+                document.querySelector('#goToAudioPage').addEventListener("click", () => {
+                    location.replace("audio.html");
+                });
+            }
             overlay.setPosition(coordinate);
         }else {
             overlay.setPosition(undefined);
@@ -150,16 +163,15 @@ function addProximityLayer(map, longitude, latitude) {
     const randomLong = longitude - number / 111320 * Math.cos(latitude);
     const randomLat = latitude - number / 110574;
 
-    addMarkerLayer(map, randomLong, randomLat, 'Your friend');
+    addMarkerLayer(map, randomLong, randomLat, 'friend');
     randomLocation(map, longitude, latitude);
 }
-
 
 function randomLocation(map, longitude, latitude) {
     const number = randomIntFromInterval(-4000, 4000);
     const randomLong = longitude - number / 111320 * Math.cos(latitude);
     const randomLat = latitude - number / 110574;
-    addMarkerLayer(map, randomLong, randomLat, 'test');
+    addMarkerLayer(map, randomLong, randomLat, 'sound');
 }
 
 function randomIntFromInterval(min, max) {
