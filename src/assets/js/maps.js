@@ -94,12 +94,15 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
             if(feature.A.name === "friend"){
                 content.innerHTML = '<p>' + feature.get('fullName') + '</p><code>' + feature.get('name')
                     +  '</code>' + '<br><button>Chat</button> <button>Fastest route</button>';
+
             }
             else {
                 content.innerHTML = '<p>' + feature.get('soundName') + '</p><code>' + feature.get('name')
                     +  '</code>' + '<br><button>Mute</button> <button id="goToAudioPage" >See all noises</button>';
+                document.querySelector('#goToAudioPage').addEventListener("click", () => {
+                    location.replace("audio.html");
+                });
             }
-
             overlay.setPosition(coordinate);
         }else {
             overlay.setPosition(undefined);
@@ -167,18 +170,5 @@ function randomLocation(map, longitude, latitude) {
 
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
-
-}
-
-function switchToSoundPage() {
-    if (document.querySelector("#goToAudioPage")){
-        console.log("test")
-
-    }
-    // location.replace("audio.html");
-    console.log("test");
-    if (document.querySelector("#goToAudioPage")){
-        document.querySelector("#goToAudioPage").addEventListener("click", switchToSoundPage);
-    }
 
 }
