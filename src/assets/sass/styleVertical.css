@@ -54,5 +54,12 @@ body #contactList a {
   text-decoration: none;
   color: #845a35;
 }
+body #contactList .contactoption-hidden {
+  display: none;
+}
+body #contactList .contactoption {
+  display: block;
+  font-size: 2vh;
+}
 
 /*# sourceMappingURL=styleVertical.css.map */
