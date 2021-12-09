@@ -131,6 +131,11 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
         }
     });
 
+    map.on('postcompose',function(e){
+        document.querySelector('canvas').style.filter="invert(90%)";
+    });
+
+
 }
 
 function addProximityLayer(map, longitude, latitude) {

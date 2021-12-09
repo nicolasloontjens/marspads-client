@@ -1,10 +1,11 @@
 @charset "UTF-8";
 body {
-  background: whitesmoke;
+  background: #11223B;
+  color: #FF9061;
   cursor: grab;
 }
 body h1 {
-  color: #9b7241;
+  color: #EB7A5E;
   font-size: 2rem;
 }
 body #popup-content p {
@@ -23,16 +24,16 @@ body aside #arrowNav {
   margin-bottom: auto;
   padding-top: 10px;
   padding-bottom: 10px;
-  border-left: black 3px solid;
-  border-bottom: black 3px solid;
-  border-top: black 3px solid;
+  border-left: #EB7A5E 3px solid;
+  border-bottom: #EB7A5E 3px solid;
+  border-top: #EB7A5E 3px solid;
   border-top-left-radius: 30%;
   border-bottom-left-radius: 30%;
 }
 body aside nav {
-  border-left: black 3px solid;
-  border-bottom: black 3px solid;
-  border-top: black 3px solid;
+  border-left: #EB7A5E 3px solid;
+  border-bottom: #EB7A5E 3px solid;
+  border-top: #EB7A5E 3px solid;
 }
 body aside nav img {
   margin: 0;
