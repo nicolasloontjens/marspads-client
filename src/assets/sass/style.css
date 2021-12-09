@@ -3,9 +3,7 @@ body {
   background: #11223B;
   color: #FF9061;
   height: 100vh;
-  cursor: grab;
   /* checkbox effect */
-  /* Checked State */
 }
 body h1 {
   color: #EB7A5E;
@@ -147,65 +145,79 @@ body .ol-popup-closer {
 body .ol-popup-closer:after {
   content: "✖";
 }
-body .input_wrapper {
-  width: 80px;
-  height: 40px;
+body input[type=checkbox] {
+  display: none;
+}
+body input[type=checkbox] + label {
   position: relative;
+  display: flex;
+  margin: 0.6em 0;
+  align-items: center;
+  color: #9e9e9e;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.23, 1);
+}
+body input[type=checkbox] + label > span {
+  display: flex;
+  align-items: center;
+  margin-right: 1em;
+  width: 1em;
+  height: 1em;
+  background: transparent;
+  border: 2px solid #9E9E9E;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.23, 1);
+}
+body input[type=checkbox] + label:hover, body input[type=checkbox]:focus + label {
+  color: #FF9061;
   cursor: pointer;
 }
-body .input_wrapper input[type=checkbox] {
-  width: 80px;
-  height: 40px;
-  cursor: pointer;
-  appearance: none;
-  background: black;
-  border-radius: 2px;
-  position: relative;
-  outline: 0;
-  transition: all 0.2s;
+body input[type=checkbox] + label:hover > span, body input[type=checkbox]:focus + label > span {
+  background: rgba(255, 255, 255, 0.1);
 }
-body .input_wrapper input[type=checkbox]:after {
-  position: absolute;
-  content: "";
-  top: 3px;
-  left: 3px;
-  width: 34px;
-  height: 34px;
-  background: #dfeaec;
-  z-index: 2;
-  border-radius: 2px;
-  transition: all 0.35s;
-}
-body .input_wrapper svg {
-  position: absolute;
-  top: 50%;
-  -webkit-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-  fill: #fff;
-  transition: all 0.35s;
-  z-index: 1;
-}
-body .input_wrapper .is_checked {
-  width: 18px;
-  left: 18%;
-  transform: translateX(190%) translateY(-30%) scale(0);
-}
-body .input_wrapper .is_unchecked {
-  width: 15px;
-  right: 10%;
-  transform: translateX(0) translateY(-30%) scale(1);
-}
-body .input_wrapper input[type=checkbox]:checked {
+body input[type=checkbox]:checked + label > span {
+  border: 0.5em solid #FF9061;
+  animation: shrink-bounce 200ms cubic-bezier(0.4, 0, 0.23, 1);
   background: #FF9061;
 }
-body .input_wrapper input[type=checkbox]:checked:after {
-  left: calc(100% - 37px);
+body input[type=checkbox]:checked + label > span:before {
+  content: "";
+  position: absolute;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  transform: rotate(45deg);
+  transform-origin: 0% 100%;
+  animation: checkbox-check 125ms 250ms cubic-bezier(0.4, 0, 0.23, 1) forwards;
 }
-body .input_wrapper input[type=checkbox]:checked + .is_checked {
-  transform: translateX(0) translateY(-30%) scale(1);
+@keyframes shrink-bounce {
+  0% {
+    transform: scale(1);
+  }
+  33% {
+    transform: scale(0.85);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
-body .input_wrapper input[type=checkbox]:checked ~ .is_unchecked {
-  transform: translateX(-190%) translateY(-30%) scale(0);
+@keyframes checkbox-check {
+  0% {
+    width: 0;
+    height: 0;
+    border-color: #212121;
+    transform: translate3d(0, 0, 0) rotate(45deg);
+  }
+  33% {
+    width: 0.2em;
+    height: 0;
+    transform: translate3d(0, 0, 0) rotate(45deg);
+  }
+  100% {
+    width: 0.2em;
+    height: 0.5em;
+    border-color: #212121;
+    transform: translate3d(0, -0.5em, 0) rotate(45deg);
+  }
 }
 body .proximityChat {
   display: flex;

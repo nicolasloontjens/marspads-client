@@ -10,7 +10,8 @@
     <link rel="stylesheet" type="text/css" href="assets/sass/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/sass/style.css">
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css">
 
 </head>
 <body>
@@ -22,51 +23,49 @@
     <aside>
         <img id="arrowNav" src="assets/images/ArrowIcon.png" alt="Icon of an arrow">
         <nav>
-            <a href="" id="audioPage" data-pageLocation="audio"><img src="assets/images/SoundIcon.png" alt="Icon of a sound button"></a>
-            <a href="" id="settingsPage" data-pageLocation="settings"><img src="assets/images/SettingIcon.png" alt="Icon of the settings"></a>
-            <a href="" id="mapPage" data-pageLocation="echoMap"><img src="assets/images/MapIcon.png" alt="Icon of a map"></a>
-            <a href="" id="contactsPage" data-pageLocation="contacts"><img src="assets/images/ContactIcon.png" alt="Icon of contact"></a>
+            <a href="" id="audioPage" data-pageLocation="audio"><img src="assets/images/SoundIcon.png"
+                                                                     alt="Icon of a sound button"></a>
+            <a href="" id="settingsPage" data-pageLocation="settings"><img src="assets/images/SettingIcon.png"
+                                                                           alt="Icon of the settings"></a>
+            <a href="" id="mapPage" data-pageLocation="echoMap"><img src="assets/images/MapIcon.png"
+                                                                     alt="Icon of a map"></a>
+            <a href="" id="contactsPage" data-pageLocation="contacts"><img src="assets/images/ContactIcon.png"
+                                                                           alt="Icon of contact"></a>
         </nav>
     </aside>
 
+
     <section id="echoMapPage">
+
         <form>
             <h3>Filter</h3>
 
-            <div class="switch_box box_4">
-                <div class="input_wrapper">
-                    <input type="checkbox" class="switch_4">
-                    <svg class="is_checked" viewBox="0 0 426.67 426.67">
-                        <path d="M153.504 366.84c-8.657 0-17.323-3.303-23.927-9.912L9.914 237.265c-13.218-13.218-13.218-34.645 0-47.863 13.218-13.218 34.645-13.218 47.863 0l95.727 95.727 215.39-215.387c13.218-13.214 34.65-13.218 47.86 0 13.22 13.218 13.22 34.65 0 47.863L177.435 356.928c-6.61 6.605-15.27 9.91-23.932 9.91z"/>
-                    </svg>
-                    <svg class="is_unchecked" viewBox="0 0 212.982 212.982">
-                        <path d="M131.804 106.49l75.936-75.935c6.99-6.99 6.99-18.323 0-25.312-6.99-6.99-18.322-6.99-25.312 0L106.49 81.18 30.555 5.242c-6.99-6.99-18.322-6.99-25.312 0-6.99 6.99-6.99 18.323 0 25.312L81.18 106.49 5.24 182.427c-6.99 6.99-6.99 18.323 0 25.312 6.99 6.99 18.322 6.99 25.312 0L106.49 131.8l75.938 75.937c6.99 6.99 18.322 6.99 25.312 0 6.99-6.99 6.99-18.323 0-25.313l-75.936-75.936z" fill-rule="evenodd" clip-rule="evenodd"/>
-                    </svg>
-                </div>
-            </div>
-
             <div class="formGroup">
                 <input type="checkbox" id="friends" name="filter" value="friend">
-                <label for="friends">Friends</label>
+                <label for="friends"><span></span> Friends</label>
+
             </div>
 
             <div class="formGroup">
                 <input type="checkbox" id="sound" name="filter" value="sound">
-                <label for="sound">Sound</label>
+                <label for="sound"><span></span> Sound </label>
+
             </div>
 
             <div class="formGroup">
                 <input type="checkbox" id="otherUsers" name="filter" value="otherUsers">
-                <label for="otherUsers">Other users</label>
+                <label for="otherUsers"><span></span> Other users</label>
+
             </div>
 
             <div class="formGroup">
                 <input type="checkbox" id="you" name="filter" value="you">
-                <label for="you">You</label>
+                <label for="you"><span></span> You </label>
+
             </div>
 
             <div class="proximityChat">
-                <button class="buttonProx buttonProx" id="proximitychat" >Go to proximity chat</button>
+                <button class="buttonProx buttonProx" id="proximitychat">Go to proximity chat</button>
             </div>
         </form>
 
