@@ -23,22 +23,41 @@ body {
 
     }
 
-    .dvslide{
+    .dvslide {
       margin-right: auto;
       margin-left: 39%;
       width: 33%;
     }
-    #audioButtons{
+
+    #audioButtons {
       display: flex;
       justify-content: center;
       flex-direction: row;
       width: 100%;
       margin: 1rem;
-}
-}
+    }
+
+    .buttonOverlay {
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-weight: 700;
+      color: #313133;
+      background: #FF9061;
+      background: linear-gradient(90deg, #FF9061 0%, #EB7A5E);
+      border: none;
+      box-shadow: 12px 12px 24px #ff9061;
+      transition: all 0.3s ease-in-out 0s;
+      cursor: pointer;
+      outline: none;
+      position: relative;
+      margin-left: 4rem;
+    }
 
 
-/* Code to style the slider is not our own https://www.cssportal.com/style-input-range/ and https://www.w3schools.com/howto/howto_js_rangeslider.asp*/
+  }
+
+
+  /* Code to style the slider is not our own https://www.cssportal.com/style-input-range/ and https://www.w3schools.com/howto/howto_js_rangeslider.asp*/
 
 
   .slider {
