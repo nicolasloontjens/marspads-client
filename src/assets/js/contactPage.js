@@ -21,26 +21,17 @@ async function insertContactsIntoHTML(contacts){
     //contacts = await filterContactsWithExistingChats(contacts)
     let chats = await getAllChats();
     chats = chats.map((chat) => chat.contactid)
-    let contactswithchat = []
-    let contactswithoutchats = await contacts.filter(function(contact){
-        if(chats.includes(contact.contactid)){
-            contactswithchat.push(contact)
-        }
-        return !chats.includes(contact.contactid)
-    });
-    console.log(contactswithoutchats)
-    console.log(contactswithchat)
     contacts.forEach(contact => {
         if(chats.includes(contact.contactid)){
             document.querySelector("#ulContactList").innerHTML  += `<li><div id="${contact.contactid}">
                 <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
-                <a href="#" class="contactoption-hidden">gotochat</a>
+                <a href="#" id="contactoption" class="contactoption-hidden">Go to Chat</a>
                 </div>
             </li>`
         }
         document.querySelector("#ulContactList").innerHTML  += `<li><div id="${contact.contactid}" >
             <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
-            <a href="#" id="contactoption" class="contactoption-hidden">send chatrequest</a> 
+            <a href="#" id="contactoption" class="contactoption-hidden">Send chat request</a> 
             </div>
         </li>`
     })
