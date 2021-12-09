@@ -15,6 +15,7 @@ const CHNL_TO_CLIENT_UNICAST = "events.to.clients.mid." + localStorage.getItem("
 */
 
 function openSocket() {
+	console.log(EVENTBUS_PATH)
 	let eb = new EventBus(EVENTBUS_PATH);
 
 	function sendToServer(message) {

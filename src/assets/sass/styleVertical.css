@@ -50,9 +50,19 @@ body #contactList ul li:hover {
   transform: scale(1.3);
   background-color: navajowhite;
 }
+body #contactList .contactItem {
+  padding: 0rem 10rem;
+}
 body #contactList a {
   text-decoration: none;
   color: #845a35;
+}
+body #contactList .contactoption-hidden {
+  display: none;
+}
+body #contactList .contactoption {
+  display: block;
+  font-size: 1.5vh;
 }
 
 /*# sourceMappingURL=styleVertical.css.map */
