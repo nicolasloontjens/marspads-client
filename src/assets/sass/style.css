@@ -2,11 +2,15 @@
 body {
   background: #11223B;
   color: #FF9061;
+  height: 100vh;
   cursor: grab;
+  /* checkbox effect */
+  /* Checked State */
 }
 body h1 {
   color: #EB7A5E;
   font-size: 2rem;
+  margin-top: 1rem;
 }
 body #popup-content p {
   font-size: 20px;
@@ -42,16 +46,14 @@ body aside nav img {
   display: flex;
   padding: 10px 7px;
 }
-body section {
-  margin: 50px 15px;
-}
 body #echoMapPage {
   display: flex;
 }
 body #echoMapPage form {
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 body #echoMapPage #map {
   width: 700px;
@@ -144,6 +146,131 @@ body .ol-popup-closer {
 }
 body .ol-popup-closer:after {
   content: "✖";
+}
+body .input_wrapper {
+  width: 80px;
+  height: 40px;
+  position: relative;
+  cursor: pointer;
+}
+body .input_wrapper input[type=checkbox] {
+  width: 80px;
+  height: 40px;
+  cursor: pointer;
+  appearance: none;
+  background: black;
+  border-radius: 2px;
+  position: relative;
+  outline: 0;
+  transition: all 0.2s;
+}
+body .input_wrapper input[type=checkbox]:after {
+  position: absolute;
+  content: "";
+  top: 3px;
+  left: 3px;
+  width: 34px;
+  height: 34px;
+  background: #dfeaec;
+  z-index: 2;
+  border-radius: 2px;
+  transition: all 0.35s;
+}
+body .input_wrapper svg {
+  position: absolute;
+  top: 50%;
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  fill: #fff;
+  transition: all 0.35s;
+  z-index: 1;
+}
+body .input_wrapper .is_checked {
+  width: 18px;
+  left: 18%;
+  transform: translateX(190%) translateY(-30%) scale(0);
+}
+body .input_wrapper .is_unchecked {
+  width: 15px;
+  right: 10%;
+  transform: translateX(0) translateY(-30%) scale(1);
+}
+body .input_wrapper input[type=checkbox]:checked {
+  background: #FF9061;
+}
+body .input_wrapper input[type=checkbox]:checked:after {
+  left: calc(100% - 37px);
+}
+body .input_wrapper input[type=checkbox]:checked + .is_checked {
+  transform: translateX(0) translateY(-30%) scale(1);
+}
+body .input_wrapper input[type=checkbox]:checked ~ .is_unchecked {
+  transform: translateX(-190%) translateY(-30%) scale(0);
+}
+body .proximityChat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+body .buttonProx {
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #FF9061;
+  background: linear-gradient(90deg, #FF9061 0%, #EB7A5E);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px #ff9061;
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+}
+body .buttonProx::before {
+  content: "";
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.3s ease-in-out 0s;
+}
+body .buttonProx:hover, body .button:focus {
+  color: #313133;
+  transform: translateY(-6px);
+}
+body .buttonProx:hover::before, body button:focus::before {
+  opacity: 1;
+}
+body .buttonProx::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 6px solid #EB7A5E;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+body .buttonProx:hover::after, body button:focus::after {
+  animation: none;
+  display: none;
+}
+@keyframes ring {
+  0% {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

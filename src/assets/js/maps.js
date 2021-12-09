@@ -36,7 +36,7 @@ function creatingMaps(position) {
         ],
         view: new ol.View({
             center: ol.proj.fromLonLat([position.coords.longitude, position.coords.latitude]),
-            zoom: 13
+            zoom: 11
         })
 
     });
