@@ -106,7 +106,7 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
                 content.innerHTML = '<p>' + feature.get('soundName') + '</p><code>' + feature.get('name')
                     +  '</code>' + '<br><button>Mute</button> <button id="goToAudioPage" >See all noises</button>';
                 document.querySelector('#goToAudioPage').addEventListener("click", () => {
-                    location.replace("audio.html");
+                    document.querySelector(".overlaySliders").style.display = "block";
                 });
             }
             overlay.setPosition(coordinate);

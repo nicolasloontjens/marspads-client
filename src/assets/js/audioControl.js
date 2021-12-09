@@ -3,15 +3,21 @@
 document.addEventListener("DOMContentLoaded", init);
 
 async function init() {
-
+    console.log("Audio controls loaded.")
     document.querySelector("#muteAll").addEventListener("click", muteAll);
     document.querySelectorAll(".slider").forEach(e => e.addEventListener("change", getSelectedSlider));
     document.querySelector("#play").addEventListener("click", playSound);
+    document.querySelector("#closeSettings").addEventListener("click", closeOverlay);
 }
 
 function playSound() {
     document.querySelector("#trafficAudioFile").play();
     console.log("play");
+}
+
+function closeOverlay(){
+    console.log("sluiten");
+    document.querySelector(".overlaySliders").style.display = "none";
 }
 
 /* (this will make the audio autoplay

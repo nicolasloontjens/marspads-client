@@ -1,0 +1,96 @@
+body {
+  .overlaySliders {
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    cursor: pointer;
+
+
+    #allSliders {
+      margin-top: 16%;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+
+    }
+
+    .dvslide {
+      margin-right: auto;
+      margin-left: 39%;
+      width: 33%;
+    }
+
+    #audioButtons {
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      width: 100%;
+      margin: 1rem;
+    }
+
+    .buttonOverlay {
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-weight: 700;
+      color: #313133;
+      background: #FF9061;
+      background: linear-gradient(90deg, #FF9061 0%, #EB7A5E);
+      border: none;
+      box-shadow: 12px 12px 24px #ff9061;
+      transition: all 0.3s ease-in-out 0s;
+      cursor: pointer;
+      outline: none;
+      position: relative;
+      margin-left: 4rem;
+    }
+
+
+  }
+
+
+  /* Code to style the slider is not our own https://www.cssportal.com/style-input-range/ and https://www.w3schools.com/howto/howto_js_rangeslider.asp*/
+
+
+  .slider {
+    -webkit-appearance: none;
+    width: 80%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #f38102;
+    cursor: pointer;
+  }
+
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #f38102;
+    cursor: pointer;
+  }
+
+  .slider:hover {
+    opacity: 1;
+  }
+}
