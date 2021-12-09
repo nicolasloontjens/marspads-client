@@ -6,7 +6,7 @@
 body {
   background: #11223B;
   color: #FF9061;
-  font-family: nasalization;
+  font-family: nasalization, sans-serif;
   /* checkbox effect */
   /* Animation for the button: Go to proximity chat. */
 }

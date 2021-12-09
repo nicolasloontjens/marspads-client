@@ -6,8 +6,9 @@
 body {
   background: #11223B;
   color: #FF9061;
-  font-family: nasalization;
-  .formGroup{
+  font-family: nasalization, sans-serif;
+
+  .formGroup {
     margin-left: 20%;
   }
 
@@ -19,7 +20,7 @@ body {
 
   }
 
-  h2{
+  h2 {
     font-size: 1.5rem;
     margin: 1rem;
   }
