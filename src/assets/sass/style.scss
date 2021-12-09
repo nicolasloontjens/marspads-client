@@ -1,19 +1,36 @@
+@font-face {
+  font-family: nasalization;
+  src: url("../font/nasalization-rg.otf") format("opentype");
+}
+
 body {
-  background: whitesmoke;
+  background: #11223B;
+  color: #FF9061;
+  font-family: nasalization, sans-serif;
 
-  h1{
-    color: #9b7241;
-    font-size: 2rem;
-  
+  .formGroup {
+    margin-left: 20%;
   }
-  
-  cursor:grab;
 
-  #popup-content{
-    p{
+
+  h1 {
+    color: #EB7A5E;
+    font-size: 2rem;
+    margin-top: 1rem;
+
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin: 1rem;
+  }
+
+  #popup-content {
+    p {
       font-size: 20px;
     }
   }
+
   aside {
     display: flex;
     float: right;
@@ -27,17 +44,17 @@ body {
       margin-bottom: auto;
       padding-top: 10px;
       padding-bottom: 10px;
-      border-left: black 3px solid;
-      border-bottom: black 3px solid;
-      border-top: black 3px solid;
+      border-left: #EB7A5E 3px solid;
+      border-bottom: #EB7A5E 3px solid;
+      border-top: #EB7A5E 3px solid;
       border-top-left-radius: 30%;
       border-bottom-left-radius: 30%;
     }
 
     nav {
-      border-left: black 3px solid;
-      border-bottom: black 3px solid;
-      border-top: black 3px solid;
+      border-left: #EB7A5E 3px solid;
+      border-bottom: #EB7A5E 3px solid;
+      border-top: #EB7A5E 3px solid;
 
       img {
         margin: 0;
@@ -50,17 +67,18 @@ body {
 
   }
 
-  section {
-    margin: 50px 15px;
-  }
-
   #echoMapPage {
     display: flex;
 
     form {
+      margin-top: 1rem;
       display: flex;
       flex-direction: column;
-      margin-right: 20px;
+      margin-right: 10px;
+      border-radius: 5%;
+
+      //box-sizing: border-box;
+      //user-select: none;
     }
 
     #map {
@@ -69,7 +87,7 @@ body {
     }
   }
 
-  .hidden{
+  .hidden {
     display: none !important;
   }
 
@@ -91,41 +109,46 @@ body {
     cursor: pointer;
   }
 
-  #chatroom{
+  #chatroom {
     height: 100vh;
     width: 100vw;
-    #messages{
-      display:block;
-      height:90vh;
+
+    #messages {
+      display: block;
+      height: 90vh;
       overflow: hidden;
       overflow-y: scroll;
-      p{
+
+      p {
         font-size: 4rem;
         padding: 1rem;
       }
     }
+
     #communication-panel {
-      height: 10vh;      
+      height: 10vh;
       display: grid;
       grid-template-columns: max-content auto max-content;
       column-gap: 10px;
-      button{
+
+      button {
         font-size: 4rem;
         width: 20vw;
       }
-      input{
+
+      input {
         display: block;
         font-size: 4rem;
         width: 80vw;
       }
-  }
+    }
   }
 
 
   .ol-popup {
     position: absolute;
     background-color: white;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     padding: 15px;
     border-radius: 10px;
     border: 1px solid #cccccc;
@@ -133,6 +156,7 @@ body {
     left: -50px;
     min-width: 280px;
   }
+
   .ol-popup:after, .ol-popup:before {
     top: 100%;
     border: solid transparent;
@@ -142,25 +166,194 @@ body {
     position: absolute;
     pointer-events: none;
   }
+
   .ol-popup:after {
     border-top-color: white;
     border-width: 10px;
     left: 48px;
     margin-left: -10px;
   }
+
   .ol-popup:before {
     border-top-color: #cccccc;
     border-width: 11px;
     left: 48px;
     margin-left: -11px;
   }
+
   .ol-popup-closer {
     text-decoration: none;
     position: absolute;
     top: 2px;
     right: 8px;
   }
+
   .ol-popup-closer:after {
     content: "✖";
   }
+
+
+  /* checkbox effect */
+
+  input[type='checkbox'] {
+    display: none
+  }
+
+  //hide original checkbox
+
+  input[type='checkbox'] + label {
+    position: relative;
+    display: flex;
+    margin: .6em 0;
+    align-items: center;
+    color: #9E9E9E;
+    transition: color 250ms cubic-bezier(.4, .0, .23, 1);
+  }
+
+  input[type='checkbox'] + label > span {
+    display: flex;
+    align-items: center;
+    margin-right: 1em;
+    width: 1em;
+    height: 1em;
+    background: transparent;
+    border: 2px solid #9E9E9E;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 250ms cubic-bezier(.4, .0, .23, 1);
+  }
+
+  input[type='checkbox'] + label:hover, input[type='checkbox']:focus + label {
+    color: #FF9061;
+    cursor: pointer;
+  }
+
+  input[type='checkbox'] + label:hover > span, input[type='checkbox']:focus + label > span {
+    background: rgba(255, 255, 255, .1);
+  }
+
+  input[type='checkbox']:checked + label > span {
+    border: .5em solid #FF9061;
+    animation: shrink-bounce 200ms cubic-bezier(.4, .0, .23, 1);
+    background: #FF9061;
+  }
+
+  input[type='checkbox']:checked + label > span:before { //Check mark: v
+    content: "";
+    position: absolute;
+    //margin-top: 4px;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    transform: rotate(45deg);
+    transform-origin: 0% 100%;
+    animation: checkbox-check 125ms 250ms cubic-bezier(.4, .0, .23, 1) forwards;
+  }
+
+  @keyframes shrink-bounce {
+    0% {
+      transform: scale(1);
+    }
+    33% {
+      transform: scale(.85);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes checkbox-check {
+    0% {
+      width: 0;
+      height: 0;
+      border-color: #212121;
+      transform: translate3d(0, 0, 0) rotate(45deg);
+    }
+    33% {
+      width: .2em;
+      height: 0;
+      transform: translate3d(0, 0, 0) rotate(45deg);
+    }
+    100% {
+      width: .2em;
+      height: .5em;
+      border-color: #212121;
+      transform: translate3d(0, -.5em, 0) rotate(45deg);
+    }
+  }
+
+
+  /* Animation for the button: Go to proximity chat. */
+
+  .proximityChat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+  }
+
+  .buttonProx {
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    font-weight: 700;
+    color: #313133;
+    background: #FF9061;
+    background: linear-gradient(90deg, #FF9061 0%, #EB7A5E);
+    border: none;
+    border-radius: 1000px;
+    box-shadow: 12px 12px 24px #ff9061;
+    transition: all 0.3s ease-in-out 0s;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+  }
+
+  .buttonProx::before {
+    content: '';
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all .3s ease-in-out 0s;
+  }
+
+  .buttonProx:hover, .button:focus {
+    color: #313133;
+    transform: translateY(-6px);
+  }
+
+  .buttonProx:hover::before, button:focus::before {
+    opacity: 1;
+  }
+
+  .buttonProx::after {
+    content: '';
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 6px solid #EB7A5E;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 1.5s infinite;
+  }
+
+  .buttonProx:hover::after, button:focus::after {
+    animation: none;
+    display: none;
+  }
+
+  @keyframes ring {
+    0% {
+      width: 10px;
+      height: 10px;
+      opacity: 1;
+    }
+    100% {
+      width: 200px;
+      height: 200px;
+      opacity: 0;
+    }
+  }
+
 }

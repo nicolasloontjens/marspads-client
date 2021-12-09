@@ -36,7 +36,7 @@ function creatingMaps(position) {
         ],
         view: new ol.View({
             center: ol.proj.fromLonLat([position.coords.longitude, position.coords.latitude]),
-            zoom: 13
+            zoom: 11
         })
 
     });
@@ -130,6 +130,11 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
             document.body.style.cursor = "";
         }
     });
+
+    map.on('postcompose',function(e){
+        document.querySelector('canvas').style.filter="invert(90%)";
+    });
+
 
 }
 

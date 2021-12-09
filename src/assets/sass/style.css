@@ -1,11 +1,26 @@
 @charset "UTF-8";
+@font-face {
+  font-family: nasalization;
+  src: url("../font/nasalization-rg.otf") format("opentype");
+}
 body {
-  background: whitesmoke;
-  cursor: grab;
+  background: #11223B;
+  color: #FF9061;
+  font-family: nasalization, sans-serif;
+  /* checkbox effect */
+  /* Animation for the button: Go to proximity chat. */
+}
+body .formGroup {
+  margin-left: 20%;
 }
 body h1 {
-  color: #9b7241;
+  color: #EB7A5E;
   font-size: 2rem;
+  margin-top: 1rem;
+}
+body h2 {
+  font-size: 1.5rem;
+  margin: 1rem;
 }
 body #popup-content p {
   font-size: 20px;
@@ -23,16 +38,16 @@ body aside #arrowNav {
   margin-bottom: auto;
   padding-top: 10px;
   padding-bottom: 10px;
-  border-left: black 3px solid;
-  border-bottom: black 3px solid;
-  border-top: black 3px solid;
+  border-left: #EB7A5E 3px solid;
+  border-bottom: #EB7A5E 3px solid;
+  border-top: #EB7A5E 3px solid;
   border-top-left-radius: 30%;
   border-bottom-left-radius: 30%;
 }
 body aside nav {
-  border-left: black 3px solid;
-  border-bottom: black 3px solid;
-  border-top: black 3px solid;
+  border-left: #EB7A5E 3px solid;
+  border-bottom: #EB7A5E 3px solid;
+  border-top: #EB7A5E 3px solid;
 }
 body aside nav img {
   margin: 0;
@@ -41,16 +56,15 @@ body aside nav img {
   display: flex;
   padding: 10px 7px;
 }
-body section {
-  margin: 50px 15px;
-}
 body #echoMapPage {
   display: flex;
 }
 body #echoMapPage form {
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  margin-right: 20px;
+  margin-right: 10px;
+  border-radius: 5%;
 }
 body #echoMapPage #map {
   width: 700px;
@@ -143,6 +157,145 @@ body .ol-popup-closer {
 }
 body .ol-popup-closer:after {
   content: "✖";
+}
+body input[type=checkbox] {
+  display: none;
+}
+body input[type=checkbox] + label {
+  position: relative;
+  display: flex;
+  margin: 0.6em 0;
+  align-items: center;
+  color: #9E9E9E;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.23, 1);
+}
+body input[type=checkbox] + label > span {
+  display: flex;
+  align-items: center;
+  margin-right: 1em;
+  width: 1em;
+  height: 1em;
+  background: transparent;
+  border: 2px solid #9E9E9E;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.23, 1);
+}
+body input[type=checkbox] + label:hover, body input[type=checkbox]:focus + label {
+  color: #FF9061;
+  cursor: pointer;
+}
+body input[type=checkbox] + label:hover > span, body input[type=checkbox]:focus + label > span {
+  background: rgba(255, 255, 255, 0.1);
+}
+body input[type=checkbox]:checked + label > span {
+  border: 0.5em solid #FF9061;
+  animation: shrink-bounce 200ms cubic-bezier(0.4, 0, 0.23, 1);
+  background: #FF9061;
+}
+body input[type=checkbox]:checked + label > span:before {
+  content: "";
+  position: absolute;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  transform: rotate(45deg);
+  transform-origin: 0% 100%;
+  animation: checkbox-check 125ms 250ms cubic-bezier(0.4, 0, 0.23, 1) forwards;
+}
+@keyframes shrink-bounce {
+  0% {
+    transform: scale(1);
+  }
+  33% {
+    transform: scale(0.85);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes checkbox-check {
+  0% {
+    width: 0;
+    height: 0;
+    border-color: #212121;
+    transform: translate3d(0, 0, 0) rotate(45deg);
+  }
+  33% {
+    width: 0.2em;
+    height: 0;
+    transform: translate3d(0, 0, 0) rotate(45deg);
+  }
+  100% {
+    width: 0.2em;
+    height: 0.5em;
+    border-color: #212121;
+    transform: translate3d(0, -0.5em, 0) rotate(45deg);
+  }
+}
+body .proximityChat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+body .buttonProx {
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #FF9061;
+  background: linear-gradient(90deg, #FF9061 0%, #EB7A5E);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px #ff9061;
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+}
+body .buttonProx::before {
+  content: "";
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.3s ease-in-out 0s;
+}
+body .buttonProx:hover, body .button:focus {
+  color: #313133;
+  transform: translateY(-6px);
+}
+body .buttonProx:hover::before, body button:focus::before {
+  opacity: 1;
+}
+body .buttonProx::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 6px solid #EB7A5E;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+body .buttonProx:hover::after, body button:focus::after {
+  animation: none;
+  display: none;
+}
+@keyframes ring {
+  0% {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
