@@ -5,31 +5,44 @@ document.addEventListener("DOMContentLoaded", init);
 async function init() {
     let contacts = await getUserContacts();
     contacts.sort((a,b) => a.name.localeCompare(b.name));
-    console.log(await getAllChats())
-    insertContactsIntoHTML(contacts)
+    await insertContactsIntoHTML(contacts)
     document.querySelectorAll(".contactItem").forEach(item => {
         item.addEventListener("click", getSelectedContactName);
     });
     /*
     todo:
-    filter contacts if they have a chat already
     add remove functionality
     */
     document.querySelector("#search").addEventListener("keyup", searchInputField);
 
 }
 
-function insertContactsIntoHTML(contacts){
-    
-
+async function insertContactsIntoHTML(contacts){
+    //contacts = await filterContactsWithExistingChats(contacts)
+    let chats = await getAllChats();
+    chats = chats.map((chat) => chat.contactid)
     contacts.forEach(contact => {
-        document.querySelector("#ulContactList").innerHTML  += `<li><a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a></li>`
+        if(chats.includes(contact.contactid)){
+            document.querySelector("#ulContactList").innerHTML  += `<li><div id="${contact.contactid}">
+                <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
+                <a href="#" id="contactoption" class="contactoption-hidden">Go to Chat</a>
+                </div>
+            </li>`
+        }
+        document.querySelector("#ulContactList").innerHTML  += `<li><div id="${contact.contactid}" >
+            <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
+            <a href="#" id="contactoption" class="contactoption-hidden">Send chat request</a> 
+            </div>
+        </li>`
     })
 }
 
 function getSelectedContactName(e) {
-    const contactName = e.target.getAttribute("data-contactName");
-    console.log(contactName);
+    document.querySelectorAll("div #contactoption").forEach((elem) => {
+        elem.setAttribute("class","contactoption-hidden")
+    })
+    let parentelem = e.target.parentElement
+    parentelem.getElementsByTagName("a")[1].setAttribute("class","contactoption")
 }
 
 function searchInputField() {

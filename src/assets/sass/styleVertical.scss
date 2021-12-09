@@ -59,9 +59,22 @@ body {
       background-color: navajowhite;
     }
 
+    .contactItem{
+      padding: 0rem 10rem;
+    }
+
     a {
       text-decoration: none;
       color: #845a35;
+    }
+
+    .contactoption-hidden{
+      display: none;
+    }
+
+    .contactoption{
+      display: block;
+      font-size: 1.5vh
     }
 
   }
