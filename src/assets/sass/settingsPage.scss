@@ -1,5 +1,7 @@
 body{
 
+
+   //Progress bar
   #progressBar{
     height: 24px;
     width: 0;
@@ -12,4 +14,100 @@ body{
   .barDivColor{
     color: #000;
     background-color: #f1f1f1;
-}}
+}
+
+  //Battery
+
+    .battery {
+      height: 110px;
+      width: 225px;
+      border: 8px solid #ffffff;
+      position: absolute;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-radius: 12px;
+      transform: rotate(270deg);
+    }
+
+    .battery:before {
+      content: "";
+      position: absolute;
+      margin: auto;
+      height: 55px;
+      width: 20px;
+      background-color: #ffffff;
+      right: -25px;
+      top: 0;
+      bottom: 0;
+      border-radius: 0 7px 7px 0;
+    }
+
+    .battery:after {
+      content: "";
+      position: absolute;
+      height: 80px;
+      width: 40px;
+      background-color: red;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      left: 10px;
+      border-radius: 5px;
+      box-shadow: 50px 0 transparent,
+      100px 0 transparent,
+      150px 0 transparent;
+      animation: charge 4s infinite;
+    }
+
+    @keyframes charge {
+      0% {
+        background-color: red;
+        box-shadow: 50px 0 transparent,
+        100px 0 transparent,
+        150px 0 transparent;
+      }
+      15% {
+        background-color: red;
+        box-shadow: 50px 0 red,
+        100px 0 transparent,
+        150px 0 transparent;
+      }
+      30% {
+        background-color: red;
+        box-shadow: 50px 0 red,
+        100px 0 transparent,
+        150px 0 transparent;
+      }
+      50% {
+        background-color: orange;
+        box-shadow: 50px 0 orange,
+        100px 0 orange,
+        150px 0 transparent;
+      }
+      70% {
+        background-color: orange;
+        box-shadow: 50px 0 orange,
+        100px 0 orange,
+        150px 0 transparent;
+      }
+      85% {
+        background-color: green;
+        box-shadow: 50px 0 green,
+        100px 0 green,
+        150px 0 green;
+      }
+      100% {
+        background-color: greenyellow;
+        box-shadow: 50px 0 greenyellow,
+        100px 0 greenyellow,
+        150px 0 greenyellow;
+      }
+    }
+
+
+  }
+
+
