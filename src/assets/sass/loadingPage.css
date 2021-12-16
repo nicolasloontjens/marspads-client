@@ -1,0 +1,142 @@
+body[animation=true] {
+  background-color: lightblue;
+  overflow: hidden;
+}
+body[animation=true] input {
+  display: none;
+}
+body[animation=true] header {
+  display: none;
+}
+body[animation=true] .information {
+  display: none;
+}
+body[animation=true] .animation img {
+  position: absolute;
+  width: auto;
+  height: 125px;
+  top: 33%;
+  margin-left: -150px;
+  left: 50%;
+  animation: flying-rocket 10s linear infinite;
+}
+body[animation=true] .animation h1 {
+  position: absolute;
+  color: white;
+  font-family: sans-serif;
+  font-size: 2rem;
+  text-transform: uppercase;
+  left: 43%;
+  top: 60%;
+}
+body[animation=true] .animation .longfazers {
+  position: absolute;
+  width: 45%;
+  height: 100%;
+}
+body[animation=true] .animation .longfazers span {
+  position: absolute;
+  height: 2px;
+  width: 20%;
+  background: white;
+}
+body[animation=true] .animation .longfazers span:nth-child(1) {
+  top: 20%;
+  animation: lf 0.6s linear infinite;
+  animation-delay: -5s;
+}
+body[animation=true] .animation .longfazers span:nth-child(2) {
+  top: 40%;
+  animation: lf2 0.8s linear infinite;
+  animation-delay: -1s;
+}
+body[animation=true] .animation .longfazers span:nth-child(3) {
+  top: 60%;
+  animation: lf3 0.6s linear infinite;
+}
+body[animation=true] .animation .longfazers span:nth-child(4) {
+  top: 80%;
+  animation: lf4 0.5s linear infinite;
+  animation-delay: -3s;
+}
+
+@keyframes flying-rocket {
+  0% {
+    transform: translate(2px, 1px) rotate(0deg);
+    left: -30%;
+  }
+  10% {
+    transform: translate(-1px, -3px) rotate(-0.5deg);
+  }
+  20% {
+    transform: translate(-2px, 0px) rotate(0.5deg);
+  }
+  30% {
+    transform: translate(1px, 2px) rotate(0deg);
+    top: 60%;
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(0.5deg);
+    top: 65%;
+  }
+  50% {
+    transform: translate(-1px, 3px) rotate(-0.5deg);
+    top: 46%;
+  }
+  60% {
+    transform: translate(-1px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-0.5deg);
+  }
+  80% {
+    transform: translate(-2px, -1px) rotate(0.5deg);
+    top: 30%;
+  }
+  90% {
+    transform: translate(2px, 1px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-0.5deg);
+    left: 86%;
+    top: 65%;
+  }
+}
+@keyframes lf {
+  0% {
+    left: 200%;
+  }
+  100% {
+    left: -200%;
+    opacity: 0;
+  }
+}
+@keyframes lf2 {
+  0% {
+    left: 200%;
+  }
+  100% {
+    left: -100%;
+    opacity: 0;
+  }
+}
+@keyframes lf3 {
+  0% {
+    left: 200%;
+  }
+  100% {
+    left: -100%;
+    opacity: 0;
+  }
+}
+@keyframes lf4 {
+  0% {
+    left: 200%;
+  }
+  100% {
+    left: -100%;
+    opacity: 0;
+  }
+}
+
+/*# sourceMappingURL=loadingPage.css.map */
