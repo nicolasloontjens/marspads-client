@@ -1,0 +1,14 @@
+body #progressBar {
+  height: 24px;
+  width: 0;
+}
+body .loadingBarColor {
+  color: #fff;
+  background-color: #f37000;
+}
+body .barDivColor {
+  color: #000;
+  background-color: #f1f1f1;
+}
+
+/*# sourceMappingURL=settingsPage.css.map */
