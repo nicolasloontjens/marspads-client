@@ -6,7 +6,7 @@ async function init() {
     await addLoadingAnimation();
     setTimeout(function () {
         location.replace("index.html");
-    }, 9000);
+    }, 9500);
 }
 
 
