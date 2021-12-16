@@ -58,9 +58,14 @@ function onPublicMessage(error, message) {
 function onPrivateMessage(error, message){
 	if(document.querySelector("main").getAttribute("id") === "chatroom"){
 		if(localStorage.getItem("currentchattype") === "private"){
+			const today = new Date();
+			const timestamp = today.getFullYear()+'-'+(today.getMonth()+1)+"-"+today.getDate() + " " + today.getHours() + ":" + today.getMinutes();
+			let textmessage = message.body;
+			let user = textmessage.split(":")[0]
+			let actualmessage = textmessage.split(":")[1]
 			document.querySelector("#messages").innerHTML +=
 			`   <p class="chatMessage">
-					${message.body}
+					${user} @ ${timestamp}: ${actualmessage}
 				</p>
 			`;
 		}

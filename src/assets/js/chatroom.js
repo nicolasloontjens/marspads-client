@@ -38,4 +38,10 @@ function sendPrivateMessage(e){
 
 async function loadPrivateChatMessages(){
     const response = await getAllChatsWithUser(localStorage.getItem("currentChatId"))
+    response.forEach(message => {
+        let timestamp = message.timestamp;
+        timestamp = timestamp.substring(0,(timestamp.length-7))
+        console.log(timestamp)
+        document.querySelector("#messages").insertAdjacentHTML("beforeend",`<p class="chatMessage">${message.name} @ ${timestamp}: ${message.content}</p>`)
+    })
 }

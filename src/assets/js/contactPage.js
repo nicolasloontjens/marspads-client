@@ -19,14 +19,13 @@ async function insertContactsIntoHTML(contacts){
     document.querySelector("ul").innerHTML = ""
     let chats = await getAllChats();
     let chatidscontactids = chats.map(chat => {return {contactid: chat.contactid,chatid:chat.chatid}})
-    console.log(chatidscontactids)
     chats = chats.map((chat) => chat.contactid)
     contacts.forEach(contact => {
         if(chats.includes(contact.contactid)){
             let chatid = 0
             chatidscontactids.forEach(object => {
                 if(object["contactid"] === contact.contactid){
-                    chatid = object["contactid"]
+                    chatid = object["chatid"]
                 }
             })
             document.querySelector("#ulContactList").innerHTML  += `<li><div id="${contact.contactid}">
@@ -73,13 +72,12 @@ function goToChatOrSendChatRequest(e){
         //send chat request through sendtoserver
         let receiver = parseInt(e.target.getAttribute("data-contactid"));
         const data = {type: 'chatrequest', 'sendermid': parseInt(getMarsID()), 'receivercontactid': receiver, answer: 0};
-        console.log(data)
         sendToServer(data)
     }else{
-        //put the chat type in private(with chatid)
-        //store chatid in localstorage
-        //go to chatroom page
-        console.log(e.target.getAttribute("data-chatid"))
+        //go to chatroom
+        localStorage.setItem("currentchattype","private");
+        localStorage.setItem("currentChatId",e.target.getAttribute("data-chatid"))
+        location.replace("chatroom.html")
     }
 }
 

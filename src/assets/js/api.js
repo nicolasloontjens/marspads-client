@@ -110,8 +110,11 @@ async function getAllChats() { //get a list of all chatid's and their correspond
     }
 }
 
-function getAllChatsWithUser(chatid) {
-    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getMarsID()}/chats/${chatid}`).then(data => data.json().then(messages => {
-        console.log(messages);
-    }));
+async function getAllChatsWithUser(chatid) {
+    try{
+        const api_response = await fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getMarsID()}/chats/${chatid}`);
+        return await api_response.json();
+    }catch(error){
+        console.log(error)
+    }
 }
