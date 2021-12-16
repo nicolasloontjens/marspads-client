@@ -2,6 +2,7 @@ let msg;
 let jsonmessage;
 
 self.addEventListener("push", event => {
+    console.log(event.data.text())
     msg = event.data.text();
     jsonmessage = JSON.parse(msg);
     self.registration.showNotification(jsonmessage.sendername + " has sent you a chat request!");
