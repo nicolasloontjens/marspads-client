@@ -68,7 +68,6 @@ function getSelectedContactName(e) {
 }
 
 function goToChatOrSendChatRequest(e){
-    console.log(e.target)
     let todo = e.target.getAttribute("data-type");
     if(todo === "sendrequest"){
         //send chat request through sendtoserver
@@ -109,7 +108,6 @@ function searchInputField() {
             li[i].style.display = "none";
         }
     }
-
 }
 
 async function loadConfig() {
