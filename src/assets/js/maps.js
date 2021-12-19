@@ -14,20 +14,13 @@ async function init() {
     addProximityLayer();//draw the circle around the user that simulates the range of users
     addOtherLayers(fixedmarkercoords);
     console.log(maplayers)
+    addCheckboxEventListener();
 }
 
 function goToGeneralChat(e){
     e.preventDefault();
     localStorage.setItem("currentchattype","public")
     location.replace("chatroom.html")
-}
-
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(creatingMaps);
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
 }
 
 function createBasicMap(){
@@ -202,4 +195,25 @@ function addProximityLayer() {
     });
     maplayers["proximitylayer"] = proxlayer
     map.addLayer(proxlayer);
+}
+
+function addCheckboxEventListener(){
+    let checkboxes = document.querySelectorAll("input[type=checkbox][name=filter]");
+    let enabledFilters = []
+
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change",() => {
+            enabledFilters = Array.from(checkboxes).filter(i => i.checked).map(i => i.value)
+            updateMapLayers(enabledFilters)
+        })
+    })
+}
+
+function updateMapLayers(enabledFilters){
+    Object.values(maplayers).forEach(layer => map.removeLayer(layer))
+    let maplayerstoapply = Object.assign({},maplayers)
+    enabledFilters.forEach((filtervalue) => {
+        delete maplayerstoapply[filtervalue];
+    })
+    Object.values(maplayerstoapply).forEach(layer => map.addLayer(layer))
 }
