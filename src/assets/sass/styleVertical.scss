@@ -1,7 +1,12 @@
 body {
   font-size: 5rem;
   font-family: 'Spartan', sans-serif;
-  color: #9b7241;
+  background: #11223B;
+
+  h1{
+    color: #FF9061;
+    text-align: center ;
+  }
 
   img {
     margin: 0;
@@ -14,7 +19,7 @@ body {
   #contacts {
     background: url("../images/ContactIcon.png") no-repeat;
     background-size: contain;
-    padding-left: 10%;
+    background-position: 2%;
     margin-bottom: 2%;
     margin-top: 2%;
   }
@@ -23,21 +28,28 @@ body {
     text-align: center;
 
     input {
-      background-size: contain;
       background: url("../images/magnifyingGlassIcon.png") no-repeat right;
       background-size: contain;
       border: none;
-      border-bottom: black solid;
+      border-bottom: 5px #f0666e solid;
       border-radius: 10px;
       padding: 5px;
       font-size: 4rem;
       letter-spacing: 1px;
-      color: #9b7241;
+      color: #eb5f71;
     }
+    ::placeholder {
+      color: #eb5f71;
+    }
+    input:focus{
+      border: none;
+      outline: none;
+      border-bottom: 5px #f0666e solid;
+  }
+
   }
 
   #contactList {
-    background: #d0a3023b;
     //margin: auto;
     //width: 85%;
     border-radius: 30px;
@@ -47,25 +59,30 @@ body {
     margin: 10%;
 
     ul li {
-      background: #cc95128a;
+      background: #FF9061;
       text-align: center;
-
-      padding: 20px;
       width: 650px;
     }
 
-    ul li:hover {
-      transform: scale(1.30);
-      background-color: navajowhite;
+    div{
+      padding: 2%;
+      margin: 1% 0;
     }
 
     .contactItem{
-      padding: 0rem 10rem;
+      padding: 2%;
+    }
+
+    div[clicked="true"]{
+      animation: open-contact-div 0.5s linear forwards;
+      .contactoption{
+        animation: open-contact-option 1s linear
+      }
     }
 
     a {
       text-decoration: none;
-      color: #845a35;
+      color: white;
     }
 
     .contactoption-hidden{
@@ -77,5 +94,22 @@ body {
       font-size: 1.5vh
     }
 
+  }
+}
+
+
+@keyframes open-contact-div {
+  100%{
+    margin:5%;
+  }
+}
+
+
+@keyframes open-contact-option {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
   }
 }
