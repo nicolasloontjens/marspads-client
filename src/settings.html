@@ -9,25 +9,59 @@
     >
     <link rel="stylesheet" type="text/css" href="assets/sass/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/sass/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/sass/settingsPage.css">
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css">
 
 </head>
-    <body>
-        <section id="settingsPage">
-            <h2>Settings</h2>
-    
-            <ul>
-                <li>Software version:</li>
-                <li>Model name:</li>
-                <li>Warranty ends:</li>
-                <li>Battery percentage:</li>
-                <li>Number of charge cycles:</li>
-            </ul>
-    
-            <a href="#">Software-update</a>
-            <a href="#">MarsPads.com</a>
-    
-        </section>
-    </body>
+<body>
+
+<aside>
+    <img id="arrowNav" src="assets/images/ArrowIcon.png" alt="Icon of an arrow">
+    <nav>
+        <a href="" id="audioPage" data-pageLocation="audio"><img src="assets/images/SoundIcon.png"
+                                                                 alt="Icon of a sound button"></a>
+        <a href="" id="currentSettingsPage" data-pageLocation="settings"><img src="assets/images/SettingIcon.png"
+                                                                              alt="Icon of the settings"></a>
+        <a href="" id="mapPage" data-pageLocation="echoMap"><img src="assets/images/MapIcon.png"
+                                                                 alt="Icon of a map"></a>
+        <a href="" id="contactsPage" data-pageLocation="contacts"><img src="assets/images/ContactIcon.png"
+                                                                       alt="Icon of contact"></a>
+    </nav>
+</aside>
+<div id="container">
+    <section id="settingsPage">
+        <h1>Settings</h1>
+
+        <ul>
+            <li><b>Software version:</b> 3.5v</li>
+            <li><b>Model name:</b> Marspad 3000</li>
+            <li><b>Warranty ends:</b> 28/10/2058</li>
+            <li><b>Battery percentage:</b> ... </li>
+            <li><b>Number of charge cycles:</b> 5633</li>
+        </ul>
+
+        <a class="buttonOverlay" href="#">MarsPads.com</a>
+
+    </section>
+    <div class="battery"></div>
+
+</div>
+
+<div id="barStyle">
+
+    <div class="barDivColor">
+        <div id="progressBar" class="loadingBarColor">
+        </div>
+    </div>
+
+    <p id="progress">Added <span id="number">0</span>%</p>
+
+    <button id="startUpdate" class="buttonOverlay">Update Software</button>
+</div>
+
+<script src="assets/js/settingsPage.js"></script>
+
+</body>
 </html>
