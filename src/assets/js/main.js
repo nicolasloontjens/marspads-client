@@ -26,8 +26,8 @@ async function init() {
             console.log("error registering worker: ", err)
         });
         navigator.serviceWorker.addEventListener("message",(message) => {
-            let obj = messaga.data.msg
-            obj.receivercontactid = contactid
+            let obj = message.data.msg
+            obj.receivercontactid = JSON.parse(localStorage.getItem("user")).contactid
             if(obj.answer != 0){
                 sendToServer(obj);
             }

@@ -1,7 +1,11 @@
 body {
   font-size: 5rem;
   font-family: "Spartan", sans-serif;
-  color: #9b7241;
+  background: #11223B;
+}
+body h1 {
+  color: #FF9061;
+  text-align: center;
 }
 body img {
   margin: 0;
@@ -13,7 +17,7 @@ body img {
 body #contacts {
   background: url("../images/ContactIcon.png") no-repeat;
   background-size: contain;
-  padding-left: 10%;
+  background-position: 2%;
   margin-bottom: 2%;
   margin-top: 2%;
 }
@@ -21,19 +25,25 @@ body #searchContainer {
   text-align: center;
 }
 body #searchContainer input {
-  background-size: contain;
   background: url("../images/magnifyingGlassIcon.png") no-repeat right;
   background-size: contain;
   border: none;
-  border-bottom: black solid;
+  border-bottom: 5px #f0666e solid;
   border-radius: 10px;
   padding: 5px;
   font-size: 4rem;
   letter-spacing: 1px;
-  color: #9b7241;
+  color: #eb5f71;
+}
+body #searchContainer ::placeholder {
+  color: #eb5f71;
+}
+body #searchContainer input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 5px #f0666e solid;
 }
 body #contactList {
-  background: #d0a3023b;
   border-radius: 30px;
   height: 80vh;
   display: flex;
@@ -41,21 +51,26 @@ body #contactList {
   margin: 10%;
 }
 body #contactList ul li {
-  background: #cc95128a;
+  background: #FF9061;
   text-align: center;
-  padding: 20px;
   width: 650px;
 }
-body #contactList ul li:hover {
-  transform: scale(1.3);
-  background-color: navajowhite;
+body #contactList div {
+  padding: 2%;
+  margin: 1% 0;
 }
 body #contactList .contactItem {
-  padding: 0rem 10rem;
+  padding: 2%;
+}
+body #contactList div[clicked=true] {
+  animation: open-contact-div 0.5s linear forwards;
+}
+body #contactList div[clicked=true] .contactoption {
+  animation: open-contact-option 1s linear;
 }
 body #contactList a {
   text-decoration: none;
-  color: #845a35;
+  color: white;
 }
 body #contactList .contactoption-hidden {
   display: none;
@@ -63,6 +78,20 @@ body #contactList .contactoption-hidden {
 body #contactList .contactoption {
   display: block;
   font-size: 1.5vh;
+}
+
+@keyframes open-contact-div {
+  100% {
+    margin: 5%;
+  }
+}
+@keyframes open-contact-option {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /*# sourceMappingURL=styleVertical.css.map */

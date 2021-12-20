@@ -1,17 +1,5 @@
 let statusCode;
 
-function poc() {
-    const messageBody = {
-        "quote": "some quote"
-    };
-
-    get("quotes");
-    get("quotes/1");
-    post("quotes", messageBody);
-    put("quotes/1", messageBody);
-
-}
-
 function get(uri, successHandler = logJson, failureHandler = logError) {
     const request = new Request(api + uri, {
         method: 'GET',
@@ -108,7 +96,9 @@ function addUserContact(idToAdd) {
 }
 
 function removeUserContact(idToRemove) {
-    remove(`user/${getMarsID()}/contacts/remove/${idToRemove}`);
+    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getMarsID()}/contacts/remove/${idToRemove}`,{
+        method: 'DELETE'
+    })
 }
 
 async function getAllChats() { //get a list of all chatid's and their corresponding user
@@ -120,8 +110,11 @@ async function getAllChats() { //get a list of all chatid's and their correspond
     }
 }
 
-function getAllChatsWithUser(chatid) {
-    fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getMarsID()}/chats/${chatid}`).then(data => data.json().then(messages => {
-        console.log(messages);
-    }));
+async function getAllChatsWithUser(chatid) {
+    try{
+        const api_response = await fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getMarsID()}/chats/${chatid}`);
+        return await api_response.json();
+    }catch(error){
+        console.log(error)
+    }
 }
