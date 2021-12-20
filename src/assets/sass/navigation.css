@@ -6,8 +6,9 @@ body #menuSpan {
   content: none;
   border: none;
   background: #0c1a2e;
-  font-size: 2rem;
+  font-size: 1rem;
   color: #EB7A5E;
+  align-items: normal;
 }
 body #closeSpan:before {
   content: none;
@@ -62,7 +63,7 @@ body nav {
   right: 2%;
   border: 2px solid #0c1a2e;
   border-radius: 21px;
-  min-width: 22px;
+  min-width: 75px;
   min-height: 29px;
   overflow: hidden;
   z-index: 2;
