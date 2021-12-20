@@ -1,6 +1,7 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", init);
+let traficAudio = document.querySelector("#trafficAudioFile");
 
 async function init() {
     console.log("Audio controls loaded.")
@@ -12,7 +13,8 @@ async function init() {
 }
 
 function playSound() {
-    document.querySelector("#trafficAudioFile").play();
+
+    traficAudio.play();
     console.log("play");
 }
 
@@ -41,14 +43,13 @@ function loadAudio() {
 }
 */
 function muteAll() {
-    document.querySelector("#trafficAudioFile").muted = true;
-    console.log("mute all")
+    traficAudio.muted = true;
 }
 
 function getSelectedSlider(ev) {
-    let sliderName = ev.currentTarget.getAttribute("data-slider");
-    let sliderValue = ev.target.value;
-    let convertedValue = sliderValue / 10;
+    const sliderName = ev.currentTarget.getAttribute("data-slider");
+    const sliderValue = ev.target.value;
+    const convertedValue = sliderValue / 10;
     console.log(sliderName, convertedValue);
     setVolumeOfAudio(sliderName, convertedValue);
 }
@@ -62,7 +63,7 @@ function setVolumeOfAudio(sliderName, sliderValue) {
         document.querySelector("#talking").volume = sliderValue;
     }
     if (sliderName === "traffic") {
-        document.querySelector("#trafficAudioFile").volume = sliderValue;
+        traficAudio.volume = sliderValue;
     }
     if (sliderName === "constructionNoises") {
         document.querySelector("#constructionNoises").volume = sliderValue;
