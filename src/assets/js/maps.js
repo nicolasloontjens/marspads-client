@@ -4,8 +4,10 @@ document.addEventListener("DOMContentLoaded", init);
 
 let map;
 let maplayers = {};
-const fixedmarkercoords = [{longitude:51.1919033988461,latitude: 3.214792709005165},{longitude:51.19161388290666,latitude: 3.2144224156205},{longitude:51.191910575737946,latitude: 3.21549442481909},{longitude:51.19187250825284,latitude: 3.214467410833324},{longitude:51.191830575737946,latitude: 3.2160007275947136},{longitude:51.1914709406873,latitude: 3.21423239440734}]
+const fixedmarkercoords = [{longitude:51.19092153443029,latitude: 3.212451691473603},{longitude:51.19161388290666,latitude: 3.2144224156205},{longitude:51.191910575737946,latitude: 3.21549442481909},{longitude:51.19187250825284,latitude: 3.214467410833324},{longitude:51.191830575737946,latitude: 3.2160007275947136},{longitude:51.1914709406873,latitude: 3.21423239440734}]
 const dataNames =['Ben Mohammadi Bilal', 'Follet stijn','Hammering', 'Car', 'Walking', 'Loontjens Nicolas', 'Vandewalle Reinaerd'];
+const yourLocation = [3.2145869436534724,51.19167462236231];
+let routeLayer;
 
 async function init() {
     console.log("Maps loaded");
@@ -27,7 +29,7 @@ function goToGeneralChat(e){
 function createBasicMap(){
     let user = new ol.Feature({
         type:"marker",
-        geometry: new ol.geom.Point(ol.proj.fromLonLat([3.2145869436534724,51.19167462236231]))
+        geometry: new ol.geom.Point(ol.proj.fromLonLat(yourLocation))
     })
     const userVector = new ol.source.Vector({
         features: [user]
@@ -53,7 +55,7 @@ function createBasicMap(){
             userLayer
         ],
         view: new ol.View({
-            center: ol.proj.fromLonLat([3.2145869436534724,51.19167462236231]),
+            center: ol.proj.fromLonLat(yourLocation),
             zoom: 17
         })
     })
@@ -147,6 +149,8 @@ function addOtherLayers(arrayofcoords){
         return false;
     };
 
+
+
     /**
      * Add a click handler to the map to render the popup.
      */
@@ -155,8 +159,10 @@ function addOtherLayers(arrayofcoords){
         const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
             return feature;
         });
+
         if (feature && feature.A.type === "marker") {
             addPopupContent(feature);
+            if(document.querySelector('.routeButton') !== null) findTheWay(feature, overlay);
             overlay.setPosition(coordinate);
         }else {
             overlay.setPosition(undefined);
@@ -171,19 +177,17 @@ function addPopupContent(feature){
     const dataToUpperCase = feature.get('data').charAt(0).toUpperCase() + feature.get('data').slice(1);
 
     if(feature.A.data === "friend" || feature.A.data === "user") {
-        console.log(feature.get('data'), feature.get('dataName'));
         content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>' + '</p>'+
-            '<br><button>Chat</button> <button>Fastest route</button>';
+            '<br><button>Chat</button> <button class="routeButton" >Fastest route</button>';
     }
     else{
-        console.log(feature.get('data'), feature.get('dataName'));
         content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>'+ '</p>'+
              '<br><button>Mute</button> <button>See all noises</button>';
     }
 }
 
 function addProximityLayer() {
-    const centerLongitudeLatitude = ol.proj.fromLonLat([3.2145869436534724,51.19167462236231]);
+    const centerLongitudeLatitude = ol.proj.fromLonLat(yourLocation);
     const proxlayer = new ol.layer.Vector({
         source: new ol.source.Vector({
             projection: 'EPSG:4326',
@@ -243,36 +247,45 @@ function toggleFullScreen(){
     }
 }
 
-// function drawRoute(route){
-//     const polyline = route.geometry.coordinates.map(el => ol.proj.fromLonLat(el));
-//
-//     const routeLayer = new ol.layer.Vector({
-//         source:  new ol.source.Vector({
-//             features: [ new ol.Feature({
-//                 type: 'route',
-//                 geometry: new ol.geom.LineString(polyline)
-//             })]
-//         }),
-//         style: new ol.style.Style({
-//             stroke: new ol.style.Stroke({
-//                 width: 6,
-//                 color:[255, 87, 34, 0.8]
-//             })
-//         })
-//     })
-//     return routeLayer;
-// }
-//
-// function findTheWay(){
-//     document.querySelector('').addEventListener("click", function(){
-//         const startMarker = getMarkerFeature(currentLocation);
-//         const endMarker = getMarkerFeature(restoCoords);
-//
-//         getClosestRoute(currentLocation[0],
-//             currentLocation[1]).then(response => {
-//             const{location, route} = response;
-//             const routeLayer = drawRoute(route);
-//             map.addLayer(routeLayer);
-//         })
-//     });
-// }
+function drawRoute(route){
+    const polyline = route.geometry.coordinates.map(el => ol.proj.fromLonLat(el));
+
+    return new ol.layer.Vector({
+        source:  new ol.source.Vector({
+            features: [ new ol.Feature({
+                type: 'route',
+                geometry: new ol.geom.LineString(polyline)
+            })]
+        }),
+        style: new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                width: 6,
+                color:[255, 87, 34, 0.8]
+            })
+        })
+    });
+}
+
+function findTheWay(feature, overlay){
+    const endLonLat = ol.proj.transform(feature.A.geometry.flatCoordinates, 'EPSG:3857', 'EPSG:4326');
+    const routeButton = document.querySelector('.routeButton');
+
+    routeButton.addEventListener("click", function(){
+        map.removeLayer(routeLayer);
+        getClosestRoute(endLonLat).then(response => {
+            const{route} = response;
+            routeLayer = drawRoute(route);
+            map.addLayer(routeLayer);
+        });
+        overlay.setPosition(undefined);
+        routeButton.blur();
+    });
+}
+
+async function getClosestRoute(endLonLat) {
+    const API_KEY = '5b3ce3597851110001cf624814086a7454a5498e922d0f028ec7db66';
+    const response = await fetch(`https://api.openrouteservice.org/v2/directions/driving-car?api_key=${API_KEY}&start=${yourLocation[0]},${yourLocation[1]}&end=${endLonLat[0]},${endLonLat[1]}`);
+    const result = await response.json();
+    return {route: result.features[0]};
+}
+
