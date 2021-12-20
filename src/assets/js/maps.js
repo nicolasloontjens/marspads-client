@@ -2,10 +2,10 @@
 
 document.addEventListener("DOMContentLoaded", init);
 
-let currentPage = document.querySelector('#echoMapPage');
 let map;
 let maplayers = {};
 const fixedmarkercoords = [{longitude:51.1919033988461,latitude: 3.214792709005165},{longitude:51.19161388290666,latitude: 3.2144224156205},{longitude:51.191910575737946,latitude: 3.21549442481909},{longitude:51.19187250825284,latitude: 3.214467410833324},{longitude:51.191830575737946,latitude: 3.2160007275947136},{longitude:51.1914709406873,latitude: 3.21423239440734}]
+const dataNames =['Ben Mohammadi Bilal', 'Follet stijn','Hammering', 'Car', 'Walking', 'Loontjens Nicolas', 'Vandewalle Reinaerd'];
 
 async function init() {
     console.log("Maps loaded");
@@ -70,10 +70,11 @@ function createBasicMap(){
 }
 
 function addOtherLayers(arrayofcoords){
-    function createMarkerFeature(coords, datatype){
+    function createMarkerFeature(coords, datatype, dataName){
         return new ol.Feature({
             type:"marker",
             data: datatype,
+            dataName: dataName,
             geometry: new ol.geom.Point(ol.proj.fromLonLat([coords.latitude,coords.longitude]))
         })
     }
@@ -81,13 +82,13 @@ function addOtherLayers(arrayofcoords){
     let otheruserfeatures = [];
     let soundfeatures = [];
     for(let i = 0; i < 2; i++){
-        friendfeatures.push(createMarkerFeature({longitude:arrayofcoords[i].longitude,latitude:arrayofcoords[i].latitude},"friend"))
+        friendfeatures.push(createMarkerFeature({longitude:arrayofcoords[i].longitude,latitude:arrayofcoords[i].latitude},"friend", dataNames[i]));
     }
     for(let i = 2; i < 5; i++){
-        soundfeatures.push(createMarkerFeature({longitude:arrayofcoords[i].longitude,latitude:arrayofcoords[i].latitude},"sound"))
+        soundfeatures.push(createMarkerFeature({longitude:arrayofcoords[i].longitude,latitude:arrayofcoords[i].latitude},"sound", dataNames[i]));
     }
     for(let i = 5; i < 6; i++){
-        otheruserfeatures.push(createMarkerFeature({longitude:arrayofcoords[i].longitude,latitude:arrayofcoords[i].latitude},"user"))
+        otheruserfeatures.push(createMarkerFeature({longitude:arrayofcoords[i].longitude,latitude:arrayofcoords[i].latitude},"user", dataNames[i]));
     }
     
     let friendlayer = new ol.layer.Vector({
@@ -120,16 +121,15 @@ function addOtherLayers(arrayofcoords){
                 scale: [0.09,0.09]
             })
         })
-    })
-    maplayers["strangerlayer"] = otheruserslayer
-    maplayers["friendlayer"] = friendlayer
-    maplayers["soundlayer"] = soundlayer
-    map.addLayer(otheruserslayer)
-    map.addLayer(soundlayer)
-    map.addLayer(friendlayer)
+    });
+    maplayers["strangerlayer"] = otheruserslayer;
+    maplayers["friendlayer"] = friendlayer;
+    maplayers["soundlayer"] = soundlayer;
+    map.addLayer(otheruserslayer);
+    map.addLayer(soundlayer);
+    map.addLayer(friendlayer);
 
     let container = document.getElementById('popup');
-    let content = document.getElementById('popup-content');
     let closer = document.getElementById('popup-closer');
 
     let overlay = new ol.Overlay({
@@ -156,7 +156,7 @@ function addOtherLayers(arrayofcoords){
             return feature;
         });
         if (feature && feature.A.type === "marker") {
-            console.log(feature.A)
+            addPopupContent(feature);
             overlay.setPosition(coordinate);
         }else {
             overlay.setPosition(undefined);
@@ -164,6 +164,22 @@ function addOtherLayers(arrayofcoords){
         }
     });
 
+}
+
+function addPopupContent(feature){
+    let content = document.getElementById('popup-content');
+    const dataToUpperCase = feature.get('data').charAt(0).toUpperCase() + feature.get('data').slice(1);
+
+    if(feature.A.data === "friend" || feature.A.data === "user") {
+        console.log(feature.get('data'), feature.get('dataName'));
+        content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>' + '</p>'+
+            '<br><button>Chat</button> <button>Fastest route</button>';
+    }
+    else{
+        console.log(feature.get('data'), feature.get('dataName'));
+        content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>'+ '</p>'+
+             '<br><button>Mute</button> <button>See all noises</button>';
+    }
 }
 
 function addProximityLayer() {
@@ -226,3 +242,37 @@ function toggleFullScreen(){
         }
     }
 }
+
+// function drawRoute(route){
+//     const polyline = route.geometry.coordinates.map(el => ol.proj.fromLonLat(el));
+//
+//     const routeLayer = new ol.layer.Vector({
+//         source:  new ol.source.Vector({
+//             features: [ new ol.Feature({
+//                 type: 'route',
+//                 geometry: new ol.geom.LineString(polyline)
+//             })]
+//         }),
+//         style: new ol.style.Style({
+//             stroke: new ol.style.Stroke({
+//                 width: 6,
+//                 color:[255, 87, 34, 0.8]
+//             })
+//         })
+//     })
+//     return routeLayer;
+// }
+//
+// function findTheWay(){
+//     document.querySelector('').addEventListener("click", function(){
+//         const startMarker = getMarkerFeature(currentLocation);
+//         const endMarker = getMarkerFeature(restoCoords);
+//
+//         getClosestRoute(currentLocation[0],
+//             currentLocation[1]).then(response => {
+//             const{location, route} = response;
+//             const routeLayer = drawRoute(route);
+//             map.addLayer(routeLayer);
+//         })
+//     });
+// }
