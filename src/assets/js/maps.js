@@ -171,12 +171,10 @@ function addPopupContent(feature){
     const dataToUpperCase = feature.get('data').charAt(0).toUpperCase() + feature.get('data').slice(1);
 
     if(feature.A.data === "friend" || feature.A.data === "user") {
-        console.log(feature.get('data'), feature.get('dataName'));
         content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>' + '</p>'+
             '<br><button>Chat</button> <button>Fastest route</button>';
     }
     else{
-        console.log(feature.get('data'), feature.get('dataName'));
         content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>'+ '</p>'+
              '<br><button>Mute</button> <button>See all noises</button>';
     }
