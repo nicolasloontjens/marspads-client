@@ -33,8 +33,8 @@
 
 <div id="container">
     <section id="settingsPage">
-        <h1>Settings</h1>
-
+        <h1>Settings:</h1>
+        <h2 id="contactid">temp</h2>
         <ul>
             <li>Software version: 3.5v</li>
             <li>Model name: Marspad 3000</li>
@@ -60,49 +60,6 @@
     <p id="progress">Added <span id="number">0</span>%</p>
 
     <button id="startUpdate" class="buttonOverlay">Update Software</button>
-</div>
-
-<div class="overlaySliders">
-
-    <div id="allSliders">
-        <div class="dvslide">
-            <label for="media">Media:</label>
-            <input data-slider="media" class="slider" type="range" id="media" name="media"
-                   min="0" max="10" step="0.01" value="3">
-        </div>
-
-        <div class="dvslide">
-            <label for="talking">Talking:</label>
-            <input data-slider="talking" class="slider" type="range" id="talking" name="talking"
-                   min="0" max="10" step="0.01" value="3">
-        </div>
-
-        <div class="dvslide">
-            <label for="constructionNoises">Construction noises:</label>
-            <input data-slider="constructionNoises" class="slider" type="range" id="constructionNoises"
-                   name="constructionNoises"
-                   min="0" max="10" step="0.01" value="3">
-        </div>
-
-        <div class="dvslide">
-            <label for="traffic">Traffic:</label>
-            <input data-slider="traffic" class="slider" type="range" id="traffic" name="traffic"
-                   min="0" max="10" step="0.01" value="3">
-        </div>
-    </div>
-
-
-    <div id="audioButtons">
-        <button id="muteAll" class="buttonOverlay" type="button">Mute All!</button>
-        <button id="play" class="buttonOverlay" type="button">play!</button>
-        <button id="closeSettings" class="buttonOverlay" type="button">Close Settings!</button>
-        <!-- Mute all een button maken?  -->
-    </div>
-    <audio id="trafficAudioFile">
-        <source src="assets/audio/trafficAudio.mp3" type="audio/mpeg">
-    </audio>
-
-
 </div>
 
 <script src="assets/js/settingsPage.js"></script>

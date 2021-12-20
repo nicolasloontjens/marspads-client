@@ -1,11 +1,24 @@
 body {
 
+  a, h2{
+    margin-top: 2%;
+    margin-left: 0;
+    color: #eb5f71;
+    margin-bottom: 2%;
+  }
+
+  h1{
+    margin-bottom: 5%;
+  }
+
   #container {
     display: flex;
     justify-content: space-between;
+    height: 40vh;
     margin-top: 11%;
     margin-bottom: 8%;
     margin-left: 5%;
+    
   }
  #settingsPage {
    line-height: 1.5rem;
@@ -17,6 +30,16 @@ body {
     margin: auto;
   }
 
+  #startUpdate{
+    margin-top: 2%;
+    font-size: 100%;
+    font-family: nasalization, sans-serif;
+    font-weight: bold;
+    outline: none;
+    border:none;
+    background-color:#eb5f71;
+  }
+
   //Progress bar
   #progressBar {
     height: 24px;
@@ -25,7 +48,7 @@ body {
 
   .loadingBarColor {
     color: #fff;
-    background-color: #f37000;
+    background-color: #EB7A5E;
   }
 
   .barDivColor {

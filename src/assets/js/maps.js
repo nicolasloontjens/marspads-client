@@ -228,9 +228,9 @@ function addCheckboxEventListener(){
 
 function updateMapLayers(enabledFilters){
     Object.values(maplayers).forEach(layer => map.removeLayer(layer))
-    let maplayerstoapply = Object.assign({},maplayers)
+    let maplayerstoapply = {proximitylayer:maplayers["proximitylayer"]};
     enabledFilters.forEach((filtervalue) => {
-        delete maplayerstoapply[filtervalue];
+        maplayerstoapply[filtervalue] = maplayers[filtervalue]
     })
     Object.values(maplayerstoapply).forEach(layer => map.addLayer(layer))
 }
