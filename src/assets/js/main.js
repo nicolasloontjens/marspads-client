@@ -12,8 +12,8 @@ async function init() {
     api = `${config.host ? config.host + '/' : ''}${config.group ? config.group + '/' : ''}api/`;
 
     initUser();
-    addNavRedirects();
-    document.querySelector('#arrowNav').addEventListener('click', MakeNavigationRetract);
+    //addNavRedirects();
+    //document.querySelector('#arrowNav').addEventListener('click', MakeNavigationRetract);
 
     sendToServer = openSocket();
     Notification.requestPermission((status)=>{
@@ -61,6 +61,7 @@ async function loadConfig() {
     return response.json();
 }
 
+/*
 function addNavRedirects(){
     document.querySelector('#audioPage').addEventListener("click", (e) => {
         e.stopPropagation();
@@ -88,7 +89,7 @@ function MakeNavigationRetract(e) {
     e.preventDefault();
     document.querySelector('main aside nav').classList.toggle('hidden');
 }
-
+*/
 //helper function for registering push notifications
 function urlBase64ToUint8Array (base64String){
     const padding = '='.repeat((4 - base64String.length % 4) % 4);

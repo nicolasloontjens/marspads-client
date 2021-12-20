@@ -1,0 +1,102 @@
+body {
+
+  #indexNav {
+    background-image: url("../images/MapIcon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  #settingsNav {
+    background-image: url("../images/SettingIcon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  #audiNav {
+    background-image: url("../images/SoundIcon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  #contactsNav {
+    background-image: url("../images/ContactIcon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  nav {
+    background-color: #333;
+    position: fixed;
+    top: 2%;
+    right: 2%;
+    border: 2px solid #333;
+    border-radius: 21px;
+    min-width: 22px;
+    min-height: 29px;
+    overflow: hidden;
+    z-index: 2;
+  }
+
+  nav input {
+    display: none;
+  }
+
+  nav input:checked ~ label span:last-child {
+    display: none;
+  }
+
+  nav input:not(:checked) ~ label span:first-child {
+    display: none;
+  }
+
+  nav label {
+    display: block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    user-select: none;
+    width: 41px;
+    height: 41px;
+    text-align: center;
+    line-height: 40px;
+    background: #333;
+    color: white;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+  }
+
+  nav ul {
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    transition: width 0.5s, height 0.5s;
+    list-style: none;
+  }
+
+  nav input:checked ~ ul {
+    width: 600px;
+    height: 130px;
+  }
+
+  nav ul li a {
+    color: #9e9e9e;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: block;
+    width: 600px;
+    height: 30px;
+    line-height: 30px;
+    letter-spacing: 2px;
+    text-align: center;
+    transition: color 0.5s, background 0.5s;
+  }
+
+  nav ul li a:hover {
+    background: #333;
+    color: white;
+  }
+
+
+}

@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="assets/sass/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/sass/style.css">
     <link rel="stylesheet" type="text/css" href="assets/sass/audioOverlay.css">
+    <link rel="stylesheet" type="text/css" href="assets/sass/navigation.css">
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script>
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css">
@@ -21,19 +22,18 @@
     <h1>Echolocation</h1>
 </header>
 <main>
-    <aside>
-        <img id="arrowNav" src="assets/images/ArrowIcon.png" alt="Icon of an arrow">
-        <nav>
-            <a href="" id="audioPage" data-pageLocation="audio"><img src="assets/images/SoundIcon.png"
-                                                                     alt="Icon of a sound button"></a>
-            <a href="" id="settingsPage" data-pageLocation="settings"><img src="assets/images/SettingIcon.png"
-                                                                           alt="Icon of the settings"></a>
-            <a href="" id="mapPage" data-pageLocation="echoMap"><img src="assets/images/MapIcon.png"
-                                                                     alt="Icon of a map"></a>
-            <a href="" id="contactsPage" data-pageLocation="contacts"><img src="assets/images/ContactIcon.png"
-                                                                           alt="Icon of contact"></a>
-        </nav>
-    </aside>
+
+    <nav>
+        <input type="checkbox" id="menuToggle">
+        <label for="menuToggle"><span>&times;</span><span>&#9776;</span></label>
+        <ul>
+            <li><a id="indexNav" href="index.html" >Home</a></li>
+            <li><a id="settingsNav" href="settings.html">Settings</a></li>
+            <li><a id="audiNav" href="audio.html">Audio</a></li>
+            <li><a id="contactsNav" href="contacts.html">Contacts</a></li>
+        </ul>
+    </nav>
+
 
 
     <section id="echoMapPage">
