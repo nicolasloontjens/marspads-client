@@ -3,9 +3,9 @@
 document.addEventListener("DOMContentLoaded", init);
 
 let map;
-let maplayers = {};
+const maplayers = {};
 const fixedmarkercoords = [{longitude:51.1919033988461,latitude: 3.214792709005165},{longitude:51.19161388290666,latitude: 3.2144224156205},{longitude:51.191910575737946,latitude: 3.21549442481909},{longitude:51.19187250825284,latitude: 3.214467410833324},{longitude:51.191830575737946,latitude: 3.2160007275947136},{longitude:51.1914709406873,latitude: 3.21423239440734}]
-const dataNames =['Ben Mohammadi Bilal', 'Follet stijn','Hammering', 'Car', 'Walking', 'Loontjens Nicolas', 'Vandewalle Reinaerd'];
+const dataNames = ['Ben Mohammadi Bilal', 'Follet stijn','Hammering', 'Car', 'Walking', 'Loontjens Nicolas', 'Vandewalle Reinaerd'];
 
 async function init() {
     console.log("Maps loaded");
@@ -224,9 +224,9 @@ function addCheckboxEventListener(){
 
 function updateMapLayers(enabledFilters){
     Object.values(maplayers).forEach(layer => map.removeLayer(layer))
-    let maplayerstoapply = Object.assign({},maplayers)
+    let maplayerstoapply = {proximitylayer:maplayers["proximitylayer"]};
     enabledFilters.forEach((filtervalue) => {
-        delete maplayerstoapply[filtervalue];
+        maplayerstoapply[filtervalue] = maplayers[filtervalue]
     })
     Object.values(maplayerstoapply).forEach(layer => map.addLayer(layer))
 }
