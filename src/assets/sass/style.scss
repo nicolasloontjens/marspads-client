@@ -24,78 +24,6 @@ body {
     margin: 1rem;
   }
 
-  .buttonOverlay {
-    text-transform: uppercase;
-    letter-spacing: 1.3px;
-    font-weight: 700;
-    color: #313133;
-    background: #FF9061;
-    background: linear-gradient(90deg, #FF9061 0%, #EB7A5E);
-    border: none;
-    box-shadow: 12px 12px 24px #ff9061;
-    transition: all 0.3s ease-in-out 0s;
-    cursor: pointer;
-    outline: none;
-    position: relative;
-  }
-
-  aside {
-    display: flex;
-    float: right;
-    margin-top: auto;
-    margin-bottom: auto;
-
-    #arrowNav {
-      width: 30px;
-      height: 30px;
-      margin-top: auto;
-      margin-bottom: auto;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      border-left: #EB7A5E 3px solid;
-      border-bottom: #EB7A5E 3px solid;
-      border-top: #EB7A5E 3px solid;
-      border-top-left-radius: 30%;
-      border-bottom-left-radius: 30%;
-    }
-
-    nav {
-      border-left: #EB7A5E 3px solid;
-      border-bottom: #EB7A5E 3px solid;
-      border-top: #EB7A5E 3px solid;
-
-      img {
-        margin: 0;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        padding: 10px 7px;
-      }
-    }
-
-
-  }
-
-  #echoMapPage {
-    display: flex;
-
-    form {
-      margin-top: 1rem;
-      display: flex;
-      flex-direction: column;
-      margin-right: 10px;
-      border-radius: 5%;
-
-      //box-sizing: border-box;
-      //user-select: none;
-    }
-
-    #map {
-      width: 673px;//700
-      height: 380px;
-    }
-  }
-
   .hidden {
     display: none !important;
   }
@@ -229,9 +157,7 @@ body {
         width: 49%;
         border-radius: 10px;
         background: linear-gradient(90deg, #FF9061 0%, #EB7A5E);
-
       }
-
     }
   }
 
@@ -419,6 +345,10 @@ body {
     animation: ring 1.5s infinite;
   }
 
+  #menu{
+    line-height: 100%;
+    height: 10%;
+  }
   .buttonProx:hover::after, button:focus::after {
     animation: none;
     display: none;
@@ -437,4 +367,5 @@ body {
     }
   }
 
+  
 }
