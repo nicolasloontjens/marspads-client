@@ -5,7 +5,25 @@ body {
 
   h1{
     color: #FF9061;
-    text-align: center ;
+    text-align: center;
+    padding:3%;
+  }
+
+  main{
+    text-align: center;
+  }
+
+  header{
+    padding: 3%;
+    display: flex;
+    justify-content: space-between;
+    *{
+      display: inline-block;
+    }
+    img{
+      height: 10%;
+      width: 10%;
+    }
   }
 
   img {
@@ -16,18 +34,7 @@ body {
     padding: 10px 7px;
   }
 
-  #contacts {
-    background: url("../images/ContactIcon.png") no-repeat;
-    background-size: contain;
-    background-position: 2%;
-    margin-bottom: 2%;
-    margin-top: 2%;
-  }
-
-  #searchContainer {
-    text-align: center;
-
-    input {
+  input {
       background: url("../images/magnifyingGlassIcon.png") no-repeat right;
       background-size: contain;
       border: none;
@@ -37,16 +44,16 @@ body {
       font-size: 4rem;
       letter-spacing: 1px;
       color: #eb5f71;
+      text-align: center;
     }
     ::placeholder {
       color: #eb5f71;
+      text-align: center;
     }
     input:focus{
       border: none;
       outline: none;
       border-bottom: 5px #f0666e solid;
-  }
-
   }
 
   #contactList {
@@ -94,6 +101,62 @@ body {
       font-size: 1.5vh
     }
 
+  }
+}
+
+.active{
+  img, div, h1{
+    filter:blur(20px);
+    z-index: 1;
+  }
+  section{
+    filter: none;
+    z-index: 0;
+    *{
+      z-index: 0;
+    }
+    h2{
+      color: #FF9061;
+    }
+    padding: 5%;
+    position: fixed;
+    top: 10%;
+    left: 5%;
+    width: 80vw;
+    height: 40vh;
+    background-color: #0c1a2e;
+    border-radius: 2%;
+    #popup-closer{
+      display: block;
+      text-align: right;
+      margin-left: 90%;
+      margin-bottom: 15%;
+      text-decoration: none;
+      color: #cc3c4f;
+    }
+    p{
+      font-size: 50%;
+      margin-bottom: 10%;
+      color: #FF9061;
+      font-weight: bolder;
+    }
+    input{
+      margin-top: 5%;
+      width: 90%;
+      height: 10%;
+      border:none;
+      background-image: none;
+      background-color: #070e18;
+      caret-color: #eb5f71;
+      margin-bottom: 10%;
+    }
+    #addcontact{
+      text-decoration: underline;
+      margin-top: 5%;
+      display: block;
+      color: #cc3c4f;
+      font-weight: bolder;
+    }
   }
 }
 

@@ -6,6 +6,22 @@ body {
 body h1 {
   color: #FF9061;
   text-align: center;
+  padding: 3%;
+}
+body main {
+  text-align: center;
+}
+body header {
+  padding: 3%;
+  display: flex;
+  justify-content: space-between;
+}
+body header * {
+  display: inline-block;
+}
+body header img {
+  height: 10%;
+  width: 10%;
 }
 body img {
   margin: 0;
@@ -14,17 +30,7 @@ body img {
   display: flex;
   padding: 10px 7px;
 }
-body #contacts {
-  background: url("../images/ContactIcon.png") no-repeat;
-  background-size: contain;
-  background-position: 2%;
-  margin-bottom: 2%;
-  margin-top: 2%;
-}
-body #searchContainer {
-  text-align: center;
-}
-body #searchContainer input {
+body input {
   background: url("../images/magnifyingGlassIcon.png") no-repeat right;
   background-size: contain;
   border: none;
@@ -34,11 +40,13 @@ body #searchContainer input {
   font-size: 4rem;
   letter-spacing: 1px;
   color: #eb5f71;
+  text-align: center;
 }
-body #searchContainer ::placeholder {
+body ::placeholder {
   color: #eb5f71;
+  text-align: center;
 }
-body #searchContainer input:focus {
+body input:focus {
   border: none;
   outline: none;
   border-bottom: 5px #f0666e solid;
@@ -78,6 +86,60 @@ body #contactList .contactoption-hidden {
 body #contactList .contactoption {
   display: block;
   font-size: 1.5vh;
+}
+
+.active img, .active div, .active h1 {
+  filter: blur(20px);
+  z-index: 1;
+}
+.active section {
+  filter: none;
+  z-index: 0;
+  padding: 5%;
+  position: fixed;
+  top: 10%;
+  left: 5%;
+  width: 80vw;
+  height: 40vh;
+  background-color: #0c1a2e;
+  border-radius: 2%;
+}
+.active section * {
+  z-index: 0;
+}
+.active section h2 {
+  color: #FF9061;
+}
+.active section #popup-closer {
+  display: block;
+  text-align: right;
+  margin-left: 90%;
+  margin-bottom: 15%;
+  text-decoration: none;
+  color: #cc3c4f;
+}
+.active section p {
+  font-size: 50%;
+  margin-bottom: 10%;
+  color: #FF9061;
+  font-weight: bolder;
+}
+.active section input {
+  margin-top: 5%;
+  width: 90%;
+  height: 10%;
+  border: none;
+  background-image: none;
+  background-color: #070e18;
+  caret-color: #eb5f71;
+  margin-bottom: 10%;
+}
+.active section #addcontact {
+  text-decoration: underline;
+  margin-top: 5%;
+  display: block;
+  color: #cc3c4f;
+  font-weight: bolder;
 }
 
 @keyframes open-contact-div {
