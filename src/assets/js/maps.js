@@ -149,19 +149,20 @@ function addOtherLayers(arrayofcoords){
         return false;
     };
 
+
+
     /**
      * Add a click handler to the map to render the popup.
      */
     map.on('singleclick', function (evt) {
         const coordinate = evt.coordinate;
-        console.log(coordinate);
-        console.log(ol.proj.transform([357608.4864928319, 6655135.270099361], 'EPSG:3857', 'EPSG:4326'));
         const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
             return feature;
         });
+
         if (feature && feature.A.type === "marker") {
             addPopupContent(feature);
-            if(document.querySelector('.routeButton') !== null) findTheWay(feature);
+            if(document.querySelector('.routeButton') !== null) findTheWay(feature, overlay);
             overlay.setPosition(coordinate);
         }else {
             overlay.setPosition(undefined);
@@ -249,7 +250,7 @@ function toggleFullScreen(){
 function drawRoute(route){
     const polyline = route.geometry.coordinates.map(el => ol.proj.fromLonLat(el));
 
-    const Layer = new ol.layer.Vector({
+    return new ol.layer.Vector({
         source:  new ol.source.Vector({
             features: [ new ol.Feature({
                 type: 'route',
@@ -262,30 +263,29 @@ function drawRoute(route){
                 color:[255, 87, 34, 0.8]
             })
         })
-    })
-    return Layer;
-}
-
-function findTheWay(feature){
-    map.removeLayer(routeLayer);
-    const endLonLat = ol.proj.transform(feature.A.geometry.flatCoordinates, 'EPSG:3857', 'EPSG:4326');
-    console.log(endLonLat)
-    document.querySelector('.routeButton').addEventListener("click", function(){
-        console.log('clicked');
-
-        getClosestRoute(yourLocation[0],
-            yourLocation[1],endLonLat).then(response => {
-            const{location, route} = response;
-            routeLayer = drawRoute(route);
-            map.addLayer(routeLayer);
-        })
     });
 }
 
-async function getClosestRoute(startlong, startlat, endLonLat) {
+function findTheWay(feature, overlay){
+    const endLonLat = ol.proj.transform(feature.A.geometry.flatCoordinates, 'EPSG:3857', 'EPSG:4326');
+    const routeButton = document.querySelector('.routeButton');
+
+    routeButton.addEventListener("click", function(){
+        map.removeLayer(routeLayer);
+        getClosestRoute(endLonLat).then(response => {
+            const{route} = response;
+            routeLayer = drawRoute(route);
+            map.addLayer(routeLayer);
+        });
+        overlay.setPosition(undefined);
+        routeButton.blur();
+    });
+}
+
+async function getClosestRoute(endLonLat) {
     const API_KEY = '5b3ce3597851110001cf624814086a7454a5498e922d0f028ec7db66';
-    const response = await fetch(`https://api.openrouteservice.org/v2/directions/driving-car?api_key=${API_KEY}&start=${startlong},${startlat}&end=${endLonLat[0]},${endLonLat[1]}`);
+    const response = await fetch(`https://api.openrouteservice.org/v2/directions/driving-car?api_key=${API_KEY}&start=${yourLocation[0]},${yourLocation[1]}&end=${endLonLat[0]},${endLonLat[1]}`);
     const result = await response.json();
-    return {location: yourLocation, route: result.features[0]};
+    return {route: result.features[0]};
 }
 
