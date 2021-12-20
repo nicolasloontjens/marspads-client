@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", init);
 async function init() {
     document.querySelector("#startUpdate").addEventListener("click", loadBar);
     let user = JSON.parse(localStorage.getItem("user"))
-    document.querySelector("#contactid").innerHTML += `Contactid: ${user.contactid}`
+    document.querySelector("#contactid").innerHTML = `Contactid: ${user.contactid}`
 }
 
 
