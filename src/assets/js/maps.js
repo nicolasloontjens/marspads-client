@@ -3,11 +3,19 @@
 document.addEventListener("DOMContentLoaded", init);
 
 let currentPage = document.querySelector('#echoMapPage');
+let map;
+let maplayers = {};
+const fixedmarkercoords = [{longitude:51.1919033988461,latitude: 3.214792709005165},{longitude:51.19161388290666,latitude: 3.2144224156205},{longitude:51.191910575737946,latitude: 3.21549442481909},{longitude:51.19187250825284,latitude: 3.214467410833324},{longitude:51.191830575737946,latitude: 3.2160007275947136},{longitude:51.1914709406873,latitude: 3.21423239440734}]
 
 async function init() {
     console.log("Maps loaded");
     document.querySelector("#proximitychat").addEventListener("click", goToGeneralChat);
-    getLocation();
+    createBasicMap();
+    addProximityLayer();//draw the circle around the user that simulates the range of users
+    addOtherLayers(fixedmarkercoords);//add the friend layers, other user layer
+    addCheckboxEventListener();//activate filter feature
+    document.addEventListener("dblclick", toggleFullScreen);
+    document.addEventListener("dbltap", toggleFullScreen);
 }
 
 function goToGeneralChat(e){
@@ -16,58 +24,109 @@ function goToGeneralChat(e){
     location.replace("chatroom.html")
 }
 
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(creatingMaps);
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-}
-
-function creatingMaps(position) {
-
-    const map = new ol.Map({
+function createBasicMap(){
+    let user = new ol.Feature({
+        type:"marker",
+        geometry: new ol.geom.Point(ol.proj.fromLonLat([3.2145869436534724,51.19167462236231]))
+    })
+    const userVector = new ol.source.Vector({
+        features: [user]
+    });
+    const userLayer = new ol.layer.Vector({
+        source: userVector,
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                src:"./assets/images/marker.png",
+                anchor: [0.5,1],
+                scale:[1,1]
+            })
+        })
+    })
+    maplayers["currentuserlayer"] = userLayer
+    map = new ol.Map({
         controls: [new ol.control.FullScreen(), new ol.control.Zoom()],
         target: 'map',
         layers: [
             new ol.layer.Tile({
                 source: new ol.source.OSM()
-            })
+            }),
+            userLayer
         ],
         view: new ol.View({
-            center: ol.proj.fromLonLat([position.coords.longitude, position.coords.latitude]),
-            zoom: 11
+            center: ol.proj.fromLonLat([3.2145869436534724,51.19167462236231]),
+            zoom: 17
         })
-
+    })
+    map.on('postcompose',function(e){
+        document.querySelector('canvas').style.filter="invert(90%)";
     });
-    addMarkerLayer(map, position.coords.longitude, position.coords.latitude, 'Your marker');
-    addProximityLayer(map, position.coords.longitude, position.coords.latitude);
+    let dblclickinteraction = null;
+    map.getInteractions().getArray().forEach(function(interaction) {
+      if (interaction instanceof ol.interaction.DoubleClickZoom) {
+        dblclickinteraction = interaction;
+      }
+    });
+    map.removeInteraction(dblclickinteraction);
 }
 
-function addMarkerLayer(map, longitude, latitude, markerName) {
-    let feature = new ol.Feature({
-        geometry: new ol.geom.Point(ol.proj.fromLonLat([longitude, latitude])),
-        name: markerName,
-        type: "marker",
-        fullName: "Bilal Ben Mohammadi",
-        soundName: "Traffic"
-    });
-
-    let markerLayer = new ol.layer.Vector({
-        source: new ol.source.Vector({
-                features: [
-                    feature
-                ]
-            }
-        ), style: new ol.style.Style({
+function addOtherLayers(arrayofcoords){
+    function createMarkerFeature(coords, datatype){
+        return new ol.Feature({
+            type:"marker",
+            data: datatype,
+            geometry: new ol.geom.Point(ol.proj.fromLonLat([coords.latitude,coords.longitude]))
+        })
+    }
+    let friendfeatures = [];
+    let otheruserfeatures = [];
+    let soundfeatures = [];
+    for(let i = 0; i < 2; i++){
+        friendfeatures.push(createMarkerFeature({longitude:arrayofcoords[i].longitude,latitude:arrayofcoords[i].latitude},"friend"))
+    }
+    for(let i = 2; i < 5; i++){
+        soundfeatures.push(createMarkerFeature({longitude:arrayofcoords[i].longitude,latitude:arrayofcoords[i].latitude},"sound"))
+    }
+    for(let i = 5; i < 6; i++){
+        otheruserfeatures.push(createMarkerFeature({longitude:arrayofcoords[i].longitude,latitude:arrayofcoords[i].latitude},"user"))
+    }
+    
+    let friendlayer = new ol.layer.Vector({
+        source: new ol.source.Vector({features:friendfeatures}),
+        style: new ol.style.Style({
             image: new ol.style.Icon({
-                src: "assets/images/newMarker.png",
-                anchor: [0.5, 1]
+                src: "./assets/images/friendicon.png",
+                anchor: [0.5,1],
+                scale: [0.09,0.09]
             })
-
+        })
+    })
+    
+    let otheruserslayer = new ol.layer.Vector({
+        source: new ol.source.Vector({features:otheruserfeatures}),
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                src: "./assets/images/strangericon.png",
+                anchor: [0.5,1],
+                scale: [0.1,0.1]
+            })
         })
     });
-    map.addLayer(markerLayer);
+    let soundlayer = new ol.layer.Vector({
+        source: new ol.source.Vector({features:soundfeatures}),
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                src: "./assets/images/soundiconmap.png",
+                anchor: [0.5,1],
+                scale: [0.09,0.09]
+            })
+        })
+    })
+    maplayers["strangerlayer"] = otheruserslayer
+    maplayers["friendlayer"] = friendlayer
+    maplayers["soundlayer"] = soundlayer
+    map.addLayer(otheruserslayer)
+    map.addLayer(soundlayer)
+    map.addLayer(friendlayer)
 
     let container = document.getElementById('popup');
     let content = document.getElementById('popup-content');
@@ -97,18 +156,7 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
             return feature;
         });
         if (feature && feature.A.type === "marker") {
-            if(feature.A.name === "friend"){
-                content.innerHTML = '<p>' + feature.get('fullName') + '</p><code>' + feature.get('name')
-                    +  '</code>' + '<br><button>Chat</button> <button>Fastest route</button>';
-
-            }
-            else {
-                content.innerHTML = '<p>' + feature.get('soundName') + '</p><code>' + feature.get('name')
-                    +  '</code>' + '<br><button>Mute</button> <button id="goToAudioPage" >See all noises</button>';
-                document.querySelector('#goToAudioPage').addEventListener("click", () => {
-                    document.querySelector(".overlaySliders").style.display = "block";
-                });
-            }
+            console.log(feature.A)
             overlay.setPosition(coordinate);
         }else {
             overlay.setPosition(undefined);
@@ -116,36 +164,16 @@ function addMarkerLayer(map, longitude, latitude, markerName) {
         }
     });
 
-    /**
-     * Making the pointer change when hovering a marker.
-     */
-
-    map.on('pointermove', function (evt) {
-        const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
-            return feature;
-        });
-        if (feature && feature.A.type === "marker") {
-            document.body.style.cursor = "pointer";
-        } else {
-            document.body.style.cursor = "";
-        }
-    });
-
-    map.on('postcompose',function(e){
-        document.querySelector('canvas').style.filter="invert(90%)";
-    });
-
-
 }
 
-function addProximityLayer(map, longitude, latitude) {
-    const centerLongitudeLatitude = ol.proj.fromLonLat([longitude, latitude]);
+function addProximityLayer() {
+    const centerLongitudeLatitude = ol.proj.fromLonLat([3.2145869436534724,51.19167462236231]);
     const proxlayer = new ol.layer.Vector({
         source: new ol.source.Vector({
             projection: 'EPSG:4326',
             features: [
                 new ol.Feature({
-                    geometry: new ol.geom.Circle(centerLongitudeLatitude, 4000),
+                    geometry: new ol.geom.Circle(centerLongitudeLatitude, 400),
                     name: 'Your range'
                 })
             ]
@@ -153,32 +181,48 @@ function addProximityLayer(map, longitude, latitude) {
         style: [
             new ol.style.Style({
                 stroke: new ol.style.Stroke({
-                    color: 'blue',
+                    color: 'yellow',
                     width: 3
                 }),
                 fill: new ol.style.Fill({
-                    color: 'rgba(0, 0, 255, 0.1)'
+                    color: 'rgba(255, 0, 0, 0.1)'
                 })
             })
         ]
     });
+    maplayers["proximitylayer"] = proxlayer
     map.addLayer(proxlayer);
-
-    const number = randomIntFromInterval(-4000, 4000);
-    const randomLong = longitude - number / 111320 * Math.cos(latitude);
-    const randomLat = latitude - number / 110574;
-
-    addMarkerLayer(map, randomLong, randomLat, 'friend');
-    randomLocation(map, longitude, latitude);
 }
 
-function randomLocation(map, longitude, latitude) {
-    const number = randomIntFromInterval(-4000, 4000);
-    const randomLong = longitude - number / 111320 * Math.cos(latitude);
-    const randomLat = latitude - number / 110574;
-    addMarkerLayer(map, randomLong, randomLat, 'sound');
+function addCheckboxEventListener(){
+    let checkboxes = document.querySelectorAll("input[type=checkbox][name=filter]");
+    let enabledFilters = []
+
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change",() => {
+            enabledFilters = Array.from(checkboxes).filter(i => i.checked).map(i => i.value)
+            updateMapLayers(enabledFilters)
+        })
+    })
 }
 
-function randomIntFromInterval(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+function updateMapLayers(enabledFilters){
+    Object.values(maplayers).forEach(layer => map.removeLayer(layer))
+    let maplayerstoapply = Object.assign({},maplayers)
+    enabledFilters.forEach((filtervalue) => {
+        delete maplayerstoapply[filtervalue];
+    })
+    Object.values(maplayerstoapply).forEach(layer => map.addLayer(layer))
+}
+
+function toggleFullScreen(){
+    let map = document.querySelector("#map");
+    if(!document.fullscreenElement){
+        map.requestFullscreen();
+    }
+    else{
+        if(document.exitFullscreen){
+        document.exitFullscreen();
+        }
+    }
 }

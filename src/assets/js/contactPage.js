@@ -56,8 +56,11 @@ async function updateContacts(){
 function getSelectedContactName(e) {
     document.querySelectorAll('div a[type="contactoption"]').forEach((elem) => {
         elem.setAttribute("class","contactoption-hidden")
+        elem.parentElement.removeAttribute("clicked")
     })
     let parentelem = e.target.parentElement
+    parentelem.setAttribute("clicked","true")
+
     let action1 = parentelem.getElementsByTagName("a")[1]
     action1.setAttribute("class","contactoption")
     action1.addEventListener("click",goToChatOrSendChatRequest)

@@ -7,7 +7,6 @@ function init(){
 	navigator.serviceWorker.addEventListener('message', (message) => {
 		let obj = message.data.msg
 		obj.receivercontactid = JSON.parse(localStorage.getItem("user")).contactid
-		console.log(obj)
 		if(obj.answer != 0){
 			sendToServer(obj);
 		}
@@ -73,7 +72,7 @@ function onPrivateMessage(error, message){
 }
 
 function onRequest(error, message){
-	console.log(message);
+	localStorage.setItem("message",JSON.stringify(message.body))
 	if(message.body.hasOwnProperty("chatid")){
 		localStorage.setItem("currentChatId",message.body.chatid);
 		localStorage.setItem("currentchattype","private");

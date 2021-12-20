@@ -112,10 +112,11 @@ body {
   #chatroom {
     height: 100vh;
     width: 100vw;
+    margin: none;
 
     #messages {
       display: block;
-      height: 90vh;
+      height: 85vh;
       overflow: hidden;
       overflow-y: scroll;
 
@@ -124,6 +125,26 @@ body {
         padding: 1rem;
       }
     }
+
+   
+    #username{
+        display: flex;
+        justify-content: space-between;
+        height: 5vh;
+        width: 100vw;
+        padding-left: 2%;
+        border-bottom: 5px black solid;
+        *{
+          margin: 1% 2%;
+          font-size: 3vh;
+          display: inline;
+        }
+        a{
+          text-decoration: underline;
+          color: #FF9061;
+        }
+      }
+    
 
     #communication-panel {
       height: 10vh;
@@ -134,12 +155,21 @@ body {
       button {
         font-size: 4rem;
         width: 20vw;
+        background-color: #FF9061;
+        border: none;
+        color: #212121;
       }
 
       input {
         display: block;
         font-size: 4rem;
         width: 80vw;
+        background-color: #FF9061;
+        border: none;
+        color: #212121;
+      }
+      input:focus{
+        outline: none;
       }
     }
   }
