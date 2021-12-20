@@ -12,9 +12,10 @@ async function init() {
     document.querySelector("#proximitychat").addEventListener("click", goToGeneralChat);
     createBasicMap();
     addProximityLayer();//draw the circle around the user that simulates the range of users
-    addOtherLayers(fixedmarkercoords);
-    console.log(maplayers)
-    addCheckboxEventListener();
+    addOtherLayers(fixedmarkercoords);//add the friend layers, other user layer
+    addCheckboxEventListener();//activate filter feature
+    document.addEventListener("dblclick", toggleFullScreen);
+    document.addEventListener("dbltap", toggleFullScreen);
 }
 
 function goToGeneralChat(e){
@@ -59,6 +60,13 @@ function createBasicMap(){
     map.on('postcompose',function(e){
         document.querySelector('canvas').style.filter="invert(90%)";
     });
+    let dblclickinteraction = null;
+    map.getInteractions().getArray().forEach(function(interaction) {
+      if (interaction instanceof ol.interaction.DoubleClickZoom) {
+        dblclickinteraction = interaction;
+      }
+    });
+    map.removeInteraction(dblclickinteraction);
 }
 
 function addOtherLayers(arrayofcoords){
@@ -148,18 +156,7 @@ function addOtherLayers(arrayofcoords){
             return feature;
         });
         if (feature && feature.A.type === "marker") {
-            if(feature.A.name === "friend"){
-                content.innerHTML = '<p>' + feature.get('fullName') + '</p><code>' + feature.get('name')
-                    +  '</code>' + '<br><button>Chat</button> <button>Fastest route</button>';
-
-            }
-            else {
-                content.innerHTML = '<p>' + feature.get('soundName') + '</p><code>' + feature.get('name')
-                    +  '</code>' + '<br><button>Mute</button> <button id="goToAudioPage" >See all noises</button>';
-                document.querySelector('#goToAudioPage').addEventListener("click", () => {
-                    document.querySelector(".overlaySliders").style.display = "block";
-                });
-            }
+            console.log(feature.A)
             overlay.setPosition(coordinate);
         }else {
             overlay.setPosition(undefined);
@@ -216,4 +213,16 @@ function updateMapLayers(enabledFilters){
         delete maplayerstoapply[filtervalue];
     })
     Object.values(maplayerstoapply).forEach(layer => map.addLayer(layer))
+}
+
+function toggleFullScreen(){
+    let map = document.querySelector("#map");
+    if(!document.fullscreenElement){
+        map.requestFullscreen();
+    }
+    else{
+        if(document.exitFullscreen){
+        document.exitFullscreen();
+        }
+    }
 }
