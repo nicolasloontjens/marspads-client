@@ -7,6 +7,7 @@ body {
   background: #11223B;
   color: #FF9061;
   font-family: nasalization, sans-serif;
+  /* Styling for the popup */
   /* checkbox effect */
   /* Animation for the button: Go to proximity chat. */
 }
@@ -35,9 +36,6 @@ body .buttonOverlay {
   cursor: pointer;
   outline: none;
   position: relative;
-}
-body #popup-content p {
-  font-size: 20px;
 }
 body aside {
   display: flex;
@@ -69,20 +67,6 @@ body aside nav img {
   height: 30px;
   display: flex;
   padding: 10px 7px;
-}
-body #echoMapPage {
-  display: flex;
-}
-body #echoMapPage form {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  margin-right: 10px;
-  border-radius: 5%;
-}
-body #echoMapPage #map {
-  width: 700px;
-  height: 380px;
 }
 body .hidden {
   display: none !important;
@@ -158,9 +142,23 @@ body #chatroom #communication-panel input {
 body #chatroom #communication-panel input:focus {
   outline: none;
 }
+body #echoMapPage {
+  display: flex;
+}
+body #echoMapPage form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  border-radius: 5%;
+}
+body #echoMapPage #map {
+  width: 700px;
+  height: 380px;
+}
 body .ol-popup {
   position: absolute;
-  background-color: white;
+  background-color: #11223B;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   padding: 15px;
   border-radius: 10px;
@@ -168,6 +166,22 @@ body .ol-popup {
   bottom: 12px;
   left: -50px;
   min-width: 280px;
+}
+body .ol-popup #popup-content {
+  text-align: center;
+}
+body .ol-popup #popup-content p {
+  font-size: 20px;
+}
+body .ol-popup #popup-content p span {
+  font-size: 0.8rem;
+}
+body .ol-popup #popup-content button {
+  border: 0;
+  padding: 10px;
+  width: 49%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #FF9061 0%, #EB7A5E);
 }
 body .ol-popup:after, body .ol-popup:before {
   top: 100%;

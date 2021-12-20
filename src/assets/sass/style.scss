@@ -12,7 +12,6 @@ body {
     margin-left: 20%;
   }
 
-
   h1 {
     color: #EB7A5E;
     font-size: 2rem;
@@ -38,12 +37,6 @@ body {
     cursor: pointer;
     outline: none;
     position: relative;
-  }
-
-  #popup-content {
-    p {
-      font-size: 20px;
-    }
   }
 
   aside {
@@ -81,26 +74,6 @@ body {
     }
 
 
-  }
-
-  #echoMapPage {
-    display: flex;
-
-    form {
-      margin-top: 1rem;
-      display: flex;
-      flex-direction: column;
-      margin-right: 10px;
-      border-radius: 5%;
-
-      //box-sizing: border-box;
-      //user-select: none;
-    }
-
-    #map {
-      width: 700px;
-      height: 380px;
-    }
   }
 
   .hidden {
@@ -190,10 +163,31 @@ body {
     }
   }
 
+  #echoMapPage {
+    display: flex;
+
+    form {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      margin-right: 10px;
+      border-radius: 5%;
+
+      //box-sizing: border-box;
+      //user-select: none;
+    }
+
+    #map {
+      width: 700px;
+      height: 380px;
+    }
+  }
+
+  /* Styling for the popup */
 
   .ol-popup {
     position: absolute;
-    background-color: white;
+    background-color: #11223B;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     padding: 15px;
     border-radius: 10px;
@@ -201,6 +195,24 @@ body {
     bottom: 12px;
     left: -50px;
     min-width: 280px;
+    #popup-content {
+      text-align: center;
+      p {
+        font-size: 20px;
+        span {
+          font-size: 0.8rem;
+        }
+      }
+      button {
+        border:0;
+        padding: 10px;
+        width: 49%;
+        border-radius: 10px;
+        background: linear-gradient(90deg, #FF9061 0%, #EB7A5E);
+
+      }
+
+    }
   }
 
   .ol-popup:after, .ol-popup:before {
