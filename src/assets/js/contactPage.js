@@ -12,7 +12,11 @@ async function init() {
     api = `${config.host ? config.host + '/' : ''}${config.group ? config.group + '/' : ''}api/`;
     await insertContactsIntoHTML(contacts)
     document.querySelector("#search").addEventListener("keyup", searchInputField);
-    sendToServer = openSocket()
+    sendToServer = openSocket();
+    document.querySelector("#back").addEventListener("click", () => {
+        location.replace("index.html")
+    })
+    document.querySelector("#addfriend").addEventListener("click",displayAddFriendPopUp)
 }
 
 async function insertContactsIntoHTML(contacts){
@@ -30,15 +34,15 @@ async function insertContactsIntoHTML(contacts){
             })
             document.querySelector("#ulContactList").innerHTML  += `<li><div id="${contact.contactid}">
                 <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
-                <a href="#" type="contactoption" class="contactoption-hidden" data-chatid="${chatid}" data-type="gotochat">Go to Chat</a>
-                <a href="#" type="contactoption" class="contactoption-hidden" data-contactid="${contact.contactid}">Remove contact</a>
+                <a href="#" class="contactoption-hidden" data-chatid="${chatid}" data-type="gotochat" data-optiontype="contactoption">Go to Chat</a>
+                <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-optiontype="contactoption">Remove contact</a>
                 </div>
             </li>`
         }else{
             document.querySelector("#ulContactList").innerHTML  += `<li><div id="${contact.contactid}" >
             <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
-            <a href="#" type="contactoption" class="contactoption-hidden" data-contactid="${contact.contactid}" data-type="sendrequest">Send chat request</a>
-            <a href="#" type="contactoption" class="contactoption-hidden" data-contactid="${contact.contactid}">Remove contact</a> 
+            <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-type="sendrequest" data-optiontype="contactoption">Send chat request</a>
+            <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-optiontype="contactoption">Remove contact</a> 
             </div>
         </li>`
         }
@@ -54,7 +58,7 @@ async function updateContacts(){
 }
 
 function getSelectedContactName(e) {
-    document.querySelectorAll('div a[type="contactoption"]').forEach((elem) => {
+    document.querySelectorAll('div a[data-optiontype="contactoption"]').forEach((elem) => {
         elem.setAttribute("class","contactoption-hidden")
         elem.parentElement.removeAttribute("clicked")
     })
@@ -114,4 +118,47 @@ function searchInputField() {
 async function loadConfig() {
     const response = await fetch("config.json");
     return response.json();
+}
+
+function displayAddFriendPopUp(){
+    document.querySelector("main").innerHTML += `
+    <section id="popup">
+        <a id="popup-closer" href="#">✖</a>
+        <h2>Add friend</h2>
+        <label for="addcontactid">
+            <input type="number" placeholder="Enter contact id" name="addcontactid" id="addcontactid" autofocus>
+        </label>
+        <p id="popup-feedback"></p>
+        <a href="" id="addcontact">Add contact</a>
+    </section>`
+    document.querySelector("main").setAttribute("class","active")
+    document.querySelector("header").setAttribute("class","active")
+    
+    document.querySelector("#addcontact").addEventListener("click",addFriend);
+    document.querySelector("#popup-closer").addEventListener("click",closePopup);
+}
+
+function addFriend(e){
+    e.preventDefault();
+    let contactid = document.querySelector("#addcontactid").value;
+    if(contactid != ""){
+        fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getMarsID()}/contacts/add/${contactid}`,{
+        method: "POST"
+    }).then(response => {
+        if(response.ok){
+            document.querySelector("#popup-feedback").innerHTML = `Success: Contact added`
+        }else{
+            document.querySelector("#popup-feedback").innerHTML = `Error: Could not add contact`
+        }
+    })
+    document.querySelector("#addcontactid").value = ""
+    }
+}
+
+function closePopup(e){
+    e.preventDefault();
+    document.querySelector("main section").remove();
+    document.querySelector("main").removeAttribute("class")
+    document.querySelector("header").removeAttribute("class")
+    updateContacts();
 }
