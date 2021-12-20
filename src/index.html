@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="assets/sass/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/sass/style.css">
     <link rel="stylesheet" type="text/css" href="assets/sass/audioOverlay.css">
+    <link rel="stylesheet" type="text/css" href="assets/sass/navigation.css">
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script>
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css">
@@ -21,20 +22,18 @@
     <h1>Echolocation</h1>
 </header>
 <main>
-    <aside>
-        <img id="arrowNav" src="assets/images/ArrowIcon.png" alt="Icon of an arrow">
-        <nav>
-            <a href="" id="audioPage" data-pageLocation="audio"><img src="assets/images/SoundIcon.png"
-                                                                     alt="Icon of a sound button"></a>
-            <a href="" id="settingsPage" data-pageLocation="settings"><img src="assets/images/SettingIcon.png"
-                                                                           alt="Icon of the settings"></a>
-            <a href="" id="mapPage" data-pageLocation="echoMap"><img src="assets/images/MapIcon.png"
-                                                                     alt="Icon of a map"></a>
-            <a href="" id="contactsPage" data-pageLocation="contacts"><img src="assets/images/ContactIcon.png"
-                                                                           alt="Icon of contact"></a>
-        </nav>
-    </aside>
 
+    <nav>
+        <input type="checkbox" id="menuToggle">
+        <label id="menu" for="menuToggle"><span id="closeSpan">Close Menu</span><span
+                id="menuSpan">&#9776;&nbsp;Menu </span></label>
+        <ul>
+            <li><a id="indexNav" href="index.html">Home</a></li>
+            <li><a id="settingsNav" href="settings.html">Settings</a></li>
+            <li><a id="audiNav" href="#" >Audio</a></li>
+            <li><a id="contactsNav" href="contacts.html">Contacts</a></li>
+        </ul>
+    </nav>
 
     <section id="echoMapPage">
 
@@ -73,26 +72,26 @@
         <div class="overlaySliders">
 
             <div id="allSliders">
-                <div class="dvslide" >
+                <div class="dvslide">
                     <label for="media">Media:</label>
                     <input data-slider="media" class="slider" type="range" id="media" name="media"
                            min="0" max="10" step="0.01" value="3">
                 </div>
 
-                <div class="dvslide" >
+                <div class="dvslide">
                     <label for="talking">Talking:</label>
                     <input data-slider="talking" class="slider" type="range" id="talking" name="talking"
                            min="0" max="10" step="0.01" value="3">
                 </div>
 
-                <div class="dvslide" >
+                <div class="dvslide">
                     <label for="constructionNoises">Construction noises:</label>
                     <input data-slider="constructionNoises" class="slider" type="range" id="constructionNoises"
                            name="constructionNoises"
                            min="0" max="10" step="0.01" value="3">
                 </div>
 
-                <div class="dvslide" >
+                <div class="dvslide">
                     <label for="traffic">Traffic:</label>
                     <input data-slider="traffic" class="slider" type="range" id="traffic" name="traffic"
                            min="0" max="10" step="0.01" value="3">

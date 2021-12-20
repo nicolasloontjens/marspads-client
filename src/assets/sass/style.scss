@@ -76,6 +76,26 @@ body {
 
   }
 
+  #echoMapPage {
+    display: flex;
+
+    form {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      margin-right: 10px;
+      border-radius: 5%;
+
+      //box-sizing: border-box;
+      //user-select: none;
+    }
+
+    #map {
+      width: 673px;//700
+      height: 380px;
+    }
+  }
+
   .hidden {
     display: none !important;
   }
@@ -101,7 +121,7 @@ body {
   #chatroom {
     height: 100vh;
     width: 100vw;
-    margin: none;
+    //margin: none; FOUT
 
     #messages {
       display: block;
@@ -261,12 +281,13 @@ body {
   //hide original checkbox
 
   input[type='checkbox'] + label {
-    position: relative;
+    //position: relative;
     display: flex;
     margin: .6em 0;
     align-items: center;
     color: #9E9E9E;
     transition: color 250ms cubic-bezier(.4, .0, .23, 1);
+    background: none;
   }
 
   input[type='checkbox'] + label > span {
@@ -285,6 +306,7 @@ body {
   input[type='checkbox'] + label:hover, input[type='checkbox']:focus + label {
     color: #FF9061;
     cursor: pointer;
+    background: none;
   }
 
   input[type='checkbox'] + label:hover > span, input[type='checkbox']:focus + label > span {
