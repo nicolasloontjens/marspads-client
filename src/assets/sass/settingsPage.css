@@ -1,6 +1,16 @@
+body a, body h2 {
+  margin-top: 2%;
+  margin-left: 0;
+  color: #eb5f71;
+  margin-bottom: 2%;
+}
+body h1 {
+  margin-bottom: 5%;
+}
 body #container {
   display: flex;
   justify-content: space-between;
+  height: 40vh;
   margin-top: 11%;
   margin-bottom: 8%;
   margin-left: 5%;
@@ -14,13 +24,22 @@ body #barStyle {
   width: 50%;
   margin: auto;
 }
+body #startUpdate {
+  margin-top: 2%;
+  font-size: 100%;
+  font-family: nasalization, sans-serif;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  background-color: #eb5f71;
+}
 body #progressBar {
   height: 24px;
   width: 0;
 }
 body .loadingBarColor {
   color: #fff;
-  background-color: #f37000;
+  background-color: #EB7A5E;
 }
 body .barDivColor {
   color: #000;
