@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", init);
 let config = null;
 let api = null;
 let sendToServer = null;
+const ulContactList = document.querySelector("#ulContactList");
 
 async function init() {
     let contacts = await getUserContacts();
@@ -41,7 +42,16 @@ async function insertContactsIntoHTML(contacts){
                 </div>
             </li>`;
         }else{
-            document.querySelector("#ulContactList").innerHTML  += `<li><div id="${contact.contactid}" >
+            sendRequest(contact);
+        }
+    });
+    document.querySelectorAll(".contactItem").forEach(item => {
+        item.addEventListener("click", getSelectedContactName);
+    });
+}
+
+function sendRequest(contact){
+    ulContactList.innerHTML += `<li><div id="${contact.contactid}" >
             <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
             <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-type="sendrequest" data-optiontype="contactoption">Send chat request<br><img alt="send chat request" src="./assets/images/sendrequesticon.png"></a>
             <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-optiontype="contactoption">Remove contact<br><img alt="remove contact" src="./assets/images/removeicon.png"></a> 
