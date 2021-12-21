@@ -2,27 +2,29 @@
 
 document.addEventListener("DOMContentLoaded",init);
 
-function init(){
-	if ('serviceWorker' in navigator) {
-	navigator.serviceWorker.addEventListener('message', (message) => {
-		let obj = message.data.msg
-		obj.receivercontactid = JSON.parse(localStorage.getItem("user")).contactid
-		if(obj.answer != 0){
-			sendToServer(obj);
-		}
-	})
-}
+let CHNL_TO_CLIENT_MULTICAST;
+let CHNL_TO_CLIENT_UNICAST;
+async function init(){
+	await initUser();
+	if('serviceWorker' in navigator){
+		navigator.serviceWorker.addEventListener('message', (message) => {
+			let obj = message.data.msg
+			obj.receivercontactid = JSON.parse(localStorage.getItem("user")).contactid
+			if(obj.answer != 0){
+				sendToServer(obj);
+			}
+		})
+	}
+	CHNL_TO_CLIENT_MULTICAST = "events.to.clients." + localStorage.getItem("currentChatId");
+	CHNL_TO_CLIENT_UNICAST = "events.to.clients.mid." + JSON.parse(localStorage.getItem("user")).marsid
 }
 
 const CHNL_TO_SERVER = "events.to.server";
 const EVENTBUS_PATH = "https://project-ii.ti.howest.be/mars-17/events";
 const CHNL_TO_CLIENTS_BROADCAST = "events.to.clients";
-const CHNL_TO_CLIENT_MULTICAST = "events.to.clients." + localStorage.getItem("currentChatId");
-const CHNL_TO_CLIENT_UNICAST = "events.to.clients.mid." + JSON.parse(localStorage.getItem("user")).marsid
 
 
 function openSocket() {
-	console.log(EVENTBUS_PATH)
 	let eb = new EventBus(EVENTBUS_PATH);
 
 	function sendToServer(message) {
@@ -72,8 +74,7 @@ function onPrivateMessage(error, message){
 }
 
 function onRequest(error, message){
-	localStorage.setItem("message",JSON.stringify(message.body))
-	if(message.body.hasOwnProperty("chatid")){
+	if(message !== undefined && message.body.hasOwnProperty("chatid")){
 		localStorage.setItem("currentChatId",message.body.chatid);
 		localStorage.setItem("currentchattype","private");
 		location.replace("chatroom.html")
