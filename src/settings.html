@@ -25,9 +25,8 @@
             id="menuSpan">&#9776;&nbsp;Menu </span></label>
     <ul>
         <li><a id="indexNav" href="index.html">Home</a></li>
-        <li><a id="settingsNav" href="settings.html">Settings</a></li>
-        <li><a id="audiNav" href="#" >Audio</a></li>
         <li><a id="contactsNav" href="contacts.html">Contacts</a></li>
+        <li><a id="settingsNav" href="settings.html">Settings</a></li>
     </ul>
 </nav>
 
@@ -62,50 +61,6 @@
     <button id="startUpdate" class="buttonOverlay">Update Software</button>
 </div>
 
-<div class="overlaySliders">
-
-    <div id="allSliders">
-        <div class="dvslide">
-            <label for="media">Media:</label>
-            <input data-slider="media" class="slider" type="range" id="media" name="media"
-                   min="0" max="10" step="0.01" value="3">
-        </div>
-
-        <div class="dvslide">
-            <label for="talking">Talking:</label>
-            <input data-slider="talking" class="slider" type="range" id="talking" name="talking"
-                   min="0" max="10" step="0.01" value="3">
-        </div>
-
-        <div class="dvslide">
-            <label for="constructionNoises">Construction noises:</label>
-            <input data-slider="constructionNoises" class="slider" type="range" id="constructionNoises"
-                   name="constructionNoises"
-                   min="0" max="10" step="0.01" value="3">
-        </div>
-
-        <div class="dvslide">
-            <label for="traffic">Traffic:</label>
-            <input data-slider="traffic" class="slider" type="range" id="traffic" name="traffic"
-                   min="0" max="10" step="0.01" value="3">
-        </div>
-    </div>
-
-
-    <div id="audioButtons">
-        <button id="muteAll" class="buttonOverlay" type="button">Mute All!</button>
-        <button id="play" class="buttonOverlay" type="button">play!</button>
-        <button id="closeSettings" class="buttonOverlay" type="button">Close Settings!</button>
-        <!-- Mute all een button maken?  -->
-    </div>
-    <audio id="trafficAudioFile">
-        <source src="assets/audio/trafficAudio.mp3" type="audio/mpeg">
-    </audio>
-
-
-</div>
-
 <script src="assets/js/settingsPage.js"></script>
-<script src="assets/js/audioControl.js"></script>
 </body>
 </html>
