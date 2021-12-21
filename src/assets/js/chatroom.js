@@ -17,9 +17,9 @@ async function init(){
 
 function sendPublicMessage(e){
     e.preventDefault();
-    let message = document.querySelector("#chat-message")
-    if(message !== ""){
-        let user = JSON.parse(localStorage.getItem("user"));
+    let message = document.querySelector("#chat-message");
+    if(message.value !== ""){
+        const user = JSON.parse(localStorage.getItem("user"));
         const data = {type: 'message',marsid:user.marsid,"message": message.value};
         sendToServer(data);
         message.value = "";
@@ -29,7 +29,7 @@ function sendPublicMessage(e){
 function sendPrivateMessage(e){
     e.preventDefault();
     let message = document.querySelector("#chat-message");
-    if(message !== ""){
+    if(message.value !== ""){
         const user = JSON.parse(localStorage.getItem("user"));
         const chatid = JSON.parse(localStorage.getItem("currentChatId"));
         const data = {type:"privatemessage", "chatid":chatid, marsid: user.marsid, message: message.value};
@@ -38,12 +38,18 @@ function sendPrivateMessage(e){
     }
 }
 
-async function loadPrivateChatMessages(){
-    const response = await getAllChatsWithUser(localStorage.getItem("currentChatId"));
+async function loadPrivateChatMessages() {
+    const response = await getAllChatsWithUser(localStorage.getItem("currentChatId"))
     response.forEach(message => {
         let timestamp = message.timestamp;
-        timestamp = timestamp.substring(0,(timestamp.length-7));
-        document.querySelector("#messages").insertAdjacentHTML("beforeend",`<p class="chatMessage">${message.name} @ ${timestamp}: ${message.content}</p>`);
+        timestamp = timestamp.substring(0, (timestamp.length - 7));
+        let user = localStorage.getItem("user")
+        user = JSON.parse(user)
+        if (`${message.name}` === user.name) {
+            document.querySelector("#messages").insertAdjacentHTML("beforeend", `<p class="chatMessage owner">${message.name} @ ${timestamp}: ${message.content}</p>`);
+        } else {
+            document.querySelector("#messages").insertAdjacentHTML("beforeend", `<p class="chatMessage">${message.name} @ ${timestamp}: ${message.content}</p>`);
+        }
     });
 }
 

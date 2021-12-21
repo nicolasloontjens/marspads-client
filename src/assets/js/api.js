@@ -72,7 +72,7 @@ async function createUser(){
         }
         localStorage.setItem("user",JSON.stringify(json));
     });
-    await new Promise(resolve => setTimeout(resolve, 600))
+    await new Promise(resolve => setTimeout(resolve, 600));
 }
 
 function getMarsID(){

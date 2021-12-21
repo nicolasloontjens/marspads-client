@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", init);
 
 let map;
-let maplayers = {};
+const maplayers = {};
 const fixedmarkercoords = [{longitude: 51.19092153443029, latitude: 3.212451691473603}, {
     longitude: 51.19161388290666,
     latitude: 3.2144224156205
@@ -93,6 +93,14 @@ function createMarkerFeature(coords, datatype, dataName){
 }
 
 function addOtherLayers(arrayofcoords){
+    function createMarkerFeature(coords, datatype, dataName){
+        return new ol.Feature({
+            type:"marker",
+            data: datatype,
+            dataName: dataName,
+            geometry: new ol.geom.Point(ol.proj.fromLonLat([coords.latitude,coords.longitude]))
+        });
+    }
     const friendfeatures = [];
     const otheruserfeatures = [];
     const soundfeatures = [];
@@ -105,27 +113,7 @@ function addOtherLayers(arrayofcoords){
     for(let i = 5; i < 6; i++){
         otheruserfeatures.push(createMarkerFeature(arrayofcoords[i],"user", dataNames[i]));
     }
-    const otherUserLayer = new ol.layer.Vector({
-        source: new ol.source.Vector({features:otheruserfeatures}),
-        style: new ol.style.Style({
-            image: new ol.style.Icon({
-                src: "./assets/images/strangericon.png",
-                anchor: [0.5,1],
-                scale: [0.1,0.1]
-            })
-        })
-    });
-    const soundLayer = new ol.layer.Vector({
-        source: new ol.source.Vector({features:soundfeatures}),
-        style: new ol.style.Style({
-            image: new ol.style.Icon({
-                src: "./assets/images/soundiconmap.png",
-                anchor: [0.5,1],
-                scale: [0.09,0.09]
-            })
-        })
-    });
-    const friendLayer = new ol.layer.Vector({
+    const friendlayer = new ol.layer.Vector({
         source: new ol.source.Vector({features:friendfeatures}),
         style: new ol.style.Style({
             image: new ol.style.Icon({
@@ -135,18 +123,36 @@ function addOtherLayers(arrayofcoords){
             })
         })
     });
-    maplayers["strangerlayer"] = otherUserLayer;
-    maplayers["friendlayer"] = friendLayer;
-    maplayers["soundlayer"] = soundLayer;
-    map.addLayer(otherUserLayer);
-    map.addLayer(soundLayer);
-    map.addLayer(friendLayer);
-    createOverLay();
-}
+    const otheruserslayer = new ol.layer.Vector({
+        source: new ol.source.Vector({features:otheruserfeatures}),
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                src: "./assets/images/strangericon.png",
+                anchor: [0.5,1],
+                scale: [0.1,0.1]
+            })
+        })
+    });
+    const soundlayer = new ol.layer.Vector({
+        source: new ol.source.Vector({features:soundfeatures}),
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                src: "./assets/images/soundiconmap.png",
+                anchor: [0.5,1],
+                scale: [0.09,0.09]
+            })
+        })
+    });
+    maplayers["strangerlayer"] = otheruserslayer;
+    maplayers["friendlayer"] = friendlayer;
+    maplayers["soundlayer"] = soundlayer;
+    map.addLayer(otheruserslayer);
+    map.addLayer(soundlayer);
+    map.addLayer(friendlayer);
 
-function createOverLay(){
     const container = document.getElementById('popup');
     const closer = document.getElementById('popup-closer');
+
     const overlay = new ol.Overlay({
         element: container,
         autoPan: true,
@@ -232,7 +238,7 @@ function addProximityLayer() {
 }
 
 function addCheckboxEventListener(){
-    let checkboxes = document.querySelectorAll("input[type=checkbox][name=filter]");
+    const checkboxes = document.querySelectorAll("input[type=checkbox][name=filter]");
     let enabledFilters = [];
 
     checkboxes.forEach((checkbox) => {
@@ -245,7 +251,7 @@ function addCheckboxEventListener(){
 
 function updateMapLayers(enabledFilters){
     Object.values(maplayers).forEach(layer => map.removeLayer(layer));
-    let maplayerstoapply = {proximitylayer:maplayers["proximitylayer"]};
+    const maplayerstoapply = {proximitylayer:maplayers["proximitylayer"]};
     enabledFilters.forEach((filtervalue) => {
         maplayerstoapply[filtervalue] = maplayers[filtervalue];
     });
