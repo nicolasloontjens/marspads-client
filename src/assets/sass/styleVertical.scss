@@ -26,15 +26,9 @@ body {
     img{
       height: 10%;
       width: 10%;
+      margin: 0;
+      display: flex;
     }
-  }
-
-  img {
-    margin: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    padding: 10px 7px;
   }
 
   input {
@@ -68,10 +62,20 @@ body {
     justify-content: center;
     margin: 10%;
 
-    ul li {
+    ul li div{
       background: #FF9061;
-      text-align: center;
-      width: 650px;
+      width: 70vw;
+    }
+    ul li div a:first-of-type{
+      grid-column-start: 1;
+      grid-column-end: 3;
+      margin-bottom: 0;
+    }
+    
+    ul li div a img{
+      padding-top: 4%;
+      height: 50%;
+      width: 22%;
     }
 
     div{
@@ -84,7 +88,10 @@ body {
     }
 
     div[clicked="true"]{
-      animation: open-contact-div 0.5s linear forwards;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      animation: open-contact-div 0.6s linear forwards;
       .contactoption{
         animation: open-contact-option 1s linear
       }
@@ -166,7 +173,8 @@ body {
 
 @keyframes open-contact-div {
   100%{
-    margin:5%;
+    margin-top:4%;
+    margin-bottom: 4%;
   }
 }
 
