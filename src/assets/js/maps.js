@@ -4,9 +4,18 @@ document.addEventListener("DOMContentLoaded", init);
 
 let map;
 let maplayers = {};
-const fixedmarkercoords = [{longitude:51.19092153443029,latitude: 3.212451691473603},{longitude:51.19161388290666,latitude: 3.2144224156205},{longitude:51.191910575737946,latitude: 3.21549442481909},{longitude:51.19187250825284,latitude: 3.214467410833324},{longitude:51.191830575737946,latitude: 3.2160007275947136},{longitude:51.1914709406873,latitude: 3.21423239440734}]
-const dataNames =['Ben Mohammadi Bilal', 'Follet stijn','Hammering', 'Car', 'Walking', 'Loontjens Nicolas', 'Vandewalle Reinaerd'];
-const yourLocation = [3.2145869436534724,51.19167462236231];
+const fixedmarkercoords = [{longitude: 51.19092153443029, latitude: 3.212451691473603}, {
+    longitude: 51.19161388290666,
+    latitude: 3.2144224156205
+}, {longitude: 51.191910575737946, latitude: 3.21549442481909}, {
+    longitude: 51.19187250825284,
+    latitude: 3.214467410833324
+}, {longitude: 51.191830575737946, latitude: 3.2160007275947136}, {
+    longitude: 51.1914709406873,
+    latitude: 3.21423239440734
+}]
+const dataNames = ['Ben Mohammadi Bilal', 'Follet stijn', 'Hammering', 'Car', 'Walking', 'Loontjens Nicolas', 'Vandewalle Reinaerd'];
+const yourLocation = [3.2145869436534724, 51.19167462236231];
 let routeLayer;
 
 async function init() {
@@ -161,14 +170,22 @@ function addOtherLayers(arrayofcoords){
 
         if (feature && feature.A.type === "marker") {
             addPopupContent(feature);
-            if(document.querySelector('.routeButton') !== null) findTheWay(feature, overlay);
+            if (document.querySelector('.routeButton') !== null) {
+                findTheWay(feature, overlay);
+            }
+            if (document.querySelector('.audioPopUp') !== null) {
+                document.querySelector(".audioPopUp").addEventListener("click", openOverlay);
+            }
+            if (document.querySelector('.audioPopUpMute') !== null) {
+                document.querySelector(".audioPopUpMute").addEventListener("click", muteAll);
+            }
             if(document.querySelector(".chatbutton") !== null){
                 document.querySelector(".chatbutton").addEventListener("click", () => {
                     location.replace("chatroom.html")
                 })
             }
             overlay.setPosition(coordinate);
-        }else {
+        } else {
             overlay.setPosition(undefined);
             closer.blur();
         }
@@ -180,13 +197,12 @@ function addPopupContent(feature){
     let content = document.getElementById('popup-content');
     const dataToUpperCase = feature.get('data').charAt(0).toUpperCase() + feature.get('data').slice(1);
 
-    if(feature.A.data === "friend" || feature.A.data === "user") {
-        content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>' + '</p>'+
+    if (feature.A.data === "friend" || feature.A.data === "user") {
+        content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>' + '</p>' +
             '<br><button class="chatbutton">Chat</button> <button class="routeButton" >Fastest route</button>';
-    }
-    else{
-        content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>'+ '</p>'+
-             '<br><button>Mute</button> <button>See all noises</button>';
+    } else {
+        content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>' + '</p>' +
+            '<br><button class="audioPopUpMute" >Mute</button> <button class="audioPopUp" >See all noises</button>';
     }
 }
 
@@ -293,19 +309,3 @@ async function getClosestRoute(endLonLat) {
     return {route: result.features[0]};
 }
 
-// async function addLoadingAnimation() {
-//     document.querySelector("body").setAttribute("animation", "true")
-//     document.querySelector("body").innerHTML += `<div class="animation">
-//         <img class="rocket" src="assets/images/rocket.png">
-//             <div class="longfazers">
-//                 <span></span>
-//                 <span></span>
-//                 <span></span>
-//                 <span></span>
-//             </div>
-//             <h1>loading</h1></div>`
-//     await new Promise(resolve => setTimeout(resolve, 6000))//display loading animation;
-//     document.querySelector("body").removeAttribute("animation");
-//     let elem = document.querySelector(".animation");
-//     elem.remove();
-// }

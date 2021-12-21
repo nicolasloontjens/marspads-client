@@ -2,9 +2,11 @@
 
 document.addEventListener("DOMContentLoaded", init);
 let traficAudio = document.querySelector("#trafficAudioFile");
+let talkingAudio = document.querySelector("#talkingFile");
+let mediaAudio = document.querySelector("#mediaFile");
+let constructionAudio = document.querySelector("#constructionNoisesFile");
 
 async function init() {
-    console.log("Audio controls loaded.")
     document.querySelector("#muteAll").addEventListener("click", muteAll);
     document.querySelectorAll(".slider").forEach(e => e.addEventListener("change", getSelectedSlider));
     document.querySelector("#play").addEventListener("click", playSound);
@@ -13,9 +15,11 @@ async function init() {
 }
 
 function playSound() {
-
+    mediaAudio.play();
+    talkingAudio.play();
     traficAudio.play();
-    console.log("play");
+    constructionAudio.play();
+
 }
 
 function openOverlay() {
@@ -43,30 +47,32 @@ function loadAudio() {
 }
 */
 function muteAll() {
-    traficAudio.muted = true;
+    document.querySelectorAll(".slider").forEach(slider => slider.value = 0);
+    traficAudio.volume = 0;
+    mediaAudio.volume = 0;
+    talkingAudio.volume = 0;
+    constructionAudio.volume = 0;
 }
 
 function getSelectedSlider(ev) {
-    const sliderName = ev.currentTarget.getAttribute("data-slider");
-    const sliderValue = ev.target.value;
-    const convertedValue = sliderValue / 10;
-    console.log(sliderName, convertedValue);
+    let sliderName = ev.currentTarget.getAttribute("data-slider");
+    let sliderValue = ev.target.value;
+    let convertedValue = sliderValue / 10;
     setVolumeOfAudio(sliderName, convertedValue);
 }
 
 function setVolumeOfAudio(sliderName, sliderValue) {
     if (sliderName === "media") {
-        document.querySelector("#media").volume = sliderValue;
+        mediaAudio.volume = sliderValue;
     }
-
     if (sliderName === "talking") {
-        document.querySelector("#talking").volume = sliderValue;
+        talkingAudio.volume = sliderValue;
     }
     if (sliderName === "traffic") {
         traficAudio.volume = sliderValue;
     }
     if (sliderName === "constructionNoises") {
-        document.querySelector("#constructionNoises").volume = sliderValue;
+        constructionAudio.volume = sliderValue;
     }
 
 }
