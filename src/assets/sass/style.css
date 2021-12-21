@@ -111,6 +111,7 @@ body #echoMapPage #map {
   height: 380px;
 }
 body .ol-popup {
+  animation: bounce 4s ease forwards;
   position: absolute;
   background-color: #11223B;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
@@ -167,6 +168,29 @@ body .ol-popup-closer {
 body .ol-popup-closer:after {
   content: "✖";
   color: #eb5f71;
+}
+@keyframes bounce {
+  0% {
+    transform: translateY(0%);
+  }
+  10% {
+    transform: translateY(-15%);
+  }
+  20% {
+    transform: translateY(0%);
+  }
+  25% {
+    transform: translateY(-7%);
+  }
+  27% {
+    transform: translateY(0%);
+  }
+  29% {
+    transform: translateY(-3%);
+  }
+  30% {
+    transform: translateY(0%);
+  }
 }
 body input[type=checkbox] {
   display: none;
