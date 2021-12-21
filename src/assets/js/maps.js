@@ -4,9 +4,18 @@ document.addEventListener("DOMContentLoaded", init);
 
 let map;
 let maplayers = {};
-const fixedmarkercoords = [{longitude:51.19092153443029,latitude: 3.212451691473603},{longitude:51.19161388290666,latitude: 3.2144224156205},{longitude:51.191910575737946,latitude: 3.21549442481909},{longitude:51.19187250825284,latitude: 3.214467410833324},{longitude:51.191830575737946,latitude: 3.2160007275947136},{longitude:51.1914709406873,latitude: 3.21423239440734}]
-const dataNames =['Ben Mohammadi Bilal', 'Follet stijn','Hammering', 'Car', 'Walking', 'Loontjens Nicolas', 'Vandewalle Reinaerd'];
-const yourLocation = [3.2145869436534724,51.19167462236231];
+const fixedmarkercoords = [{longitude: 51.19092153443029, latitude: 3.212451691473603}, {
+    longitude: 51.19161388290666,
+    latitude: 3.2144224156205
+}, {longitude: 51.191910575737946, latitude: 3.21549442481909}, {
+    longitude: 51.19187250825284,
+    latitude: 3.214467410833324
+}, {longitude: 51.191830575737946, latitude: 3.2160007275947136}, {
+    longitude: 51.1914709406873,
+    latitude: 3.21423239440734
+}]
+const dataNames = ['Ben Mohammadi Bilal', 'Follet stijn', 'Hammering', 'Car', 'Walking', 'Loontjens Nicolas', 'Vandewalle Reinaerd'];
+const yourLocation = [3.2145869436534724, 51.19167462236231];
 let routeLayer;
 
 async function init() {
@@ -20,15 +29,15 @@ async function init() {
     document.addEventListener("dbltap", toggleFullScreen);
 }
 
-function goToGeneralChat(e){
+function goToGeneralChat(e) {
     e.preventDefault();
-    localStorage.setItem("currentchattype","public")
+    localStorage.setItem("currentchattype", "public")
     location.replace("chatroom.html")
 }
 
-function createBasicMap(){
+function createBasicMap() {
     let user = new ol.Feature({
-        type:"marker",
+        type: "marker",
         geometry: new ol.geom.Point(ol.proj.fromLonLat(yourLocation))
     })
     const userVector = new ol.source.Vector({
@@ -38,9 +47,9 @@ function createBasicMap(){
         source: userVector,
         style: new ol.style.Style({
             image: new ol.style.Icon({
-                src:"./assets/images/marker.png",
-                anchor: [0.5,1],
-                scale:[1,1]
+                src: "./assets/images/marker.png",
+                anchor: [0.5, 1],
+                scale: [1, 1]
             })
         })
     })
@@ -59,68 +68,78 @@ function createBasicMap(){
             zoom: 17
         })
     })
-    map.on('postcompose',function(e){
-        document.querySelector('canvas').style.filter="invert(90%)";
+    map.on('postcompose', function (e) {
+        document.querySelector('canvas').style.filter = "invert(90%)";
     });
     let dblclickinteraction = null;
-    map.getInteractions().getArray().forEach(function(interaction) {
-      if (interaction instanceof ol.interaction.DoubleClickZoom) {
-        dblclickinteraction = interaction;
-      }
+    map.getInteractions().getArray().forEach(function (interaction) {
+        if (interaction instanceof ol.interaction.DoubleClickZoom) {
+            dblclickinteraction = interaction;
+        }
     });
     map.removeInteraction(dblclickinteraction);
 }
 
-function addOtherLayers(arrayofcoords){
-    function createMarkerFeature(coords, datatype, dataName){
+function addOtherLayers(arrayofcoords) {
+    function createMarkerFeature(coords, datatype, dataName) {
         return new ol.Feature({
-            type:"marker",
+            type: "marker",
             data: datatype,
             dataName: dataName,
-            geometry: new ol.geom.Point(ol.proj.fromLonLat([coords.latitude,coords.longitude]))
+            geometry: new ol.geom.Point(ol.proj.fromLonLat([coords.latitude, coords.longitude]))
         })
     }
+
     let friendfeatures = [];
     let otheruserfeatures = [];
     let soundfeatures = [];
-    for(let i = 0; i < 2; i++){
-        friendfeatures.push(createMarkerFeature({longitude:arrayofcoords[i].longitude,latitude:arrayofcoords[i].latitude},"friend", dataNames[i]));
+    for (let i = 0; i < 2; i++) {
+        friendfeatures.push(createMarkerFeature({
+            longitude: arrayofcoords[i].longitude,
+            latitude: arrayofcoords[i].latitude
+        }, "friend", dataNames[i]));
     }
-    for(let i = 2; i < 5; i++){
-        soundfeatures.push(createMarkerFeature({longitude:arrayofcoords[i].longitude,latitude:arrayofcoords[i].latitude},"sound", dataNames[i]));
+    for (let i = 2; i < 5; i++) {
+        soundfeatures.push(createMarkerFeature({
+            longitude: arrayofcoords[i].longitude,
+            latitude: arrayofcoords[i].latitude
+        }, "sound", dataNames[i]));
     }
-    for(let i = 5; i < 6; i++){
-        otheruserfeatures.push(createMarkerFeature({longitude:arrayofcoords[i].longitude,latitude:arrayofcoords[i].latitude},"user", dataNames[i]));
+    for (let i = 5; i < 6; i++) {
+        otheruserfeatures.push(createMarkerFeature({
+            longitude: arrayofcoords[i].longitude,
+            latitude: arrayofcoords[i].latitude
+        }, "user", dataNames[i]));
     }
-    
+
     let friendlayer = new ol.layer.Vector({
-        source: new ol.source.Vector({features:friendfeatures}),
+        source: new ol.source.Vector({features: friendfeatures}),
         style: new ol.style.Style({
             image: new ol.style.Icon({
                 src: "./assets/images/friendicon.png",
-                anchor: [0.5,1],
-                scale: [0.09,0.09]
+                anchor: [0.5, 1],
+                scale: [0.09, 0.09]
             })
         })
     })
-    
+
     let otheruserslayer = new ol.layer.Vector({
-        source: new ol.source.Vector({features:otheruserfeatures}),
+        source: new ol.source.Vector({features: otheruserfeatures}),
         style: new ol.style.Style({
             image: new ol.style.Icon({
                 src: "./assets/images/strangericon.png",
-                anchor: [0.5,1],
-                scale: [0.1,0.1]
+                anchor: [0.5, 1],
+                scale: [0.1, 0.1]
             })
         })
     });
     let soundlayer = new ol.layer.Vector({
-        source: new ol.source.Vector({features:soundfeatures}),
+        source: new ol.source.Vector({features: soundfeatures}),
         style: new ol.style.Style({
             image: new ol.style.Icon({
                 src: "./assets/images/soundiconmap.png",
-                anchor: [0.5,1],
-                scale: [0.09,0.09]
+                anchor: [0.5, 1],
+                scale: [0.09, 0.09]
             })
         })
     });
@@ -150,7 +169,6 @@ function addOtherLayers(arrayofcoords){
     };
 
 
-
     /**
      * Add a click handler to the map to render the popup.
      */
@@ -162,9 +180,17 @@ function addOtherLayers(arrayofcoords){
 
         if (feature && feature.A.type === "marker") {
             addPopupContent(feature);
-            if(document.querySelector('.routeButton') !== null) findTheWay(feature, overlay);
+            if (document.querySelector('.routeButton') !== null) {
+                findTheWay(feature, overlay);
+            }
+            if (document.querySelector('.audioPopUp') !== null) {
+                document.querySelector(".audioPopUp").addEventListener("click", openOverlay);
+            }
+            if (document.querySelector('.audioPopUpMute') !== null) {
+                document.querySelector(".audioPopUpMute").addEventListener("click", muteAll);
+            }
             overlay.setPosition(coordinate);
-        }else {
+        } else {
             overlay.setPosition(undefined);
             closer.blur();
         }
@@ -172,17 +198,16 @@ function addOtherLayers(arrayofcoords){
 
 }
 
-function addPopupContent(feature){
+function addPopupContent(feature) {
     let content = document.getElementById('popup-content');
     const dataToUpperCase = feature.get('data').charAt(0).toUpperCase() + feature.get('data').slice(1);
 
-    if(feature.A.data === "friend" || feature.A.data === "user") {
-        content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>' + '</p>'+
+    if (feature.A.data === "friend" || feature.A.data === "user") {
+        content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>' + '</p>' +
             '<br><button>Chat</button> <button class="routeButton" >Fastest route</button>';
-    }
-    else{
-        content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>'+ '</p>'+
-             '<br><button>Mute</button> <button>See all noises</button>';
+    } else {
+        content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>' + '</p>' +
+            '<br><button class="audioPopUpMute" >Mute</button> <button class="audioPopUp" >See all noises</button>';
     }
 }
 
@@ -214,45 +239,44 @@ function addProximityLayer() {
     map.addLayer(proxlayer);
 }
 
-function addCheckboxEventListener(){
+function addCheckboxEventListener() {
     let checkboxes = document.querySelectorAll("input[type=checkbox][name=filter]");
     let enabledFilters = []
 
     checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener("change",() => {
+        checkbox.addEventListener("change", () => {
             enabledFilters = Array.from(checkboxes).filter(i => i.checked).map(i => i.value)
             updateMapLayers(enabledFilters)
         })
     })
 }
 
-function updateMapLayers(enabledFilters){
+function updateMapLayers(enabledFilters) {
     Object.values(maplayers).forEach(layer => map.removeLayer(layer))
-    let maplayerstoapply = {proximitylayer:maplayers["proximitylayer"]};
+    let maplayerstoapply = {proximitylayer: maplayers["proximitylayer"]};
     enabledFilters.forEach((filtervalue) => {
         maplayerstoapply[filtervalue] = maplayers[filtervalue]
     })
     Object.values(maplayerstoapply).forEach(layer => map.addLayer(layer))
 }
 
-function toggleFullScreen(){
+function toggleFullScreen() {
     let map = document.querySelector("#map");
-    if(!document.fullscreenElement){
+    if (!document.fullscreenElement) {
         map.requestFullscreen();
-    }
-    else{
-        if(document.exitFullscreen){
-        document.exitFullscreen();
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
         }
     }
 }
 
-function drawRoute(route){
+function drawRoute(route) {
     const polyline = route.geometry.coordinates.map(el => ol.proj.fromLonLat(el));
 
     return new ol.layer.Vector({
-        source:  new ol.source.Vector({
-            features: [ new ol.Feature({
+        source: new ol.source.Vector({
+            features: [new ol.Feature({
                 type: 'route',
                 geometry: new ol.geom.LineString(polyline)
             })]
@@ -260,20 +284,20 @@ function drawRoute(route){
         style: new ol.style.Style({
             stroke: new ol.style.Stroke({
                 width: 6,
-                color:[255, 87, 34, 0.8]
+                color: [255, 87, 34, 0.8]
             })
         })
     });
 }
 
-function findTheWay(feature, overlay){
+function findTheWay(feature, overlay) {
     const endLonLat = ol.proj.transform(feature.A.geometry.flatCoordinates, 'EPSG:3857', 'EPSG:4326');
     const routeButton = document.querySelector('.routeButton');
 
-    routeButton.addEventListener("click", function(){
+    routeButton.addEventListener("click", function () {
         map.removeLayer(routeLayer);
         getClosestRoute(endLonLat).then(response => {
-            const{route} = response;
+            const {route} = response;
             routeLayer = drawRoute(route);
             map.addLayer(routeLayer);
         });
