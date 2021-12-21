@@ -27,7 +27,6 @@ function openOverlay() {
 }
 
 function closeOverlay() {
-    console.log("sluiten");
     document.querySelector(".overlaySliders").style.display = "none";
 }
 
