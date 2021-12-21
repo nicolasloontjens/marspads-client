@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", init);
 
 let map;
-let maplayers = {};
+const maplayers = {};
 const fixedmarkercoords = [{longitude: 51.19092153443029, latitude: 3.212451691473603}, {
     longitude: 51.19161388290666,
     latitude: 3.2144224156205
@@ -13,7 +13,7 @@ const fixedmarkercoords = [{longitude: 51.19092153443029, latitude: 3.2124516914
 }, {longitude: 51.191830575737946, latitude: 3.2160007275947136}, {
     longitude: 51.1914709406873,
     latitude: 3.21423239440734
-}]
+}];
 const dataNames = ['Ben Mohammadi Bilal', 'Follet stijn', 'Hammering', 'Car', 'Walking', 'Loontjens Nicolas', 'Vandewalle Reinaerd'];
 const yourLocation = [3.2145869436534724, 51.19167462236231];
 let routeLayer;
@@ -21,7 +21,7 @@ let routeLayer;
 async function init(){
     if(sessionStorage.getItem("hasVisited") === null){
         await addLoadingAnimation();
-        sessionStorage.setItem("hasVisited",true)
+        sessionStorage.setItem("hasVisited",true);
     }
     document.querySelector("#proximitychat").addEventListener("click", goToGeneralChat);
     createBasicMap();
@@ -34,15 +34,15 @@ async function init(){
 
 function goToGeneralChat(e){
     e.preventDefault();
-    localStorage.setItem("currentchattype","public")
-    location.replace("chatroom.html")
+    localStorage.setItem("currentchattype","public");
+    location.replace("chatroom.html");
 }
 
 function createBasicMap(){
-    let user = new ol.Feature({
+    const user = new ol.Feature({
         type:"marker",
         geometry: new ol.geom.Point(ol.proj.fromLonLat(yourLocation))
-    })
+    });
     const userVector = new ol.source.Vector({
         features: [user]
     });
@@ -55,8 +55,8 @@ function createBasicMap(){
                 scale:[1,1]
             })
         })
-    })
-    maplayers["currentuserlayer"] = userLayer
+    });
+    maplayers["currentuserlayer"] = userLayer;
     map = new ol.Map({
         controls: [new ol.control.FullScreen(), new ol.control.Zoom()],
         target: 'map',
@@ -70,7 +70,7 @@ function createBasicMap(){
             center: ol.proj.fromLonLat(yourLocation),
             zoom: 17
         })
-    })
+    });
     map.on('postcompose',function(e){
         document.querySelector('canvas').style.filter="invert(90%)";
     });
@@ -90,11 +90,11 @@ function addOtherLayers(arrayofcoords){
             data: datatype,
             dataName: dataName,
             geometry: new ol.geom.Point(ol.proj.fromLonLat([coords.latitude,coords.longitude]))
-        })
+        });
     }
-    let friendfeatures = [];
-    let otheruserfeatures = [];
-    let soundfeatures = [];
+    const friendfeatures = [];
+    const otheruserfeatures = [];
+    const soundfeatures = [];
     for(let i = 0; i < 2; i++){
         friendfeatures.push(createMarkerFeature(arrayofcoords[i],"friend", dataNames[i]));
     }
@@ -104,8 +104,7 @@ function addOtherLayers(arrayofcoords){
     for(let i = 5; i < 6; i++){
         otheruserfeatures.push(createMarkerFeature(arrayofcoords[i],"user", dataNames[i]));
     }
-    
-    let friendlayer = new ol.layer.Vector({
+    const friendlayer = new ol.layer.Vector({
         source: new ol.source.Vector({features:friendfeatures}),
         style: new ol.style.Style({
             image: new ol.style.Icon({
@@ -114,9 +113,8 @@ function addOtherLayers(arrayofcoords){
                 scale: [0.09,0.09]
             })
         })
-    })
-    
-    let otheruserslayer = new ol.layer.Vector({
+    });
+    const otheruserslayer = new ol.layer.Vector({
         source: new ol.source.Vector({features:otheruserfeatures}),
         style: new ol.style.Style({
             image: new ol.style.Icon({
@@ -126,7 +124,7 @@ function addOtherLayers(arrayofcoords){
             })
         })
     });
-    let soundlayer = new ol.layer.Vector({
+    const soundlayer = new ol.layer.Vector({
         source: new ol.source.Vector({features:soundfeatures}),
         style: new ol.style.Style({
             image: new ol.style.Icon({
@@ -143,10 +141,10 @@ function addOtherLayers(arrayofcoords){
     map.addLayer(soundlayer);
     map.addLayer(friendlayer);
 
-    let container = document.getElementById('popup');
-    let closer = document.getElementById('popup-closer');
+    const container = document.getElementById('popup');
+    const closer = document.getElementById('popup-closer');
 
-    let overlay = new ol.Overlay({
+    const overlay = new ol.Overlay({
         element: container,
         autoPan: true,
         autoPanAnimation: {
@@ -185,8 +183,8 @@ function addOtherLayers(arrayofcoords){
             }
             if(document.querySelector(".chatbutton") !== null){
                 document.querySelector(".chatbutton").addEventListener("click", () => {
-                    location.replace("chatroom.html")
-                })
+                    location.replace("chatroom.html");
+                });
             }
             overlay.setPosition(coordinate);
         } else {
@@ -198,7 +196,7 @@ function addOtherLayers(arrayofcoords){
 }
 
 function addPopupContent(feature){
-    let content = document.getElementById('popup-content');
+    const content = document.getElementById('popup-content');
     const dataToUpperCase = feature.get('data').charAt(0).toUpperCase() + feature.get('data').slice(1);
 
     if (feature.A.data === "friend" || feature.A.data === "user") {
@@ -234,33 +232,33 @@ function addProximityLayer() {
             })
         ]
     });
-    maplayers["proximitylayer"] = proxlayer
+    maplayers["proximitylayer"] = proxlayer;
     map.addLayer(proxlayer);
 }
 
 function addCheckboxEventListener(){
-    let checkboxes = document.querySelectorAll("input[type=checkbox][name=filter]");
-    let enabledFilters = []
+    const checkboxes = document.querySelectorAll("input[type=checkbox][name=filter]");
+    let enabledFilters = [];
 
     checkboxes.forEach((checkbox) => {
         checkbox.addEventListener("change",() => {
-            enabledFilters = Array.from(checkboxes).filter(i => i.checked).map(i => i.value)
-            updateMapLayers(enabledFilters)
-        })
-    })
+            enabledFilters = Array.from(checkboxes).filter(i => i.checked).map(i => i.value);
+            updateMapLayers(enabledFilters);
+        });
+    });
 }
 
 function updateMapLayers(enabledFilters){
-    Object.values(maplayers).forEach(layer => map.removeLayer(layer))
-    let maplayerstoapply = {proximitylayer:maplayers["proximitylayer"]};
+    Object.values(maplayers).forEach(layer => map.removeLayer(layer));
+    const maplayerstoapply = {proximitylayer:maplayers["proximitylayer"]};
     enabledFilters.forEach((filtervalue) => {
-        maplayerstoapply[filtervalue] = maplayers[filtervalue]
-    })
-    Object.values(maplayerstoapply).forEach(layer => map.addLayer(layer))
+        maplayerstoapply[filtervalue] = maplayers[filtervalue];
+    });
+    Object.values(maplayerstoapply).forEach(layer => map.addLayer(layer));
 }
 
 function toggleFullScreen(){
-    let map = document.querySelector("#map");
+    const map = document.querySelector("#map");
     if(!document.fullscreenElement){
         map.requestFullscreen();
     }
@@ -314,7 +312,7 @@ async function getClosestRoute(endLonLat) {
 }
 
 async function addLoadingAnimation() {
-    document.querySelector("body").setAttribute("animation", "true")
+    document.querySelector("body").setAttribute("animation", "true");
     document.querySelector("body").innerHTML += `<div class="animation">
         <img class="rocket" src="assets/images/rocket.png">
             <div class="longfazers">
@@ -323,9 +321,9 @@ async function addLoadingAnimation() {
                 <span></span>
                 <span></span>
             </div>
-            <h1>loading</h1></div>`
-    await new Promise(resolve => setTimeout(resolve, 9000))//display loading animation;
+            <h1>loading</h1></div>`;
+    await new Promise(resolve => setTimeout(resolve, 9000));//display loading animation;
     document.querySelector("body").removeAttribute("animation");
-    let elem = document.querySelector(".animation");
+    const elem = document.querySelector(".animation");
     elem.remove();
 }

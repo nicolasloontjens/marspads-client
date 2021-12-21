@@ -57,6 +57,10 @@ body #contactList {
   justify-content: center;
   margin: 10%;
 }
+body #contactList div {
+  padding: 2%;
+  margin: 1% 0;
+}
 body #contactList ul li div {
   background: #FF9061;
   width: 70vw;
@@ -70,10 +74,6 @@ body #contactList ul li div a img {
   padding-top: 4%;
   height: 50%;
   width: 22%;
-}
-body #contactList div {
-  padding: 2%;
-  margin: 1% 0;
 }
 body #contactList .contactItem {
   padding: 2%;

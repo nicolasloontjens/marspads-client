@@ -8,15 +8,15 @@ async function init(){
 	await initUser();
 	if('serviceWorker' in navigator){
 		navigator.serviceWorker.addEventListener('message', (message) => {
-			let obj = message.data.msg
-			obj.receivercontactid = JSON.parse(localStorage.getItem("user")).contactid
-			if(obj.answer != 0){
+			const obj = message.data.msg;
+			obj.receivercontactid = JSON.parse(localStorage.getItem("user")).contactid;
+			if(obj.answer !== 0){
 				sendToServer(obj);
 			}
-		})
+		});
 	}
 	CHNL_TO_CLIENT_MULTICAST = "events.to.clients." + localStorage.getItem("currentChatId");
-	CHNL_TO_CLIENT_UNICAST = "events.to.clients.mid." + JSON.parse(localStorage.getItem("user")).marsid
+	CHNL_TO_CLIENT_UNICAST = "events.to.clients.mid." + JSON.parse(localStorage.getItem("user")).marsid;
 }
 
 const CHNL_TO_SERVER = "events.to.server";
@@ -48,7 +48,6 @@ function onPublicMessage(error, message) {
 					${message.body}
 				</p>
 			`;
-	
 		if (error) {
 			console.error(error);
 		}
@@ -60,15 +59,26 @@ function onPrivateMessage(error, message){
 	if(document.querySelector("main").getAttribute("id") === "chatroom"){
 		if(localStorage.getItem("currentchattype") === "private"){
 			const today = new Date();
-			const timestamp = today.getFullYear()+'-'+(today.getMonth()+1)+"-"+today.getDate() + " " + today.getHours() + ":" + today.getMinutes();
-			let textmessage = message.body;
-			let user = textmessage.split(":")[0]
-			let actualmessage = textmessage.split(":")[1]
-			document.querySelector("#messages").innerHTML +=
-			`   <p class="chatMessage">
-					${user} @ ${timestamp}: ${actualmessage}
-				</p>
-			`;
+			const timestamp = `${today.getFullYear()}-${(today.getMonth()+1)}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}`;
+			const textmessage = message.body;
+			const user = textmessage.split(":")[0];
+			const actualmessage = textmessage.split(":")[1];
+			let owner = localStorage.getItem("user")
+            owner = JSON.parse(owner)
+
+            if (`${user}` === owner.name) {
+                document.querySelector("#messages").innerHTML +=
+                    `   <p class="chatMessage owner">
+                    ${user} @ ${timestamp}: ${actualmessage}
+                </p>
+            `;
+            } else {
+                document.querySelector("#messages").innerHTML +=
+                    `   <p class="chatMessage">
+                    ${user} @ ${timestamp}: ${actualmessage}
+                </p>
+            `;
+            }
 		}
 	}
 }
@@ -77,6 +87,6 @@ function onRequest(error, message){
 	if(message !== undefined && message.body.hasOwnProperty("chatid")){
 		localStorage.setItem("currentChatId",message.body.chatid);
 		localStorage.setItem("currentchattype","private");
-		location.replace("chatroom.html")
+		location.replace("chatroom.html");
 	}
 }

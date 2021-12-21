@@ -55,9 +55,16 @@ body #chatroom #messages {
   overflow: hidden;
   overflow-y: scroll;
 }
+body #chatroom #messages .owner {
+  text-align: right;
+}
 body #chatroom #messages p {
   font-size: 4rem;
   padding: 1rem;
+  line-break: anywhere;
+}
+body #chatroom #messages p:nth-child(odd) {
+  background-color: #0e1e35;
 }
 body #chatroom #username {
   display: flex;

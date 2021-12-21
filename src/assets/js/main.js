@@ -1,6 +1,6 @@
 let config;
 let api;
-const VAPID_PUBLIC_KEY = "BDTYe4PbcJ4UuSl3kQCv7zjoy1eUXbN3ul3mhMk7KY5oBI7p0NBfLSFcn-Y-dU8SpqHUW60vAD8ehW_klnwyM7c"
+const VAPID_PUBLIC_KEY = "BDTYe4PbcJ4UuSl3kQCv7zjoy1eUXbN3ul3mhMk7KY5oBI7p0NBfLSFcn-Y-dU8SpqHUW60vAD8ehW_klnwyM7c";
 let sendToServer = null;
 
 document.addEventListener("DOMContentLoaded", init);
@@ -15,12 +15,12 @@ async function init() {
     sendToServer = openSocket();
     Notification.requestPermission((status)=>{
         registerPush();
-    })
+    });
     if('serviceWorker' in navigator){
         navigator.serviceWorker.register("./sw.js",{
             Scope: '/'
         }).catch(function(err){
-            console.log("error registering worker: ", err)
+            console.log("error registering worker: ", err);
         });
     }
 }
@@ -28,7 +28,7 @@ async function init() {
 function registerPush(){
     if('PushManager' in window){
         navigator.serviceWorker.ready.then(registration => {
-            let subscribeOptions = {
+            const subscribeOptions = {
                 userVisibleOnly: true,
                 applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
             };
@@ -37,12 +37,12 @@ function registerPush(){
             setTimeout(function(){
                 registerUser(pushSubscription);
             },3000);//wait until user has definitely been generated and eventbus is ready
-        })
+        });
     }
 }
 
 function registerUser(pushSubscription){
-    let mid = JSON.parse(localStorage.getItem("user")).marsid
+    const mid = JSON.parse(localStorage.getItem("user")).marsid;
     sendToServer({"type":"subscription","marsid": mid, "subscription":pushSubscription});
 }
 
@@ -57,12 +57,10 @@ function urlBase64ToUint8Array (base64String){
     const base64 = (base64String + padding)
       .replace(/\-/g, '+')
       .replace(/_/g, '/');
-  
     const rawData = window.atob(base64);
     const outputArray = new Uint8Array(rawData.length);
-  
     for (let i = 0; i < rawData.length; ++i) {
       outputArray[i] = rawData.charCodeAt(i);
     }
     return outputArray;
-  };
+}

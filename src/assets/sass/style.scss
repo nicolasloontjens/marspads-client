@@ -52,7 +52,6 @@ body {
   #chatroom {
     height: 100vh;
     width: 100vw;
-    //margin: none; FOUT
 
     #messages {
       display: block;
@@ -60,9 +59,16 @@ body {
       overflow: hidden;
       overflow-y: scroll;
 
+      .owner{
+        text-align: right;
+      }
       p {
         font-size: 4rem;
         padding: 1rem;
+        line-break: anywhere;
+      }
+      p:nth-child(odd){
+        background-color:  #0e1e35;
       }
     }
 

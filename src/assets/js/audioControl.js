@@ -1,10 +1,10 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", init);
-let traficAudio = document.querySelector("#trafficAudioFile");
-let talkingAudio = document.querySelector("#talkingFile");
-let mediaAudio = document.querySelector("#mediaFile");
-let constructionAudio = document.querySelector("#constructionNoisesFile");
+const traficAudio = document.querySelector("#trafficAudioFile");
+const talkingAudio = document.querySelector("#talkingFile");
+const mediaAudio = document.querySelector("#mediaFile");
+const constructionAudio = document.querySelector("#constructionNoisesFile");
 
 async function init() {
     document.querySelector("#muteAll").addEventListener("click", muteAll);
@@ -31,20 +31,7 @@ function closeOverlay() {
     document.querySelector(".overlaySliders").style.display = "none";
 }
 
-/* (this will make the audio autoplay
-function loadAudio() {
-    let promise = document.querySelector("#trafficAudioFile").play();
 
-    if (promise !== undefined) {
-        promise.then(_ => {
-            console.log("Autoplay started.")
-        }).catch(error => {
-            console.log("Autoplay was prevented.", error);
-            document.querySelector(".play").style.display = "block";
-        });
-    }
-}
-*/
 function muteAll() {
     document.querySelectorAll(".slider").forEach(slider => slider.value = 0);
     traficAudio.volume = 0;
@@ -54,9 +41,9 @@ function muteAll() {
 }
 
 function getSelectedSlider(ev) {
-    let sliderName = ev.currentTarget.getAttribute("data-slider");
-    let sliderValue = ev.target.value;
-    let convertedValue = sliderValue / 10;
+    const sliderName = ev.currentTarget.getAttribute("data-slider");
+    const sliderValue = ev.target.value;
+    const convertedValue = sliderValue / 10;
     setVolumeOfAudio(sliderName, convertedValue);
 }
 
