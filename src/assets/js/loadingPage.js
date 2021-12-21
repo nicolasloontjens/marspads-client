@@ -11,7 +11,7 @@ async function init() {
 
 
 async function addLoadingAnimation() {
-    document.querySelector("body").setAttribute("animation", "true")
+    document.querySelector("body").setAttribute("animation", "true");
     document.querySelector("body").innerHTML += `<div class="animation">
         <img class="rocket" src="assets/images/rocket.png">
             <div class="longfazers">
@@ -20,12 +20,12 @@ async function addLoadingAnimation() {
                 <span></span>
                 <span></span>
             </div>
-            <h1>loading</h1></div>`
-    await new Promise(resolve => setTimeout(resolve, 600))//display loading animation;
+            <h1>loading</h1></div>`;
+    await new Promise(resolve => setTimeout(resolve, 600));//display loading animation
 }
 
 function removeAnimation() {
     document.querySelector("body").removeAttribute("animation");
-    let elem = document.querySelector(".animation");
+    const elem = document.querySelector(".animation");
     elem.remove();
 }
