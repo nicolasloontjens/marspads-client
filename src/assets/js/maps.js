@@ -92,45 +92,6 @@ function createMarkerFeature(coords, datatype, dataName){
     });
 }
 
-function createFriendLayer(friendFeatures){
-    return new ol.layer.Vector({
-        source: new ol.source.Vector({features:friendFeatures}),
-        style: new ol.style.Style({
-            image: new ol.style.Icon({
-                src: "./assets/images/friendicon.png",
-                anchor: [0.5,1],
-                scale: [0.09,0.09]
-            })
-        })
-    });
-}
-
-function createSoundLayer(soundFeatures){
-     return new ol.layer.Vector({
-        source: new ol.source.Vector({features:soundFeatures}),
-        style: new ol.style.Style({
-            image: new ol.style.Icon({
-                src: "./assets/images/soundiconmap.png",
-                anchor: [0.5,1],
-                scale: [0.09,0.09]
-            })
-        })
-    });
-}
-
-function createUserFeature(otherUserFeatures){
-    return new ol.layer.Vector({
-        source: new ol.source.Vector({features:otherUserFeatures}),
-        style: new ol.style.Style({
-            image: new ol.style.Icon({
-                src: "./assets/images/strangericon.png",
-                anchor: [0.5,1],
-                scale: [0.1,0.1]
-            })
-        })
-    });
-}
-
 function addOtherLayers(arrayofcoords){
     const friendfeatures = [];
     const otheruserfeatures = [];
@@ -144,12 +105,42 @@ function addOtherLayers(arrayofcoords){
     for(let i = 5; i < 6; i++){
         otheruserfeatures.push(createMarkerFeature(arrayofcoords[i],"user", dataNames[i]));
     }
-    maplayers["strangerlayer"] = createUserFeature(otheruserfeatures);
-    maplayers["friendlayer"] = createFriendLayer(friendfeatures);
-    maplayers["soundlayer"] = createSoundLayer(soundfeatures);
-    map.addLayer(createUserFeature(otheruserfeatures));
-    map.addLayer(createSoundLayer(soundfeatures));
-    map.addLayer(createFriendLayer(friendfeatures));
+    const otherUserLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({features:otheruserfeatures}),
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                src: "./assets/images/strangericon.png",
+                anchor: [0.5,1],
+                scale: [0.1,0.1]
+            })
+        })
+    });
+    const soundLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({features:soundfeatures}),
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                src: "./assets/images/soundiconmap.png",
+                anchor: [0.5,1],
+                scale: [0.09,0.09]
+            })
+        })
+    });
+    const friendLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({features:friendfeatures}),
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                src: "./assets/images/friendicon.png",
+                anchor: [0.5,1],
+                scale: [0.09,0.09]
+            })
+        })
+    });
+    maplayers["strangerlayer"] = otherUserLayer;
+    maplayers["friendlayer"] = friendLayer;
+    maplayers["soundlayer"] = soundLayer;
+    map.addLayer(otherUserLayer);
+    map.addLayer(soundLayer);
+    map.addLayer(friendLayer);
     createOverLay();
 }
 
@@ -241,7 +232,7 @@ function addProximityLayer() {
 }
 
 function addCheckboxEventListener(){
-    const checkboxes = document.querySelectorAll("input[type=checkbox][name=filter]");
+    let checkboxes = document.querySelectorAll("input[type=checkbox][name=filter]");
     let enabledFilters = [];
 
     checkboxes.forEach((checkbox) => {
