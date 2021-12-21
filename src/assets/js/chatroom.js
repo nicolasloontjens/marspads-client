@@ -19,9 +19,9 @@ function sendPublicMessage(e){
     e.preventDefault();
     const message = document.querySelector("#chat-message").value;
     if(message !== ""){
-        let user = JSON.parse(localStorage.getItem("user"));
-        const data = {type: 'message',marsid:user.marsid,"message": message}
-        sendToServer(data)
+        const user = JSON.parse(localStorage.getItem("user"));
+        const data = {type: 'message',marsid:user.marsid,"message": message};
+        sendToServer(data);
         message.value = "";
     }
 }
@@ -32,19 +32,19 @@ function sendPrivateMessage(e){
     if(message !== ""){
         const user = JSON.parse(localStorage.getItem("user"));
         const chatid = JSON.parse(localStorage.getItem("currentChatId"));
-        const data = {type:"privatemessage", "chatid":chatid, marsid: user.marsid, message: message}
+        const data = {type:"privatemessage", "chatid":chatid, marsid: user.marsid, message: message};
         sendToServer(data);
         message.value = "";
     }
 }
 
 async function loadPrivateChatMessages(){
-    const response = await getAllChatsWithUser(localStorage.getItem("currentChatId"))
+    const response = await getAllChatsWithUser(localStorage.getItem("currentChatId"));
     response.forEach(message => {
         let timestamp = message.timestamp;
         timestamp = timestamp.substring(0,(timestamp.length-7));
         document.querySelector("#messages").insertAdjacentHTML("beforeend",`<p class="chatMessage">${message.name} @ ${timestamp}: ${message.content}</p>`);
-    })
+    });
 }
 
 async function loadChatInfo(){
