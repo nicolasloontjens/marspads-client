@@ -7,7 +7,6 @@ let mediaAudio = document.querySelector("#mediaFile");
 let constructionAudio = document.querySelector("#constructionNoisesFile");
 
 async function init() {
-    console.log("Audio controls loaded.")
     document.querySelector("#muteAll").addEventListener("click", muteAll);
     document.querySelectorAll(".slider").forEach(e => e.addEventListener("change", getSelectedSlider));
     document.querySelector("#play").addEventListener("click", playSound);
@@ -16,16 +15,11 @@ async function init() {
 }
 
 function playSound() {
-
     mediaAudio.play();
-
     talkingAudio.play();
-
     traficAudio.play();
-
     constructionAudio.play();
 
-    console.log("play");
 }
 
 function openOverlay() {
@@ -53,8 +47,8 @@ function loadAudio() {
 }
 */
 function muteAll() {
-    traficAudio.volume = 0;
     document.querySelectorAll(".slider").forEach(slider => slider.value = 0);
+    traficAudio.volume = 0;
     mediaAudio.volume = 0;
     talkingAudio.volume = 0;
     constructionAudio.volume = 0;
@@ -64,7 +58,6 @@ function getSelectedSlider(ev) {
     let sliderName = ev.currentTarget.getAttribute("data-slider");
     let sliderValue = ev.target.value;
     let convertedValue = sliderValue / 10;
-    console.log(sliderName, convertedValue);
     setVolumeOfAudio(sliderName, convertedValue);
 }
 
