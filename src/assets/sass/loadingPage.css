@@ -2,15 +2,6 @@ body[animation=true] {
   background-color: #11223B;
   overflow: hidden;
 }
-body[animation=true] input {
-  display: none;
-}
-body[animation=true] header {
-  display: none;
-}
-body[animation=true] .information {
-  display: none;
-}
 body[animation=true] .animation img {
   position: absolute;
   width: auto;
