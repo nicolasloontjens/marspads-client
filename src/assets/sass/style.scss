@@ -3,6 +3,9 @@
   src: url("../font/nasalization-rg.otf") format("opentype");
 }
 
+*{
+  touch-action: manipulation;
+}
 body {
   background: #11223B;
   color: #FF9061;

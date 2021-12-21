@@ -1,3 +1,7 @@
+* {
+  touch-action: manipulation;
+}
+
 body {
   font-size: 5rem;
   font-family: "Spartan", sans-serif;
@@ -22,13 +26,8 @@ body header * {
 body header img {
   height: 10%;
   width: 10%;
-}
-body img {
   margin: 0;
-  width: 30px;
-  height: 30px;
   display: flex;
-  padding: 10px 7px;
 }
 body input {
   background: url("../images/magnifyingGlassIcon.png") no-repeat right;
@@ -58,10 +57,19 @@ body #contactList {
   justify-content: center;
   margin: 10%;
 }
-body #contactList ul li {
+body #contactList ul li div {
   background: #FF9061;
-  text-align: center;
-  width: 650px;
+  width: 70vw;
+}
+body #contactList ul li div a:first-of-type {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  margin-bottom: 0;
+}
+body #contactList ul li div a img {
+  padding-top: 4%;
+  height: 50%;
+  width: 22%;
 }
 body #contactList div {
   padding: 2%;
@@ -71,7 +79,10 @@ body #contactList .contactItem {
   padding: 2%;
 }
 body #contactList div[clicked=true] {
-  animation: open-contact-div 0.5s linear forwards;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  animation: open-contact-div 0.6s linear forwards;
 }
 body #contactList div[clicked=true] .contactoption {
   animation: open-contact-option 1s linear;
@@ -100,7 +111,7 @@ body #contactList .contactoption {
   top: 10%;
   left: 5%;
   width: 80vw;
-  height: 40vh;
+  height: 60vh;
   background-color: #0c1a2e;
   border-radius: 2%;
 }
@@ -144,7 +155,8 @@ body #contactList .contactoption {
 
 @keyframes open-contact-div {
   100% {
-    margin: 5%;
+    margin-top: 4%;
+    margin-bottom: 4%;
   }
 }
 @keyframes open-contact-option {
