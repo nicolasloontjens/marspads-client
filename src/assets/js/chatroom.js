@@ -39,7 +39,8 @@ function sendPrivateMessage(e){
 }
 
 async function loadPrivateChatMessages() {
-    const response = await getAllChatsWithUser(localStorage.getItem("currentChatId"))
+    const api_response = await getAllChatsWithUser(localStorage.getItem("currentChatId"))
+    const response = [...api_response].reverse()
     response.forEach(message => {
         let timestamp = message.timestamp;
         timestamp = timestamp.substring(0, (timestamp.length - 7));

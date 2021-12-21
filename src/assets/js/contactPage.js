@@ -143,7 +143,9 @@ function displayAddFriendPopUp(){
 function addFriend(e){
     e.preventDefault();
     const contactid = document.querySelector("#addcontactid").value;
-    if(contactid !== ""){
+    let owncontactid = localStorage.getItem("user")
+    owncontactid = JSON.parse(owncontactid).contactid + "";
+    if(contactid !== "" && contactid !== owncontactid){
         fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getMarsID()}/contacts/add/${contactid}`,{
         method: "POST"
     }).then(response => {
