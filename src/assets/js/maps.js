@@ -18,7 +18,7 @@ const dataNames = ['Ben Mohammadi Bilal', 'Follet stijn', 'Hammering', 'Car', 'W
 const yourLocation = [3.2145869436534724, 51.19167462236231];
 let routeLayer;
 
-async function init() {
+async function init(){
     if(sessionStorage.getItem("hasVisited") === null){
         await addLoadingAnimation();
         sessionStorage.setItem("hasVisited",true)
