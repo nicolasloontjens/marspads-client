@@ -3,6 +3,7 @@ let sendToServer = null;
 document.addEventListener("DOMContentLoaded",init);
 
 async function init(){
+    screen.orientation.lock('landscape-primary')
     sendToServer = openSocket();
     if(localStorage.getItem("currentchattype")==="public"){
         document.querySelector("#send-button").addEventListener("click",sendPublicMessage);

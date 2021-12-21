@@ -1,6 +1,14 @@
 body[animation="true"]{
   background-color: #11223B;
   overflow: hidden;
+  header{
+    display:none;
+  }
+  main{
+    #echoMapPage, #anim-hide{
+      display: none;
+    }
+  }
   .animation{
     img{
       position: absolute;
