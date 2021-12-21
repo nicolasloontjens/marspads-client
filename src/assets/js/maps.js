@@ -92,45 +92,6 @@ function createMarkerFeature(coords, datatype, dataName){
     });
 }
 
-function createFriendLayer(friendFeatures){
-    return new ol.layer.Vector({
-        source: new ol.source.Vector({features:friendFeatures}),
-        style: new ol.style.Style({
-            image: new ol.style.Icon({
-                src: "./assets/images/friendicon.png",
-                anchor: [0.5,1],
-                scale: [0.09,0.09]
-            })
-        })
-    });
-}
-
-function createSoundLayer(soundFeatures){
-     return new ol.layer.Vector({
-        source: new ol.source.Vector({features:soundFeatures}),
-        style: new ol.style.Style({
-            image: new ol.style.Icon({
-                src: "./assets/images/soundiconmap.png",
-                anchor: [0.5,1],
-                scale: [0.09,0.09]
-            })
-        })
-    });
-}
-
-function createUserFeature(otherUserFeatures){
-    const friendLayer = new ol.layer.Vector({
-        source: new ol.source.Vector({features:otherUserFeatures}),
-        style: new ol.style.Style({
-            image: new ol.style.Icon({
-                src: "./assets/images/strangericon.png",
-                anchor: [0.5,1],
-                scale: [0.1,0.1]
-            })
-        })
-    });
-}
-
 function addOtherLayers(arrayofcoords){
     const friendfeatures = [];
     const otheruserfeatures = [];
@@ -144,7 +105,7 @@ function addOtherLayers(arrayofcoords){
     for(let i = 5; i < 6; i++){
         otheruserfeatures.push(createMarkerFeature(arrayofcoords[i],"user", dataNames[i]));
     }
-    const otheruserLayer = new ol.layer.Vector({
+    const otherUserLayer = new ol.layer.Vector({
         source: new ol.source.Vector({features:otheruserfeatures}),
         style: new ol.style.Style({
             image: new ol.style.Icon({
@@ -174,10 +135,10 @@ function addOtherLayers(arrayofcoords){
             })
         })
     });
-    maplayers["strangerlayer"] = otheruserLayer;
+    maplayers["strangerlayer"] = otherUserLayer;
     maplayers["friendlayer"] = friendLayer;
     maplayers["soundlayer"] = soundLayer;
-    map.addLayer(otheruserLayer);
+    map.addLayer(otherUserLayer);
     map.addLayer(soundLayer);
     map.addLayer(friendLayer);
     createOverLay();
