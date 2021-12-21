@@ -6,14 +6,11 @@ let sendToServer = null;
 document.addEventListener("DOMContentLoaded", init);
 
 async function init() {
-    //let page = window.location.pathname.split("/").pop();
 
     config = await loadConfig();
     api = `${config.host ? config.host + '/' : ''}${config.group ? config.group + '/' : ''}api/`;
 
     initUser();
-    //addNavRedirects();
-    //document.querySelector('#arrowNav').addEventListener('click', MakeNavigationRetract);
 
     sendToServer = openSocket();
     Notification.requestPermission((status)=>{
@@ -25,13 +22,6 @@ async function init() {
         }).catch(function(err){
             console.log("error registering worker: ", err)
         });
-        navigator.serviceWorker.addEventListener("message",(message) => {
-            let obj = message.data.msg
-            obj.receivercontactid = JSON.parse(localStorage.getItem("user")).contactid
-            if(obj.answer != 0){
-                sendToServer(obj);
-            }
-        })
     }
 }
 
@@ -61,35 +51,6 @@ async function loadConfig() {
     return response.json();
 }
 
-/*
-function addNavRedirects(){
-    document.querySelector('#audioPage').addEventListener("click", (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        location.replace("audio.html");
-    })
-    document.querySelector("#settingsPage").addEventListener("click",(e)=>{
-        e.stopPropagation();
-        e.preventDefault();
-        location.replace("settings.html");
-    })
-    document.querySelector("#mapPage").addEventListener("click",(e)=>{
-        e.stopPropagation();
-        e.preventDefault();
-        location.replace("index.html");
-    })
-    document.querySelector("#contactsPage").addEventListener("click",(e)=>{
-        e.stopPropagation();
-        e.preventDefault();
-        location.replace("contacts.html");
-    })
-}
-
-function MakeNavigationRetract(e) {
-    e.preventDefault();
-    document.querySelector('main aside nav').classList.toggle('hidden');
-}
-*/
 //helper function for registering push notifications
 function urlBase64ToUint8Array (base64String){
     const padding = '='.repeat((4 - base64String.length % 4) % 4);

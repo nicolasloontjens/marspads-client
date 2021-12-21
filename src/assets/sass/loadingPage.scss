@@ -1,14 +1,13 @@
 body[animation="true"]{
   background-color: #11223B;
   overflow: hidden;
-  input{
-    display: none;
-  }
   header{
-    display: none;
+    display:none;
   }
-  .information{
-    display: none;
+  main{
+    #echoMapPage, #anim-hide{
+      display: none;
+    }
   }
   .animation{
     img{

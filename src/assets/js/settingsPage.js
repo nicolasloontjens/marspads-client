@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", init);
 
 async function init() {
+    screen.orientation.lock('landscape-primary')
     document.querySelector("#startUpdate").addEventListener("click", loadBar);
     let user = JSON.parse(localStorage.getItem("user"))
     document.querySelector("#contactid").innerHTML = `Contactid: ${user.contactid}`
@@ -10,7 +11,8 @@ async function init() {
 
 
 function loadBar() {
-
+    let progress = document.querySelector("#progress");
+    document.querySelector("#startUpdate").removeEventListener("click", loadBar);
     let elem = document.querySelector("#progressBar");
     let width = 0;
     let interval = setInterval(frame, 50);
@@ -18,11 +20,13 @@ function loadBar() {
     function frame() {
         if (width >= 100) {
             clearInterval(interval);
-            document.querySelector("#progress").innerHTML = "Successfully updated";
+            progress.innerHTML = "Successfully updated";
+            document.querySelector("#startUpdate").addEventListener("click", loadBar);
         } else {
             width++;
             elem.style.width = width + '%';
-            document.querySelector("#number").innerHTML = width.toString();
+            progress.innerHTML = "Updating progress: " + width.toString() + "%";
+
         }
     }
 }

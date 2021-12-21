@@ -11,9 +11,9 @@
     <link rel="stylesheet" type="text/css" href="assets/sass/style.css">
     <link rel="stylesheet" type="text/css" href="assets/sass/audioOverlay.css">
     <link rel="stylesheet" type="text/css" href="assets/sass/navigation.css">
+    <link rel="stylesheet" type="text/css" href="assets/sass/loadingPage.css">
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css">
 
 </head>
 <body>
@@ -23,15 +23,14 @@
 </header>
 <main>
 
-    <nav>
+    <nav id="anim-hide">
         <input type="checkbox" id="menuToggle">
         <label id="menu" for="menuToggle"><span id="closeSpan">Close Menu</span><span
                 id="menuSpan">&#9776;&nbsp;Menu </span></label>
         <ul>
             <li><a id="indexNav" href="index.html">Home</a></li>
-            <li><a id="settingsNav" href="settings.html">Settings</a></li>
-            <li><a id="audiNav" href="#" >Audio</a></li>
             <li><a id="contactsNav" href="contacts.html">Contacts</a></li>
+            <li><a id="settingsNav" href="settings.html">Settings</a></li>
         </ul>
     </nav>
 
@@ -107,6 +106,15 @@
             </div>
             <audio id="trafficAudioFile">
                 <source src="assets/audio/trafficAudio.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="talkingFile">
+                <source src="assets/audio/talking.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="constructionNoisesFile">
+                <source src="assets/audio/construction.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="mediaFile">
+                <source src="assets/audio/media.mp3" type="audio/mpeg">
             </audio>
 
 

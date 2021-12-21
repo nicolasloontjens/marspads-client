@@ -2,13 +2,10 @@ body[animation=true] {
   background-color: #11223B;
   overflow: hidden;
 }
-body[animation=true] input {
-  display: none;
-}
 body[animation=true] header {
   display: none;
 }
-body[animation=true] .information {
+body[animation=true] main #echoMapPage, body[animation=true] main #anim-hide {
   display: none;
 }
 body[animation=true] .animation img {

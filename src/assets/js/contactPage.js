@@ -7,6 +7,7 @@ let sendToServer = null;
 const ulContactList = document.querySelector("#ulContactList");
 
 async function init() {
+    screen.orientation.lock('portrait-primary')
     let contacts = await getUserContacts();
     contacts.sort((a,b) => a.name.localeCompare(b.name));
     config = await loadConfig();
@@ -86,10 +87,10 @@ function getSelectedContactName(e) {
 }
 
 function goToChatOrSendChatRequest(e){
-    const todo = e.target.getAttribute("data-type");
+    let todo = e.target.getAttribute("data-type");
     if(todo === "sendrequest"){
         //send chat request through sendtoserver
-        const receiver = parseInt(e.target.getAttribute("data-contactid"));
+        let receiver = parseInt(e.target.getAttribute("data-contactid"));
         const data = {type: 'chatrequest', 'sendermid': parseInt(getMarsID()), 'receivercontactid': receiver, answer: 0};
         sendToServer(data);
     }else{
@@ -110,11 +111,11 @@ function removeContact(e){
 }
 
 function searchInputField() {
-    let a, i, txtValue;
-    const input = document.querySelector("#search");
-    const filter = input.value.toUpperCase();
-    const li = ulContactList.getElementsByTagName("li");
-
+    let input, filter, ul, li, a, i, txtValue;
+    input = document.querySelector("#search");
+    filter = input.value.toUpperCase();
+    ul = document.querySelector("#ulContactList");
+    li = ul.getElementsByTagName("li");
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0];
         txtValue = a.textContent || a.innerText;
@@ -150,7 +151,7 @@ function displayAddFriendPopUp(){
 
 function addFriend(e){
     e.preventDefault();
-    const contactid = document.querySelector("#addcontactid").value;
+    let contactid = document.querySelector("#addcontactid").value;
     if(contactid !== ""){
         fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getMarsID()}/contacts/add/${contactid}`,{
             method: "POST"

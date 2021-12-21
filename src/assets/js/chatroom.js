@@ -3,6 +3,7 @@ let sendToServer = null;
 document.addEventListener("DOMContentLoaded",init);
 
 async function init(){
+    screen.orientation.lock('landscape-primary');
     sendToServer = openSocket();
     if(localStorage.getItem("currentchattype")==="public"){
         document.querySelector("#send-button").addEventListener("click",sendPublicMessage);
@@ -17,10 +18,10 @@ async function init(){
 
 function sendPublicMessage(e){
     e.preventDefault();
-    const message = document.querySelector("#chat-message").value;
+    let message = document.querySelector("#chat-message")
     if(message !== ""){
         let user = JSON.parse(localStorage.getItem("user"));
-        const data = {type: 'message',marsid:user.marsid,"message": message};
+        const data = {type: 'message',marsid:user.marsid,"message": message.value};
         sendToServer(data);
         message.value = "";
     }
@@ -28,11 +29,11 @@ function sendPublicMessage(e){
 
 function sendPrivateMessage(e){
     e.preventDefault();
-    const message = document.querySelector("#chat-message").value;
+    let message = document.querySelector("#chat-message");
     if(message !== ""){
         const user = JSON.parse(localStorage.getItem("user"));
         const chatid = JSON.parse(localStorage.getItem("currentChatId"));
-        const data = {type:"privatemessage", "chatid":chatid, marsid: user.marsid, message: message};
+        const data = {type:"privatemessage", "chatid":chatid, marsid: user.marsid, message: message.value};
         sendToServer(data);
         message.value = "";
     }

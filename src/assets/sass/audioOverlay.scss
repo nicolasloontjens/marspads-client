@@ -39,6 +39,20 @@ body {
 
  .buttonOverlay{
    margin-left: 4rem;
+   text-transform: uppercase;
+   letter-spacing: 1.3px;
+   font-weight: 700;
+   color: #313133;
+   background: #FF9061;
+   background: linear-gradient(
+                   90deg, #FF9061 0%, #EB7A5E);
+   border: none;
+   border-radius: 1000px;
+   box-shadow: 12px 12px 24px #ff9061;
+   transition: all 0.3s ease-in-out 0s;
+   cursor: pointer;
+   outline: none;
+   position: relative;
  }
   }
 

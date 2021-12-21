@@ -103,7 +103,7 @@ body nav ul {
 }
 body nav input:checked ~ ul {
   width: 45vh;
-  height: 50vh;
+  height: 35vh;
 }
 body nav ul li a {
   color: #9e9e9e;
