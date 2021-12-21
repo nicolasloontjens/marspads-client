@@ -13,7 +13,7 @@ const fixedmarkercoords = [{longitude: 51.19092153443029, latitude: 3.2124516914
 }, {longitude: 51.191830575737946, latitude: 3.2160007275947136}, {
     longitude: 51.1914709406873,
     latitude: 3.21423239440734
-}]
+}];
 const dataNames = ['Ben Mohammadi Bilal', 'Follet stijn', 'Hammering', 'Car', 'Walking', 'Loontjens Nicolas', 'Vandewalle Reinaerd'];
 const yourLocation = [3.2145869436534724, 51.19167462236231];
 let routeLayer;
@@ -21,7 +21,7 @@ let routeLayer;
 async function init(){
     if(sessionStorage.getItem("hasVisited") === null){
         await addLoadingAnimation();
-        sessionStorage.setItem("hasVisited",true)
+        sessionStorage.setItem("hasVisited",true);
     }
     document.querySelector("#proximitychat").addEventListener("click", goToGeneralChat);
     createBasicMap();
@@ -34,15 +34,15 @@ async function init(){
 
 function goToGeneralChat(e){
     e.preventDefault();
-    localStorage.setItem("currentchattype","public")
-    location.replace("chatroom.html")
+    localStorage.setItem("currentchattype","public");
+    location.replace("chatroom.html");
 }
 
 function createBasicMap(){
-    let user = new ol.Feature({
+    const user = new ol.Feature({
         type:"marker",
         geometry: new ol.geom.Point(ol.proj.fromLonLat(yourLocation))
-    })
+    });
     const userVector = new ol.source.Vector({
         features: [user]
     });
@@ -55,8 +55,8 @@ function createBasicMap(){
                 scale:[1,1]
             })
         })
-    })
-    maplayers["currentuserlayer"] = userLayer
+    });
+    maplayers["currentuserlayer"] = userLayer;
     map = new ol.Map({
         controls: [new ol.control.FullScreen(), new ol.control.Zoom()],
         target: 'map',
@@ -70,7 +70,7 @@ function createBasicMap(){
             center: ol.proj.fromLonLat(yourLocation),
             zoom: 17
         })
-    })
+    });
     map.on('postcompose',function(e){
         document.querySelector('canvas').style.filter="invert(90%)";
     });
@@ -83,18 +83,58 @@ function createBasicMap(){
     map.removeInteraction(dblclickinteraction);
 }
 
-function addOtherLayers(arrayofcoords){
-    function createMarkerFeature(coords, datatype, dataName){
-        return new ol.Feature({
-            type:"marker",
-            data: datatype,
-            dataName: dataName,
-            geometry: new ol.geom.Point(ol.proj.fromLonLat([coords.latitude,coords.longitude]))
+function createMarkerFeature(coords, datatype, dataName){
+    return new ol.Feature({
+        type:"marker",
+        data: datatype,
+        dataName: dataName,
+        geometry: new ol.geom.Point(ol.proj.fromLonLat([coords.latitude,coords.longitude]))
+    });
+}
+
+function createFriendLayer(friendFeatures){
+    return new ol.layer.Vector({
+        source: new ol.source.Vector({features:friendFeatures}),
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                src: "./assets/images/friendicon.png",
+                anchor: [0.5,1],
+                scale: [0.09,0.09]
+            })
         })
-    }
-    let friendfeatures = [];
-    let otheruserfeatures = [];
-    let soundfeatures = [];
+    });
+}
+
+function createSoundLayer(soundFeatures){
+     return new ol.layer.Vector({
+        source: new ol.source.Vector({features:soundFeatures}),
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                src: "./assets/images/soundiconmap.png",
+                anchor: [0.5,1],
+                scale: [0.09,0.09]
+            })
+        })
+    });
+}
+
+function createUserFeature(otherUserFeatures){
+    return new ol.layer.Vector({
+        source: new ol.source.Vector({features:otherUserFeatures}),
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                src: "./assets/images/strangericon.png",
+                anchor: [0.5,1],
+                scale: [0.1,0.1]
+            })
+        })
+    });
+}
+
+function addOtherLayers(arrayofcoords){
+    const friendfeatures = [];
+    const otheruserfeatures = [];
+    const soundfeatures = [];
     for(let i = 0; i < 2; i++){
         friendfeatures.push(createMarkerFeature(arrayofcoords[i],"friend", dataNames[i]));
     }
@@ -104,49 +144,19 @@ function addOtherLayers(arrayofcoords){
     for(let i = 5; i < 6; i++){
         otheruserfeatures.push(createMarkerFeature(arrayofcoords[i],"user", dataNames[i]));
     }
-    
-    let friendlayer = new ol.layer.Vector({
-        source: new ol.source.Vector({features:friendfeatures}),
-        style: new ol.style.Style({
-            image: new ol.style.Icon({
-                src: "./assets/images/friendicon.png",
-                anchor: [0.5,1],
-                scale: [0.09,0.09]
-            })
-        })
-    })
-    
-    let otheruserslayer = new ol.layer.Vector({
-        source: new ol.source.Vector({features:otheruserfeatures}),
-        style: new ol.style.Style({
-            image: new ol.style.Icon({
-                src: "./assets/images/strangericon.png",
-                anchor: [0.5,1],
-                scale: [0.1,0.1]
-            })
-        })
-    });
-    let soundlayer = new ol.layer.Vector({
-        source: new ol.source.Vector({features:soundfeatures}),
-        style: new ol.style.Style({
-            image: new ol.style.Icon({
-                src: "./assets/images/soundiconmap.png",
-                anchor: [0.5,1],
-                scale: [0.09,0.09]
-            })
-        })
-    });
-    maplayers["strangerlayer"] = otheruserslayer;
-    maplayers["friendlayer"] = friendlayer;
-    maplayers["soundlayer"] = soundlayer;
-    map.addLayer(otheruserslayer);
-    map.addLayer(soundlayer);
-    map.addLayer(friendlayer);
+    maplayers["strangerlayer"] = createUserFeature(otheruserfeatures);
+    maplayers["friendlayer"] = createFriendLayer(friendfeatures);
+    maplayers["soundlayer"] = createSoundLayer(soundfeatures);
+    map.addLayer(createUserFeature(otheruserfeatures));
+    map.addLayer(createSoundLayer(soundfeatures));
+    map.addLayer(createFriendLayer(friendfeatures));
+    createOverLay();
+}
 
-    let container = document.getElementById('popup');
-    let closer = document.getElementById('popup-closer');
-
-    let overlay = new ol.Overlay({
+function createOverLay(){
+    const container = document.getElementById('popup');
+    const closer = document.getElementById('popup-closer');
+    const overlay = new ol.Overlay({
         element: container,
         autoPan: true,
         autoPanAnimation: {
@@ -161,17 +171,10 @@ function addOtherLayers(arrayofcoords){
         return false;
     };
 
-
-
-    /**
-     * Add a click handler to the map to render the popup.
-     */
     map.on('singleclick', function (evt) {
-        const coordinate = evt.coordinate;
         const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
             return feature;
         });
-
         if (feature && feature.A.type === "marker") {
             addPopupContent(feature);
             if (document.querySelector('.routeButton') !== null) {
@@ -185,28 +188,27 @@ function addOtherLayers(arrayofcoords){
             }
             if(document.querySelector(".chatbutton") !== null){
                 document.querySelector(".chatbutton").addEventListener("click", () => {
-                    location.replace("chatroom.html")
-                })
+                    location.replace("chatroom.html");
+                });
             }
-            overlay.setPosition(coordinate);
+            overlay.setPosition(evt.coordinate);
         } else {
             overlay.setPosition(undefined);
             closer.blur();
         }
     });
-
 }
 
 function addPopupContent(feature){
-    let content = document.getElementById('popup-content');
+    const content = document.getElementById('popup-content');
     const dataToUpperCase = feature.get('data').charAt(0).toUpperCase() + feature.get('data').slice(1);
 
     if (feature.A.data === "friend" || feature.A.data === "user") {
-        content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>' + '</p>' +
-            '<br><button class="chatbutton">Chat</button> <button class="routeButton" >Fastest route</button>';
+        content.innerHTML = `<p>${feature.get('dataName')} <br><span> ${dataToUpperCase} </span></p>
+            <br><button class="chatbutton">Chat</button> <button class="routeButton" >Fastest route</button>`;
     } else {
-        content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>' + '</p>' +
-            '<br><button class="audioPopUpMute" >Mute</button> <button class="audioPopUp" >See all noises</button>';
+        content.innerHTML = `<p> ${feature.get('dataName')} <br><span> ${dataToUpperCase} </span></p>
+            <br><button class="audioPopUpMute" >Mute</button> <button class="audioPopUp" >See all noises</button>`;
     }
 }
 
@@ -234,33 +236,33 @@ function addProximityLayer() {
             })
         ]
     });
-    maplayers["proximitylayer"] = proxlayer
+    maplayers["proximitylayer"] = proxlayer;
     map.addLayer(proxlayer);
 }
 
 function addCheckboxEventListener(){
-    let checkboxes = document.querySelectorAll("input[type=checkbox][name=filter]");
-    let enabledFilters = []
+    const checkboxes = document.querySelectorAll("input[type=checkbox][name=filter]");
+    let enabledFilters = [];
 
     checkboxes.forEach((checkbox) => {
         checkbox.addEventListener("change",() => {
-            enabledFilters = Array.from(checkboxes).filter(i => i.checked).map(i => i.value)
-            updateMapLayers(enabledFilters)
-        })
-    })
+            enabledFilters = Array.from(checkboxes).filter(i => i.checked).map(i => i.value);
+            updateMapLayers(enabledFilters);
+        });
+    });
 }
 
 function updateMapLayers(enabledFilters){
-    Object.values(maplayers).forEach(layer => map.removeLayer(layer))
+    Object.values(maplayers).forEach(layer => map.removeLayer(layer));
     let maplayerstoapply = {proximitylayer:maplayers["proximitylayer"]};
     enabledFilters.forEach((filtervalue) => {
-        maplayerstoapply[filtervalue] = maplayers[filtervalue]
-    })
-    Object.values(maplayerstoapply).forEach(layer => map.addLayer(layer))
+        maplayerstoapply[filtervalue] = maplayers[filtervalue];
+    });
+    Object.values(maplayerstoapply).forEach(layer => map.addLayer(layer));
 }
 
 function toggleFullScreen(){
-    let map = document.querySelector("#map");
+    const map = document.querySelector("#map");
     if(!document.fullscreenElement){
         map.requestFullscreen();
     }
@@ -308,13 +310,14 @@ function findTheWay(feature, overlay){
 
 async function getClosestRoute(endLonLat) {
     const API_KEY = '5b3ce3597851110001cf624814086a7454a5498e922d0f028ec7db66';
-    const response = await fetch(`https://api.openrouteservice.org/v2/directions/driving-car?api_key=${API_KEY}&start=${yourLocation[0]},${yourLocation[1]}&end=${endLonLat[0]},${endLonLat[1]}`);
+    const link = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${API_KEY}&start=${yourLocation[0]},${yourLocation[1]}&end=${endLonLat[0]},${endLonLat[1]}`;
+    const response = await fetch(link);
     const result = await response.json();
     return {route: result.features[0]};
 }
 
 async function addLoadingAnimation() {
-    document.querySelector("body").setAttribute("animation", "true")
+    document.querySelector("body").setAttribute("animation", "true");
     document.querySelector("body").innerHTML += `<div class="animation">
         <img class="rocket" src="assets/images/rocket.png">
             <div class="longfazers">
@@ -323,9 +326,9 @@ async function addLoadingAnimation() {
                 <span></span>
                 <span></span>
             </div>
-            <h1>loading</h1></div>`
-    await new Promise(resolve => setTimeout(resolve, 9000))//display loading animation;
+            <h1>loading</h1></div>`;
+    await new Promise(resolve => setTimeout(resolve, 9000));//display loading animation;
     document.querySelector("body").removeAttribute("animation");
-    let elem = document.querySelector(".animation");
+    const elem = document.querySelector(".animation");
     elem.remove();
 }
