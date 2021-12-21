@@ -55,14 +55,14 @@ function call(request, successHandler, errorHandler) {
 
 /*Our code:*/
 
-function initUser() {
+async function initUser() {
     if (localStorage.getItem("user")===null) {
-        createUser();
+        await createUser();
     }
     getUserContacts();
 }
 
-function createUser(){
+async function createUser(){
     const userid = Math.floor(Math.random() * 1000000)+1;
     fetch(`https://project-ii.ti.howest.be/mars-17/api/create/${userid}`,{
         method: "POST"
@@ -70,9 +70,9 @@ function createUser(){
         if(json.status === 500){
             createUser();
         }
-        console.log(json);
         localStorage.setItem("user",JSON.stringify(json));
     });
+    await new Promise(resolve => setTimeout(resolve, 600))
 }
 
 function getMarsID(){

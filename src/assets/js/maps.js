@@ -10,7 +10,6 @@ const yourLocation = [3.2145869436534724,51.19167462236231];
 let routeLayer;
 
 async function init() {
-    console.log("Maps loaded");
     document.querySelector("#proximitychat").addEventListener("click", goToGeneralChat);
     createBasicMap();
     addProximityLayer();//draw the circle around the user that simulates the range of users
@@ -84,13 +83,13 @@ function addOtherLayers(arrayofcoords){
     let otheruserfeatures = [];
     let soundfeatures = [];
     for(let i = 0; i < 2; i++){
-        friendfeatures.push(createMarkerFeature({longitude:arrayofcoords[i].longitude,latitude:arrayofcoords[i].latitude},"friend", dataNames[i]));
+        friendfeatures.push(createMarkerFeature(arrayofcoords[i],"friend", dataNames[i]));
     }
     for(let i = 2; i < 5; i++){
-        soundfeatures.push(createMarkerFeature({longitude:arrayofcoords[i].longitude,latitude:arrayofcoords[i].latitude},"sound", dataNames[i]));
+        soundfeatures.push(createMarkerFeature(arrayofcoords[i],"sound", dataNames[i]));
     }
     for(let i = 5; i < 6; i++){
-        otheruserfeatures.push(createMarkerFeature({longitude:arrayofcoords[i].longitude,latitude:arrayofcoords[i].latitude},"user", dataNames[i]));
+        otheruserfeatures.push(createMarkerFeature(arrayofcoords[i],"user", dataNames[i]));
     }
     
     let friendlayer = new ol.layer.Vector({
@@ -163,6 +162,11 @@ function addOtherLayers(arrayofcoords){
         if (feature && feature.A.type === "marker") {
             addPopupContent(feature);
             if(document.querySelector('.routeButton') !== null) findTheWay(feature, overlay);
+            if(document.querySelector(".chatbutton") !== null){
+                document.querySelector(".chatbutton").addEventListener("click", () => {
+                    location.replace("chatroom.html")
+                })
+            }
             overlay.setPosition(coordinate);
         }else {
             overlay.setPosition(undefined);
@@ -178,7 +182,7 @@ function addPopupContent(feature){
 
     if(feature.A.data === "friend" || feature.A.data === "user") {
         content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>' + '</p>'+
-            '<br><button>Chat</button> <button class="routeButton" >Fastest route</button>';
+            '<br><button class="chatbutton">Chat</button> <button class="routeButton" >Fastest route</button>';
     }
     else{
         content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>'+ '</p>'+
@@ -289,3 +293,19 @@ async function getClosestRoute(endLonLat) {
     return {route: result.features[0]};
 }
 
+// async function addLoadingAnimation() {
+//     document.querySelector("body").setAttribute("animation", "true")
+//     document.querySelector("body").innerHTML += `<div class="animation">
+//         <img class="rocket" src="assets/images/rocket.png">
+//             <div class="longfazers">
+//                 <span></span>
+//                 <span></span>
+//                 <span></span>
+//                 <span></span>
+//             </div>
+//             <h1>loading</h1></div>`
+//     await new Promise(resolve => setTimeout(resolve, 6000))//display loading animation;
+//     document.querySelector("body").removeAttribute("animation");
+//     let elem = document.querySelector(".animation");
+//     elem.remove();
+// }
