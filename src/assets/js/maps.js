@@ -19,6 +19,10 @@ const yourLocation = [3.2145869436534724, 51.19167462236231];
 let routeLayer;
 
 async function init() {
+    if(sessionStorage.getItem("hasVisited") === null){
+        await addLoadingAnimation();
+        sessionStorage.setItem("hasVisited",true)
+    }
     document.querySelector("#proximitychat").addEventListener("click", goToGeneralChat);
     createBasicMap();
     addProximityLayer();//draw the circle around the user that simulates the range of users
@@ -309,3 +313,19 @@ async function getClosestRoute(endLonLat) {
     return {route: result.features[0]};
 }
 
+async function addLoadingAnimation() {
+    document.querySelector("body").setAttribute("animation", "true")
+    document.querySelector("body").innerHTML += `<div class="animation">
+        <img class="rocket" src="assets/images/rocket.png">
+            <div class="longfazers">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <h1>loading</h1></div>`
+    await new Promise(resolve => setTimeout(resolve, 9000))//display loading animation;
+    document.querySelector("body").removeAttribute("animation");
+    let elem = document.querySelector(".animation");
+    elem.remove();
+}

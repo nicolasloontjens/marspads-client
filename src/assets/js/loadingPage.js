@@ -25,7 +25,5 @@ async function addLoadingAnimation() {
 }
 
 function removeAnimation() {
-    document.querySelector("body").removeAttribute("animation");
-    let elem = document.querySelector(".animation");
-    elem.remove();
+    
 }
