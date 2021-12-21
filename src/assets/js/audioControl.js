@@ -2,6 +2,9 @@
 
 document.addEventListener("DOMContentLoaded", init);
 let traficAudio = document.querySelector("#trafficAudioFile");
+let talkingAudio = document.querySelector("#talkingFile");
+let mediaAudio = document.querySelector("#mediaFile");
+let constructionAudio = document.querySelector("#constructionNoisesFile");
 
 async function init() {
     console.log("Audio controls loaded.")
@@ -14,7 +17,16 @@ async function init() {
 
 function playSound() {
 
+    unmuteAll();
+
+    mediaAudio.play();
+
+    talkingAudio.play();
+
     traficAudio.play();
+
+    constructionAudio.play();
+
     console.log("play");
 }
 
@@ -44,29 +56,39 @@ function loadAudio() {
 */
 function muteAll() {
     traficAudio.muted = true;
+    mediaAudio.muted = true;
+    talkingAudio.muted = true;
+    constructionAudio.muted = true;
+}
+
+
+function unmuteAll() {
+    traficAudio.muted = false;
+    mediaAudio.muted = false;;
+    talkingAudio.muted = false;;
+    constructionAudio.muted = false;;
 }
 
 function getSelectedSlider(ev) {
-    const sliderName = ev.currentTarget.getAttribute("data-slider");
-    const sliderValue = ev.target.value;
-    const convertedValue = sliderValue / 10;
+    let sliderName = ev.currentTarget.getAttribute("data-slider");
+    let sliderValue = ev.target.value;
+    let convertedValue = sliderValue / 10;
     console.log(sliderName, convertedValue);
     setVolumeOfAudio(sliderName, convertedValue);
 }
 
 function setVolumeOfAudio(sliderName, sliderValue) {
     if (sliderName === "media") {
-        document.querySelector("#media").volume = sliderValue;
+        mediaAudio.volume = sliderValue;
     }
-
     if (sliderName === "talking") {
-        document.querySelector("#talking").volume = sliderValue;
+        talkingAudio.volume = sliderValue;
     }
     if (sliderName === "traffic") {
         traficAudio.volume = sliderValue;
     }
     if (sliderName === "constructionNoises") {
-        document.querySelector("#constructionNoises").volume = sliderValue;
+        constructionAudio.volume = sliderValue;
     }
 
 }
