@@ -5,7 +5,9 @@ self.addEventListener("push", event => {
     console.log(event.data.text())
     msg = event.data.text();
     jsonmessage = JSON.parse(msg);
-    self.registration.showNotification(jsonmessage.sendername + " has sent you a chat request!");
+    self.registration.showNotification(jsonmessage.sendername + " has sent you a chat request!",{
+      icon: './assets/images/MarsPads-logo.png'
+    });
 })
 
 self.addEventListener('notificationclick', function(e) {

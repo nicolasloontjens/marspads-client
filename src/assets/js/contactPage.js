@@ -7,7 +7,6 @@ let sendToServer = null;
 const ulContactList = document.querySelector("#ulContactList");
 
 async function init() {
-    screen.orientation.lock('portrait-primary')
     let contacts = await getUserContacts();
     contacts.sort((a,b) => a.name.localeCompare(b.name));
     config = await loadConfig();
@@ -35,8 +34,13 @@ async function insertContactsIntoHTML(contacts){
                 if(object["contactid"] === contact.contactid){
                     chatid = object["chatid"];
                 }
-            });
-            goToChatInnerHtml(contact, chatid);
+            })
+            document.querySelector("#ulContactList").innerHTML  += `<li><div id="${contact.contactid}">
+                <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
+                <a href="#" class="contactoption-hidden" data-chatid="${chatid}" data-type="gotochat" data-optiontype="contactoption">Chat<br><img alt="go to chat icon" src="./assets/images/gotochaticon.png"></a>
+                <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-optiontype="contactoption">Remove contact<img alt="remove contact" src="./assets/images/removeicon.png"></a>
+                </div>
+            </li>`
         }else{
             sendRequest(contact);
         }
@@ -49,8 +53,8 @@ async function insertContactsIntoHTML(contacts){
 function sendRequest(contact){
     ulContactList.innerHTML += `<li><div id="${contact.contactid}" >
             <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
-            <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-type="sendrequest" data-optiontype="contactoption">Send chat request</a>
-            <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-optiontype="contactoption">Remove contact</a> 
+            <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-type="sendrequest" data-optiontype="contactoption">Send chat request<img alt="send chat request" src="./assets/images/sendrequesticon.png"></a>
+            <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-optiontype="contactoption">Remove contact<img alt="remove contact" src="./assets/images/removeicon.png"></a> 
             </div>
         </li>`
 }
