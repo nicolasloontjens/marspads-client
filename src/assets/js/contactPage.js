@@ -6,7 +6,6 @@ let api = null;
 let sendToServer = null;
 
 async function init() {
-    screen.orientation.lock('portrait-primary')
     let contacts = await getUserContacts();
     contacts.sort((a,b) => a.name.localeCompare(b.name));
     config = await loadConfig();

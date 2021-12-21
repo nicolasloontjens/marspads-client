@@ -1,3 +1,6 @@
+*{
+  touch-action: manipulation;
+}
 body {
   font-size: 5rem;
   font-family: 'Spartan', sans-serif;
@@ -123,7 +126,7 @@ body {
     top: 10%;
     left: 5%;
     width: 80vw;
-    height: 40vh;
+    height: 60vh;
     background-color: #0c1a2e;
     border-radius: 2%;
     #popup-closer{

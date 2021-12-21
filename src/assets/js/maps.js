@@ -28,8 +28,8 @@ async function init(){
     addProximityLayer();//draw the circle around the user that simulates the range of users
     addOtherLayers(fixedmarkercoords);//add the friend layers, other user layer
     addCheckboxEventListener();//activate filter feature
-    document.addEventListener("dblclick", toggleFullScreen);
-    document.addEventListener("dbltap", toggleFullScreen);
+    document.querySelector("#map").addEventListener("dblclick", toggleFullScreen);
+    document.querySelector("#map").addEventListener("dbltap", toggleFullScreen);
 }
 
 function goToGeneralChat(e){
