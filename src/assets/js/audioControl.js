@@ -11,7 +11,6 @@ async function init() {
     document.querySelectorAll(".slider").forEach(e => e.addEventListener("change", getSelectedSlider));
     document.querySelector("#play").addEventListener("click", playSound);
     document.querySelector("#closeSettings").addEventListener("click", closeOverlay);
-    document.querySelector("#audiNav").addEventListener("click", openOverlay);
 }
 
 function playSound() {
