@@ -17,8 +17,6 @@ async function init() {
 
 function playSound() {
 
-    unmuteAll();
-
     mediaAudio.play();
 
     talkingAudio.play();
@@ -55,18 +53,11 @@ function loadAudio() {
 }
 */
 function muteAll() {
-    traficAudio.muted = true;
-    mediaAudio.muted = true;
-    talkingAudio.muted = true;
-    constructionAudio.muted = true;
-}
-
-
-function unmuteAll() {
-    traficAudio.muted = false;
-    mediaAudio.muted = false;;
-    talkingAudio.muted = false;;
-    constructionAudio.muted = false;;
+    traficAudio.volume = 0;
+    document.querySelectorAll(".slider").forEach(slider => slider.value = 0);
+    mediaAudio.volume = 0;
+    talkingAudio.volume = 0;
+    constructionAudio.volume = 0;
 }
 
 function getSelectedSlider(ev) {
