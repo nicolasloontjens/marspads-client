@@ -19,7 +19,7 @@ function sendPublicMessage(e){
     e.preventDefault();
     const message = document.querySelector("#chat-message").value;
     if(message !== ""){
-        const user = JSON.parse(localStorage.getItem("user"));
+        let user = JSON.parse(localStorage.getItem("user"));
         const data = {type: 'message',marsid:user.marsid,"message": message};
         sendToServer(data);
         message.value = "";
