@@ -27,8 +27,8 @@ body #closeSpan {
   content: none;
   border: none;
   background: #0c1a2e;
-  font-size: 1.6rem;
-  margin-left: 4vh;
+  font-size: 0.8rem;
+  margin-left: 22vh;
   text-align: center;
   width: 40vh;
 }
