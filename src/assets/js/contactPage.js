@@ -82,6 +82,9 @@ function goToChatOrSendChatRequest(e){
         const receiver = parseInt(e.currentTarget.getAttribute("data-contactid"));
         const data = {type: 'chatrequest', 'sendermid': parseInt(getMarsID()), 'receivercontactid': receiver, answer: 0};
         sendToServer(data);
+        const notification = new Notification("Request has been sent!",{
+            icon: "./assets/images/MarsPads-logo.png"
+        })
     }else{
         //go to chatroom
         localStorage.setItem("currentchattype","private");

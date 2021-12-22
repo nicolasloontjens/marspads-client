@@ -1,3 +1,7 @@
+* {
+  touch-action: manipulation;
+}
+
 body a, body h2 {
   margin-top: 2%;
   margin-left: 0;
@@ -23,6 +27,9 @@ body #barStyle {
   align-self: center;
   width: 50%;
   margin: auto;
+}
+body #barStyle #info {
+  font-weight: bold;
 }
 body #startUpdate {
   margin-top: 2%;

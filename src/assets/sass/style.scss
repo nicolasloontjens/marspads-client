@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: nasalization;
   src: url("../font/nasalization-rg.otf") format("opentype");
@@ -61,11 +62,18 @@ body {
       overflow: hidden;
       overflow-y: scroll;
 
+      div{
+        padding-bottom: 1.4rem;
+      }
+
       p {
         font-size: 3.5rem;
         padding: 1rem;
-        line-break: anywhere;
-
+        line-break: loose;
+      }
+      p:nth-child(2){
+        padding-top: 0;
+        padding-bottom: 0.4rem;
       }
 
       .owner {
@@ -78,18 +86,23 @@ body {
 
         p:first-child {
           display: none;
+          margin-bottom: 0%;
         }
       }
 
-      .friend p:nth-child(2) {
-        animation: slideInFriend 0.2s linear forwards;
+      .friend {
+        p:first-child, p:nth-child(2) {
+          animation: slideInFriend 0.2s linear forwards;
+        }
       }
+      
 
 
       .chatMessage p:last-child {
         font-size: 0.7rem;
         color: #eb5f71;
         animation: show-date 1s linear;
+        padding-top: 0rem;
       }
     }
 
@@ -99,17 +112,19 @@ body {
       height: 5vh;
       width: 100vw;
       padding-left: 2%;
-      border-bottom: 5px black solid;
-
+      border-bottom: 5px #cc744e solid;
+      line-height: normal;
       * {
-        margin: 1% 2%;
+        margin: 1% 1%;
         font-size: 3vh;
         display: inline;
       }
 
-      a {
-        text-decoration: underline;
-        color: #FF9061;
+      p{
+        padding-right: 2%;
+      }
+      img{
+        width: 10%;
       }
     }
 
@@ -122,19 +137,19 @@ body {
       button {
         font-size: 4rem;
         width: 20vw;
-        background-color: #FF9061;
-        border: none;
-        color: #212121;
+        background-color: transparent;
+        border: 5px solid;
+        animation: border-gradient 3s linear infinite;
         border-radius: 10%;
       }
 
       input {
+        background-color: transparent;
         display: block;
         font-size: 4rem;
         width: 80vw;
-        background-color: #FF9061;
-        border: none;
-        color: #212121;
+        border: 4px solid;
+        animation: border-gradient 3s linear infinite;
         border-radius: 4%;
       }
 
@@ -461,6 +476,37 @@ body {
 
     to {
       transform: translateX(0px);
+    }
+  }
+
+  @keyframes border-gradient {
+    0%{
+      border-color: #FF9061;
+      color: #FF9061;
+    }
+    12%{
+      border-color: #EB7A5E;
+      color: #EB7A5E;
+    }
+    25%{
+      border-color: #f0666e;
+      color: #f0666e;
+    }
+    50%{
+      border-color: #ff556c;
+      color: #ff556c;
+    }
+    75%{
+      border-color: #f0666e;
+      color: #f0666e;
+    }
+    88%{
+      border-color: #EB7A5E;
+      color: #EB7A5E;
+    }
+    100%{
+      border-color: #FF9061;
+      color: #FF9061;
     }
   }
 }
