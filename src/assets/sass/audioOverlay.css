@@ -1,3 +1,7 @@
+* {
+  touch-action: manipulation;
+}
+
 body {
   /* Code to style the slider is not our own https://www.cssportal.com/style-input-range/ and https://www.w3schools.com/howto/howto_js_rangeslider.asp*/
 }
