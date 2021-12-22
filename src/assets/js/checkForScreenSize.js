@@ -15,12 +15,17 @@ function checkForScreenSize() {
         if (page.toLowerCase() === "chatroom.html" || page.toLowerCase() === "contacts.html") {
             if (window.innerHeight < 2100) {
                 new Notification("Please change screen size to IPhoneX (Portrait mode)", {
-                    icon: "./assets/images/MarsPads-logo.png"});}
+                    icon: "./assets/images/MarsPads-logo.png"
+                });
+            }
         } else {
             if (window.innerWidth !== 980 || window.innerHeight !== 453) {
                 new Notification("Please change screen size to IPhoneX (Landscape mode)", {
                     icon: "./assets/images/MarsPads-logo.png"
-                });}}}
+                });
+            }
+        }
+    }
 }
 
 function checkForMobileOrDesktop() {

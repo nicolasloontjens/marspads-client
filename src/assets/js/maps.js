@@ -322,7 +322,7 @@ async function addLoadingAnimation() {
                 <span></span>
             </div>
             <h1>loading</h1></div>`;
-    await new Promise(resolve => setTimeout(resolve, 9000));//display loading animation;
+    await new Promise(resolve => setTimeout(resolve, 2000));//display loading animation;
     document.querySelector("body").removeAttribute("animation");
     const elem = document.querySelector(".animation");
     elem.remove();
