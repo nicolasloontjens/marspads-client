@@ -10,8 +10,8 @@ self.addEventListener("push", event => { // NOSONAR
 });
 
 self.addEventListener('notificationclick', function(e) { // NOSONAR
-    let notification = e.notification;
-    let action = e.action;
+    const notification = e.notification;
+    const action = e.action;
     if (action === 'close') {
       notification.close();
     }else{

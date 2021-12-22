@@ -53,20 +53,24 @@ body #chatroom #messages {
   display: flex;
   flex-direction: column-reverse;
   height: 85vh;
-  overflow: hidden;
-  overflow-y: scroll;
+  overflow: auto;
 }
 body #chatroom #messages div {
   padding-bottom: 1.4rem;
 }
 body #chatroom #messages p {
-  font-size: 3.5rem;
+  font-size: 40px;
   padding: 1rem;
   line-break: loose;
 }
 body #chatroom #messages p:nth-child(2) {
   padding-top: 0;
   padding-bottom: 0.4rem;
+}
+body #chatroom #messages div p:last-of-type {
+  color: #eb5f71;
+  animation: show-date 1s linear;
+  padding-top: 0rem;
 }
 body #chatroom #messages .owner {
   text-align: right;
@@ -82,12 +86,6 @@ body #chatroom #messages .owner p:first-child {
 body #chatroom #messages .friend p:first-child, body #chatroom #messages .friend p:nth-child(2) {
   animation: slideInFriend 0.2s linear forwards;
 }
-body #chatroom #messages .chatMessage p:last-child {
-  font-size: 0.7rem;
-  color: #eb5f71;
-  animation: show-date 1s linear;
-  padding-top: 0rem;
-}
 body #chatroom #username {
   display: flex;
   justify-content: space-between;
@@ -95,7 +93,6 @@ body #chatroom #username {
   width: 100vw;
   padding-left: 2%;
   border-bottom: 5px #cc744e solid;
-  line-height: normal;
 }
 body #chatroom #username * {
   margin: 1% 1%;
