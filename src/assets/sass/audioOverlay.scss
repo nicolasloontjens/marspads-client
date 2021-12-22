@@ -1,5 +1,8 @@
 *{
   touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 body {
   .overlaySliders {
