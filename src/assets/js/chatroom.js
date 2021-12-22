@@ -17,7 +17,7 @@ async function init() {
 
 function sendPublicMessage(e) {
     e.preventDefault();
-    let message = document.querySelector("#chat-message");
+    const message = document.querySelector("#chat-message");
     if (message.value !== "") {
         const user = JSON.parse(localStorage.getItem("user"));
         const data = {type: 'message', marsid: user.marsid, "message": message.value};
@@ -28,7 +28,7 @@ function sendPublicMessage(e) {
 
 function sendPrivateMessage(e) {
     e.preventDefault();
-    let message = document.querySelector("#chat-message");
+    const message = document.querySelector("#chat-message");
     if (message.value !== "") {
         const user = JSON.parse(localStorage.getItem("user"));
         const chatid = JSON.parse(localStorage.getItem("currentChatId"));
@@ -39,13 +39,13 @@ function sendPrivateMessage(e) {
 }
 
 async function loadPrivateChatMessages() {
-    const api_response = await getAllChatsWithUser(localStorage.getItem("currentChatId"))
-    const response = [...api_response].reverse()
+    const api_response = await getAllChatsWithUser(localStorage.getItem("currentChatId"));
+    const response = [...api_response].reverse();
     response.forEach(message => {
         let timestamp = message.timestamp;
         timestamp = timestamp.substring(0, (timestamp.length - 7));
-        let user = localStorage.getItem("user")
-        user = JSON.parse(user)
+        let user = localStorage.getItem("user");
+        user = JSON.parse(user);
         if (`${message.name}` === user.name) {
             document.querySelector("#messages").insertAdjacentHTML("beforeend", `<div class="chatMessage owner">
 			<p> ${message.name} </p> <p> ${message.content} </p> <p> ${timestamp} </p> 
