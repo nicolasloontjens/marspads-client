@@ -47,7 +47,7 @@ function onPublicMessage(error, message) {
 
             const today = new Date();
             const timestamp = `${today.getFullYear()}-${(today.getMonth() + 1)}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}`;
-            insertChatMessageIntoHTML(message.body, timestamp, "")
+            insertChatMessageIntoHTML(message.body, timestamp, "");
         }
     }
     if (error) {
@@ -62,12 +62,12 @@ function onPrivateMessage(error, message) {
             const timestamp = `${today.getFullYear()}-${(today.getMonth() + 1)}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}`;
 
             const user = message.body.split(":")[0];
-            let owner = localStorage.getItem("user")
-            owner = JSON.parse(owner)
+            let owner = localStorage.getItem("user");
+            owner = JSON.parse(owner);
             if (`${user}` === owner.name) {
-                insertChatMessageIntoHTML(message.body, timestamp, "owner")//test insertChatMessageIntoHTML(res, "owner")
+                insertChatMessageIntoHTML(message.body, timestamp, "owner");
             } else {
-                insertChatMessageIntoHTML(message.body, timestamp, "friend")
+                insertChatMessageIntoHTML(message.body, timestamp, "friend");
             }
         }
     }

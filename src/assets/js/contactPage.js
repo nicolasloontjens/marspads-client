@@ -82,9 +82,9 @@ function goToChatOrSendChatRequest(e){
         const receiver = parseInt(e.currentTarget.getAttribute("data-contactid"));
         const data = {type: 'chatrequest', 'sendermid': parseInt(getMarsID()), 'receivercontactid': receiver, answer: 0};
         sendToServer(data);
-        const notification = new Notification("Request has been sent!",{
+        const notification = new Notification("Request has been sent!",{ // NOSONAR
             icon: "./assets/images/MarsPads-logo.png"
-        })
+        });
     }else{
         //go to chatroom
         localStorage.setItem("currentchattype","private");
@@ -146,7 +146,7 @@ function displayAddFriendPopUp(){
 function addFriend(e){
     e.preventDefault();
     const contactid = document.querySelector("#addcontactid").value;
-    let owncontactid = localStorage.getItem("user")
+    let owncontactid = localStorage.getItem("user");
     owncontactid = JSON.parse(owncontactid).contactid + "";
     if(contactid !== "" && contactid !== owncontactid){
         fetch(`https://project-ii.ti.howest.be/mars-17/api/user/${getMarsID()}/contacts/add/${contactid}`,{
