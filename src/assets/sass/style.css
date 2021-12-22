@@ -56,13 +56,28 @@ body #chatroom #messages {
   overflow: hidden;
   overflow-y: scroll;
 }
-body #chatroom #messages .owner {
-  text-align: right;
-}
 body #chatroom #messages p {
   font-size: 3.5rem;
   padding: 1rem;
-  line-break: strict;
+  line-break: anywhere;
+}
+body #chatroom #messages .owner {
+  text-align: right;
+  background-color: #0f1e33;
+}
+body #chatroom #messages .owner p:nth-child(2) {
+  animation: slideIn 0.2s linear forwards;
+}
+body #chatroom #messages .owner p:first-child {
+  display: none;
+}
+body #chatroom #messages .friend p:nth-child(2) {
+  animation: slideInFriend 0.2s linear forwards;
+}
+body #chatroom #messages .chatMessage p:last-child {
+  font-size: 0.7rem;
+  color: #eb5f71;
+  animation: show-date 1s linear;
 }
 body #chatroom #username {
   display: flex;
@@ -93,6 +108,7 @@ body #chatroom #communication-panel button {
   background-color: #FF9061;
   border: none;
   color: #212121;
+  border-radius: 10%;
 }
 body #chatroom #communication-panel input {
   display: block;
@@ -101,6 +117,7 @@ body #chatroom #communication-panel input {
   background-color: #FF9061;
   border: none;
   color: #212121;
+  border-radius: 4%;
 }
 body #chatroom #communication-panel input:focus {
   outline: none;
@@ -343,6 +360,30 @@ body .buttonProx:hover::after, body button:focus::after {
     width: 200px;
     height: 200px;
     opacity: 0;
+  }
+}
+@keyframes show-date {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slideInFriend {
+  from {
+    transform: translateX(-200px);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(200px);
+  }
+  to {
+    transform: translateX(0px);
   }
 }
 

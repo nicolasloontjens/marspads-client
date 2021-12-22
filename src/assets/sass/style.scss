@@ -3,9 +3,10 @@
   src: url("../font/nasalization-rg.otf") format("opentype");
 }
 
-*{
+* {
   touch-action: manipulation;
 }
+
 body {
   background: #11223B;
   color: #FF9061;
@@ -60,13 +61,35 @@ body {
       overflow: hidden;
       overflow-y: scroll;
 
-      .owner{
-        text-align: right;
-      }
       p {
         font-size: 3.5rem;
         padding: 1rem;
-        line-break: strict;
+        line-break: anywhere;
+
+      }
+
+      .owner {
+        text-align: right;
+        background-color: #0f1e33;
+
+        p:nth-child(2) {
+          animation: slideIn 0.2s linear forwards;
+        }
+
+        p:first-child {
+          display: none;
+        }
+      }
+
+      .friend p:nth-child(2) {
+        animation: slideInFriend 0.2s linear forwards;
+      }
+
+
+      .chatMessage p:last-child {
+        font-size: 0.7rem;
+        color: #eb5f71;
+        animation: show-date 1s linear;
       }
     }
 
@@ -102,6 +125,7 @@ body {
         background-color: #FF9061;
         border: none;
         color: #212121;
+        border-radius: 10%;
       }
 
       input {
@@ -111,6 +135,7 @@ body {
         background-color: #FF9061;
         border: none;
         color: #212121;
+        border-radius: 4%;
       }
 
       input:focus {
@@ -406,4 +431,36 @@ body {
   }
 
 
+  @keyframes show-date {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+
+  @keyframes slideInFriend {
+
+    from {
+      transform: translateX(-200px);
+    }
+
+    to {
+      transform: translateX(0px);
+    }
+  }
+
+
+  @keyframes slideIn {
+
+    from {
+      transform: translateX(200px);
+    }
+
+    to {
+      transform: translateX(0px);
+    }
+  }
 }
