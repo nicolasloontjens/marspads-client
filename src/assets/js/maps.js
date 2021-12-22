@@ -83,15 +83,6 @@ function createBasicMap(){
     map.removeInteraction(dblclickinteraction);
 }
 
-function createMarkerFeature(coords, datatype, dataName){
-    return new ol.Feature({
-        type:"marker",
-        data: datatype,
-        dataName: dataName,
-        geometry: new ol.geom.Point(ol.proj.fromLonLat([coords.latitude,coords.longitude]))
-    });
-}
-
 function addOtherLayers(arrayofcoords){
     function createMarkerFeature(coords, datatype, dataName){
         return new ol.Feature({
@@ -168,10 +159,17 @@ function addOtherLayers(arrayofcoords){
         return false;
     };
 
+
+
+    /**
+     * Add a click handler to the map to render the popup.
+     */
     map.on('singleclick', function (evt) {
+        const coordinate = evt.coordinate;
         const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
             return feature;
         });
+
         if (feature && feature.A.type === "marker") {
             addPopupContent(feature);
             if (document.querySelector('.routeButton') !== null) {
@@ -188,12 +186,13 @@ function addOtherLayers(arrayofcoords){
                     location.replace("chatroom.html");
                 });
             }
-            overlay.setPosition(evt.coordinate);
+            overlay.setPosition(coordinate);
         } else {
             overlay.setPosition(undefined);
             closer.blur();
         }
     });
+
 }
 
 function addPopupContent(feature){
@@ -201,11 +200,11 @@ function addPopupContent(feature){
     const dataToUpperCase = feature.get('data').charAt(0).toUpperCase() + feature.get('data').slice(1);
 
     if (feature.A.data === "friend" || feature.A.data === "user") {
-        content.innerHTML = `<p>${feature.get('dataName')} <br><span> ${dataToUpperCase} </span></p>
-            <br><button class="chatbutton">Chat</button> <button class="routeButton" >Fastest route</button>`;
+        content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>' + '</p>' +
+            '<br><button class="chatbutton">Chat</button> <button class="routeButton" >Fastest route</button>';
     } else {
-        content.innerHTML = `<p> ${feature.get('dataName')} <br><span> ${dataToUpperCase} </span></p>
-            <br><button class="audioPopUpMute" >Mute</button> <button class="audioPopUp" >See all noises</button>`;
+        content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>' + '</p>' +
+            '<br><button class="audioPopUpMute" >Mute</button> <button class="audioPopUp" >See all noises</button>';
     }
 }
 
@@ -307,8 +306,7 @@ function findTheWay(feature, overlay){
 
 async function getClosestRoute(endLonLat) {
     const API_KEY = '5b3ce3597851110001cf624814086a7454a5498e922d0f028ec7db66';
-    const link = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${API_KEY}&start=${yourLocation[0]},${yourLocation[1]}&end=${endLonLat[0]},${endLonLat[1]}`;
-    const response = await fetch(link);
+    const response = await fetch(`https://api.openrouteservice.org/v2/directions/driving-car?api_key=${API_KEY}&start=${yourLocation[0]},${yourLocation[1]}&end=${endLonLat[0]},${endLonLat[1]}`);
     const result = await response.json();
     return {route: result.features[0]};
 }

@@ -54,7 +54,8 @@ body {
     width: 100vw;
 
     #messages {
-      display: block;
+      display: flex;
+      flex-direction: column-reverse;
       height: 85vh;
       overflow: hidden;
       overflow-y: scroll;
@@ -63,15 +64,11 @@ body {
         text-align: right;
       }
       p {
-        font-size: 4rem;
+        font-size: 3.5rem;
         padding: 1rem;
-        line-break: anywhere;
-      }
-      p:nth-child(odd){
-        background-color:  #0e1e35;
+        line-break: strict;
       }
     }
-
 
     #username {
       display: flex;

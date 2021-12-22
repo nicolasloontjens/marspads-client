@@ -43,15 +43,11 @@ function openSocket() {
 function onPublicMessage(error, message) {
 	if(document.querySelector("main").getAttribute("id") === "chatroom"){
 		if(localStorage.getItem("currentchattype") === "public"){
-			document.querySelector("#messages").innerHTML +=
-			`   <p class="chatMessage">
-					${message.body}
-				</p>
-			`;
-		if (error) {
-			console.error(error);
+			insertChatMessageIntoHTML(message.body, "")
 		}
-		}
+	}
+	if (error) {
+		console.error(error);
 	}
 }
 
@@ -65,22 +61,24 @@ function onPrivateMessage(error, message){
 			const actualmessage = textmessage.split(":")[1];
 			let owner = localStorage.getItem("user")
             owner = JSON.parse(owner)
-
+			const res = `${user} @ ${timestamp}: ${actualmessage}`;
             if (`${user}` === owner.name) {
-                document.querySelector("#messages").innerHTML +=
-                    `   <p class="chatMessage owner">
-                    ${user} @ ${timestamp}: ${actualmessage}
-                </p>
-            `;
+				insertChatMessageIntoHTML(res, "owner")
             } else {
-                document.querySelector("#messages").innerHTML +=
-                    `   <p class="chatMessage">
-                    ${user} @ ${timestamp}: ${actualmessage}
-                </p>
-            `;
+				insertChatMessageIntoHTML(res, "")
             }
 		}
 	}
+	if (error) {
+		console.error(error);
+	}
+}
+
+function insertChatMessageIntoHTML(messagebody, htmlclass){
+	document.querySelector("#messages").insertAdjacentHTML("afterbegin",
+		`<p class="chatMessage ${htmlclass}">
+			${messagebody}
+		</p>`);
 }
 
 function onRequest(error, message){
