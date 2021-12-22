@@ -4,10 +4,6 @@
   src: url("../font/nasalization-rg.otf") format("opentype");
 }
 
-element{
-  --angle: 0deg;
-}
-
 * {
   touch-action: manipulation;
 }
@@ -137,37 +133,6 @@ body {
       display: grid;
       grid-template-columns: max-content auto max-content;
       column-gap: 10px;
-
-      @keyframes border-gradient {
-        0%{
-          border-color: #FF9061;
-          color: #FF9061;
-        }
-        12%{
-          border-color: #EB7A5E;
-          color: #EB7A5E;
-        }
-        25%{
-          border-color: #f0666e;
-          color: #f0666e;
-        }
-        50%{
-          border-color: #ff556c;
-          color: #ff556c;
-        }
-        75%{
-          border-color: #f0666e;
-          color: #f0666e;
-        }
-        88%{
-          border-color: #EB7A5E;
-          color: #EB7A5E;
-        }
-        100%{
-          border-color: #FF9061;
-          color: #FF9061;
-        }
-      }
 
       button {
         font-size: 4rem;
@@ -514,5 +479,34 @@ body {
     }
   }
 
-  
+  @keyframes border-gradient {
+    0%{
+      border-color: #FF9061;
+      color: #FF9061;
+    }
+    12%{
+      border-color: #EB7A5E;
+      color: #EB7A5E;
+    }
+    25%{
+      border-color: #f0666e;
+      color: #f0666e;
+    }
+    50%{
+      border-color: #ff556c;
+      color: #ff556c;
+    }
+    75%{
+      border-color: #f0666e;
+      color: #f0666e;
+    }
+    88%{
+      border-color: #EB7A5E;
+      color: #EB7A5E;
+    }
+    100%{
+      border-color: #FF9061;
+      color: #FF9061;
+    }
+  }
 }
