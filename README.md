@@ -4,31 +4,39 @@
 ![badge](https://sonar.ti.howest.be/badges/project_badges/measure?project=2021.project-ii:mars-client-17&metric=bugs)
 ![badge](https://sonar.ti.howest.be/badges/project_badges/measure?project=2021.project-ii:mars-client-17&metric=code_smells)
 ![badge](https://sonar.ti.howest.be/badges/project_badges/measure?project=2021.project-ii:mars-client-17&metric=coverage)
+![badge](https://sonar.ti.howest.be/badges/project_badges/measure?project=2021.project-ii:mars-client-17&metric=vulnerabilities)
+![badge](https://sonar.ti.howest.be/badges/project_badges/measure?project=2021.project-ii:mars-client-17&metric=duplicated_lines_density)
 
 ## Home page
 
 Will start off with a picture of our home page.
 
-![Screenshot of the home page](imagesReadme/homePage.png)
+<img src="imagesReadme/homePage.png" alt="home page"
+	title="home page" width="600"/>
 
 On the home page you can find the map and the filter. On the map you can see different markers, one for your friend, surrounding sounds, the other users and yourself of course. You can filter the marker by unchecking the desired marker.
 
 You can click on the markers and then a popup will appear. Here you have different options for example, with a friend you can find the fastest way to get to him to of start a private chat with him. This can also be done with the other users. 
 
-![Screenshot of the friend pop-up](imagesReadme/viewFriend.png)
+<img src="imagesReadme/viewFriend.png" alt="view friend"
+	title="view friend" width="600"/>
+
 
 Example of finding the fastest route to your friend.
 
-![Screenshot of the route to your friend](imagesReadme/routeToFriend.png)
+<img src="imagesReadme/routeToFriend.png" alt="route friend"
+	title="route to friend" width="600"/>
 
 The sound has other options like muting and an overview of all the surrounding sounds.
 
-![Screenshot of sound pop-up](imagesReadme/viewSound.png)
+<img src="imagesReadme/viewSound.png" alt="view sound"
+	title="view sound" width="600"/>
 
 If you want to view all the current sounds select "See all noises" and an Overlay will appear.
 Here you can mute all sounds or adjust the volume of the different sounds.
 
-![Screenshot of all sounds](imagesReadme/viewAllSounds.png)
+<img src="imagesReadme/viewAllSounds.png" alt="view all sounds"
+	title="view all sounds" width="600"/>
 
 On the home page you can also find the button "Go to proximity chat" this will open the chat where you can chat will all the people in your closes proximity.
 
@@ -37,7 +45,8 @@ On the home page you can also find the button "Go to proximity chat" this will o
 At the top right corner you'll find the menu option.
 This allows you to navigate to the different pages.
 
-![Screenshot of menu](imagesReadme/menu.png)
+<img src="imagesReadme/menu.png" alt="menu"
+	title="menu" width="600"/>
 
 
 ## Contacts page
@@ -46,17 +55,21 @@ Ernst of the contacts page.
 
 On the contacts page, is it possible to add a contact as a friend. 
 
-
-![Screenshot of the contacts page](imagesReadme/contactsPage.png)
+<img src="imagesReadme/contactsPage.png" alt="contacts page"
+	title="contacts page" width="200"/>
 
 You will need the contact ID of the person you want to add.
 
-![Screenshot of the add friend option](imagesReadme/addfriend.png)
+<img src="imagesReadme/addfriend.png" alt="add friend"
+	title="add friend" width="200"/>
 
-![Screenshot of the add friend Id](imagesReadme/friendId.png)
+<img src="imagesReadme/friendId.png" alt="friendId"
+	title="friendId" width="200"/>
 
 After you added the person you can go back and you'll see that a contact has been added.
-![Screenshot of the contacts overview](imagesReadme/contactOverview.png)
+
+<img src="imagesReadme/contactOverview.png" alt="contact overview"
+	title="contact overview" width="200"/>
 
 Once you select one of the contacts you can get different options:
 
@@ -66,18 +79,22 @@ Once you select one of the contacts you can get different options:
 
 Underneath the different options you can receive.
 
-![Screenshot of the chat view](imagesReadme/chatContact.png)
+<img src="imagesReadme/chatContact.png" alt="chat contact"
+	title="chat contact" width="200"/>
 
-![Screenshot of the contact view](imagesReadme/viewContact.png)
+<img src="imagesReadme/viewContact.png" alt="view contact"
+	title="view contact" width="200"/>
 
 
 If its a new friend you'll have to send a chat request. This person will receive a notification.
 
-![Screenshot of the contact view](imagesReadme/chatRequest.png)
+<img src="imagesReadme/chatRequest.png" alt="chat  request"
+	title="chat request" width="350"/>
 
 Once your friend accepts your request you will automatically join a chat and you can start chatting!
 
-![Screenshot of the contact view](imagesReadme/chatBilly.png)
+<img src="imagesReadme/chatBilly.png" alt="chatBilly"
+	title="chatBilly" width="200"/>
 
 
 ## Settings page
@@ -90,7 +107,8 @@ When you click on update an animation will start.
 
 At the end of the animation it will say that the update was successful.
 
-![Screenshot of the settings page](imagesReadme/settingPage.png)
+<img src="imagesReadme/settingPage.png" alt="settings page"
+	title="settings page" width="600"/>
 
 # Resolution of the poc
 We choose to use the resolution of the iPhone X. 
@@ -99,7 +117,8 @@ If your resolution on your computer is not right a notification will appear.
 
 There you can see in what resolution you need to place it and in what orientation (landscape or portrait).
 
-![Screenshot of a notification](imagesReadme/notification.png)
+<img src="imagesReadme/notification.png" alt="notification"
+	title="notification" width="350"/>
 
 # Localy
 
