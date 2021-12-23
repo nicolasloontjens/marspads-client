@@ -15,7 +15,7 @@ function checkForScreenSize() {
     let page = path.split("/").pop();
 
     setTimeout(function () {
-        if (checkForMobileOrDesktop !== "mobile") {
+        if (checkForMobileOrDesktop != "mobile") {
             if (page.toLowerCase() === "chatroom.html" || page.toLowerCase() === "contacts.html") {
                 if (window.innerHeight < 2100) {
                     new Notification("Please change screen size to IPhoneX (Portrait mode)", {
