@@ -120,9 +120,12 @@ There you can see in what resolution you need to place it and in what orientatio
 <img src="imagesReadme/notification.png" alt="notification"
 	title="notification" width="350"/>
 
-# Localy
+# Run Locally
 
 - Open a terminal in the location you want.
-- Type in the terminal 'git clone git@git.ti.howest.be:TI/2021-2022/s3/analysis-and-development-project/projects/group-17/client.git 
+- Type in the terminal 
+```bash
+git clone git@git.ti.howest.be:TI/2021-2022/s3/analysis-and-development-project/projects/group-17/client.git
+```
 - This will create a a folder with all the files
 - Now you can open the folder with the desired edit program.
