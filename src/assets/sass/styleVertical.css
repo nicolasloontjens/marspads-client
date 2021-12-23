@@ -54,7 +54,7 @@ body #contactList {
   height: 80vh;
   display: flex;
   justify-content: center;
-  margin: 10%;
+  margin-top: 10%;
 }
 body #contactList div {
   padding: 2%;
