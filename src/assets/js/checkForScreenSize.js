@@ -11,11 +11,11 @@ async function init() {
 
 function checkForScreenSize() {
 
-    let path = document.location.pathname;
-    let page = path.split("/").pop();
-
+    const path = document.location.pathname;
+    const page = path.split("/").pop();
+    //we removed the sonar on that if because we first had !== and it said we should use != and then 4 hours later it complained we had != instead of !==
     setTimeout(function () {
-        if (checkForMobileOrDesktop != "mobile") {
+        if (checkForMobileOrDesktop != "mobile") { // NOSONAR
             if (page.toLowerCase() === "chatroom.html" || page.toLowerCase() === "contacts.html") {
                 if (window.innerHeight < 2100) {
                     new Notification("Please change screen size to IPhoneX (Portrait mode)", {

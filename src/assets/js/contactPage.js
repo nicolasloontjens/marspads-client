@@ -167,5 +167,5 @@ function closePopup(e){
     document.querySelector("main section").remove();
     document.querySelector("main").removeAttribute("class");
     document.querySelector("header").removeAttribute("class");
-    updateContacts();
+    location.reload(true);
 }
