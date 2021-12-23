@@ -22,3 +22,10 @@ We choose to use the resolution of the Iphone x. If your resolution on your comp
 what resolution you need to place it and in what orientation(landscape or portrait).
 
 ![Screenshot of the home page](imagesReadme/notification.png)
+
+# Localy
+
+- Open a terminal in the location you want.
+- Type in the terminal 'git clone git@git.ti.howest.be:TI/2021-2022/s3/analysis-and-development-project/projects/group-17/client.git 
+- This will create a a folder with all the files
+- Now you can open the folder in the desired edit program.
