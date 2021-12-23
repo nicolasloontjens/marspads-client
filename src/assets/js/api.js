@@ -67,7 +67,7 @@ async function createUser(){
     fetch(`https://project-ii.ti.howest.be/mars-17/api/create/${userid}`,{
         method: "POST"
     }).then(response => response.json()).then(json => {
-        if(json.status === 500){
+        if(json.status === 400){
             createUser();
         }
         localStorage.setItem("user",JSON.stringify(json));
