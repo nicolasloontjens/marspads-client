@@ -37,7 +37,6 @@ function openSocket() {
         eb.registerHandler(CHNL_TO_CLIENT_MULTICAST, onPrivateMessage);
         eb.registerHandler(CHNL_TO_CLIENT_UNICAST, onRequest);
     };
-
     return sendToServer;
 }
 
@@ -45,9 +44,11 @@ function onPublicMessage(error, message) {
     if (document.querySelector("main").getAttribute("id") === "chatroom") {
         if (localStorage.getItem("currentchattype") === "public") {
 
-            const today = new Date();
-            const timestamp = `${today.getFullYear()}-${(today.getMonth() + 1)}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}`;
-            insertChatMessageIntoHTML(message.body, timestamp, "");
+            if (checkIfFriend(message)) {
+                insertChatMessageIntoHTML(message.body, checktime(), "owner");
+            } else {
+                insertChatMessageIntoHTML(message.body, checktime(), "friend");
+            }
         }
     }
     if (error) {
@@ -55,16 +56,33 @@ function onPublicMessage(error, message) {
     }
 }
 
+function checktime() {
+    const today = new Date();
+    let minutes = today.getMinutes();
+    let hour = today.getHours();
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+    if (hour < 10) {
+        hour = "0" + hour;
+    }
+    return `${hour}:${minutes}`;
+}
+
+function checkIfFriend(message) {
+    const user = message.body.split(":")[0];
+    let owner = localStorage.getItem("user");
+    owner = JSON.parse(owner);
+    return user === owner.name;
+}
+
 function onPrivateMessage(error, message) {
     if (document.querySelector("main").getAttribute("id") === "chatroom") {
         if (localStorage.getItem("currentchattype") === "private") {
             const today = new Date();
-            const timestamp = `${today.getFullYear()}-${(today.getMonth() + 1)}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}`;
+            const timestamp = `${today.getFullYear()}-${(today.getMonth() + 1)}-${today.getDate()} ${checktime()}`;
 
-            const user = message.body.split(":")[0];
-            let owner = localStorage.getItem("user");
-            owner = JSON.parse(owner);
-            if (`${user}` === owner.name) {
+            if (checkIfFriend(message)) {
                 insertChatMessageIntoHTML(message.body, timestamp, "owner");
             } else {
                 insertChatMessageIntoHTML(message.body, timestamp, "friend");
@@ -77,13 +95,8 @@ function onPrivateMessage(error, message) {
 }
 
 function insertChatMessageIntoHTML(messagebody, timestamp, htmlclass) {
-
     const user = messagebody.split(":")[0];
     const actualmessage = messagebody.split(":")[1];
-
-    //const res = `${user} @ ${timestamp}: ${actualmessage}`;
-
-
     document.querySelector("#messages").insertAdjacentHTML("afterbegin",
         `<div class="chatMessage ${htmlclass}">
 			<p> ${user} </p> <p> ${actualmessage} </p> <p> ${timestamp} </p> 
