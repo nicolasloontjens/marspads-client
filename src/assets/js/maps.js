@@ -166,7 +166,6 @@ function addOtherLayers(arrayofcoords){
         const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
             return feature;
         });
-
         if (feature && feature.A.type === "marker") {
             addPopupContent(feature);
             if (document.querySelector('.routeButton') !== null) {
@@ -184,11 +183,10 @@ function addOtherLayers(arrayofcoords){
                 });
             }
             overlay.setPosition(coordinate);
-        } else {
+        }else {
             overlay.setPosition(undefined);
             closer.blur();
-        }
-    });
+        }});
 }
 
 function addPopupContent(feature){
