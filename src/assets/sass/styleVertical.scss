@@ -1,28 +1,31 @@
-*{
+* {
   touch-action: manipulation;
 }
+
 body {
   font-size: 5rem;
   font-family: 'Spartan', sans-serif;
 
-  h1{
+  h1 {
     color: #FF9061;
     text-align: center;
-    padding:3%;
+    padding: 3%;
   }
 
-  main{
+  main {
     text-align: center;
   }
 
-  header{
+  header {
     padding: 3%;
     display: flex;
     justify-content: space-between;
-    *{
+
+    * {
       display: inline-block;
     }
-    img{
+
+    img {
       height: 10%;
       width: 10%;
       margin: 0;
@@ -31,25 +34,27 @@ body {
   }
 
   input {
-      background: url("../images/magnifyingGlassIcon.png") no-repeat right;
-      background-size: contain;
-      border: none;
-      border-bottom: 5px #f0666e solid;
-      border-radius: 10px;
-      padding: 5px;
-      font-size: 4rem;
-      letter-spacing: 1px;
-      color: #eb5f71;
-      text-align: center;
-    }
-    ::placeholder {
-      color: #eb5f71;
-      text-align: center;
-    }
-    input:focus{
-      border: none;
-      outline: none;
-      border-bottom: 5px #f0666e solid;
+    background: url("../images/magnifyingGlassIcon.png") no-repeat right;
+    background-size: contain;
+    border: none;
+    border-bottom: 5px #f0666e solid;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 4rem;
+    letter-spacing: 1px;
+    color: #eb5f71;
+    text-align: center;
+  }
+
+  ::placeholder {
+    color: #eb5f71;
+    text-align: center;
+  }
+
+  input:focus {
+    border: none;
+    outline: none;
+    border-bottom: 5px #f0666e solid;
   }
 
   #contactList {
@@ -61,37 +66,57 @@ body {
     justify-content: center;
     margin-top: 10%;
 
-    div{
+    div {
       padding: 2%;
       margin: 1% 0;
     }
 
-    ul li div{
+    ul li div {
       background: #FF9061;
       width: 70vw;
     }
-    ul li div a:first-of-type{
+
+    ul li div a:first-of-type {
       grid-column-start: 1;
       grid-column-end: 3;
       margin-bottom: 0;
     }
-    
-    ul li div a img{
+
+    ul li div a img {
       padding-top: 4%;
       height: 50%;
       width: 22%;
     }
 
-    .contactItem{
+    .contactItem {
       padding: 2%;
     }
 
-    div[clicked="true"]{
+    .contactSlideOpen {
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
       animation: open-contact-div 0.6s linear forwards;
-      .contactoption{
+
+      .contactoption {
+        animation: open-contact-option 1s linear
+
+      }
+
+      .contact {
+        z-index: 1;
+      }
+
+
+    }
+
+    .openAContact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      animation: open-contact-div 0.6s linear forwards;
+
+      .contactoption {
         animation: open-contact-option 1s linear
       }
     }
@@ -101,11 +126,11 @@ body {
       color: white;
     }
 
-    .contactoption-hidden{
+    .contactoption-hidden {
       display: none;
     }
 
-    .contactoption{
+    .contactoption {
       display: block;
       font-size: 1.5vh
     }
@@ -113,20 +138,24 @@ body {
   }
 }
 
-.active{
-  img, div, h1{
-    filter:blur(20px);
+.active {
+  img, div, h1 {
+    filter: blur(20px);
     z-index: 1;
   }
-  section{
+
+  section {
     filter: none;
     z-index: 0;
-    *{
+
+    * {
       z-index: 0;
     }
-    h2{
+
+    h2 {
       color: #FF9061;
     }
+
     padding: 5%;
     position: fixed;
     top: 10%;
@@ -135,7 +164,8 @@ body {
     height: 60vh;
     background-color: #0c1a2e;
     border-radius: 2%;
-    #popup-closer{
+
+    #popup-closer {
       display: block;
       text-align: right;
       margin-left: 90%;
@@ -143,23 +173,26 @@ body {
       text-decoration: none;
       color: #cc3c4f;
     }
-    p{
+
+    p {
       font-size: 50%;
       margin-bottom: 10%;
       color: #FF9061;
       font-weight: bolder;
     }
-    input{
+
+    input {
       margin-top: 5%;
       width: 90%;
       height: 10%;
-      border:none;
+      border: none;
       background-image: none;
       background-color: #070e18;
       caret-color: #eb5f71;
       margin-bottom: 10%;
     }
-    #addcontact{
+
+    #addcontact {
       text-decoration: underline;
       margin-top: 5%;
       display: block;
@@ -171,18 +204,18 @@ body {
 
 
 @keyframes open-contact-div {
-  100%{
-    margin-top:4%;
+  100% {
+    margin-top: 4%;
     margin-bottom: 4%;
   }
 }
 
 
 @keyframes open-contact-option {
-  0%{
+  0% {
     opacity: 0;
   }
-  100%{
+  100% {
     opacity: 1;
   }
 }
