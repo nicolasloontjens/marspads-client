@@ -130,6 +130,12 @@ git clone git@git.ti.howest.be:TI/2021-2022/s3/analysis-and-development-project/
 - This will create a a folder with all the files
 - Now you can open the folder with the desired edit program.
 
+# Known bugs
+
+Sometimes when visiting the site online on https://project-ii.ti.howest.be/mars-17/ you might have to reload the site using ctrl + F5, otherwise certain features might not work.
+
+If the server was rebooted, you will have to clear your localstorage and refresh the index page, this is so that you create a new user locally, this only needs to be done if the server has rebooted.
+
 # Video demonstration 
 
 [Click here to download the video](imagesReadme/poc_demo.mp4)
