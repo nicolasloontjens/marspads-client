@@ -133,3 +133,5 @@ git clone git@git.ti.howest.be:TI/2021-2022/s3/analysis-and-development-project/
 # Video demonstration 
 
 [Click here to download the video](imagesReadme/poc_demo.mp4)
+
+Note: The video is quite large, it takes a while to download and there was something wrong with the sound so there isn't any sound
