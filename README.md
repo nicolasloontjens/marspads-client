@@ -1,4 +1,4 @@
-# Explanation poc
+# MarsPads client
 
 ![badge](https://sonar.ti.howest.be/badges/project_badges/quality_gate?project=2021.project-ii:mars-client-17)
 ![badge](https://sonar.ti.howest.be/badges/project_badges/measure?project=2021.project-ii:mars-client-17&metric=bugs)
@@ -129,3 +129,11 @@ git clone git@git.ti.howest.be:TI/2021-2022/s3/analysis-and-development-project/
 ```
 - This will create a a folder with all the files
 - Now you can open the folder with the desired edit program.
+
+# Video demonstration 
+
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true" poster="./imagesReadme/menu.png">
+    <source src="./imagesReadme/poc_demo.mp4" type="video/mp4">
+  </video>
+</figure>
