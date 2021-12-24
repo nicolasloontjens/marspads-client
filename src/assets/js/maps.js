@@ -178,9 +178,7 @@ function addOtherLayers(arrayofcoords){
                 document.querySelector(".audioPopUpMute").addEventListener("click", muteAll);
             }
             if(document.querySelector(".chatbutton") !== null){
-                document.querySelector(".chatbutton").addEventListener("click", () => {
-                    location.replace("chatroom.html");
-                });
+                document.querySelector(".chatbutton").addEventListener("click", () => {location.replace("chatroom.html");});
             }
             overlay.setPosition(coordinate);
         }else {
