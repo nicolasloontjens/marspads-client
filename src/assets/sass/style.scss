@@ -52,6 +52,64 @@ body {
     cursor: pointer;
   }
 
+  /* checkbox effect */
+
+  input[type='checkbox'] {
+    display: none
+  }
+
+  //hide original checkbox
+
+  input[type='checkbox'] + label {
+    //position: relative;
+    display: flex;
+    margin: .6em 0;
+    align-items: center;
+    color: #9E9E9E;
+    transition: color 250ms cubic-bezier(.4, .0, .23, 1);
+    background: none;
+  }
+
+  input[type='checkbox'] + label > span {
+    display: flex;
+    align-items: center;
+    margin-right: 1em;
+    width: 1em;
+    height: 1em;
+    background: transparent;
+    border: 2px solid #9E9E9E;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 250ms cubic-bezier(.4, .0, .23, 1);
+  }
+
+  input[type='checkbox'] + label:hover, input[type='checkbox']:focus + label {
+    color: #FF9061;
+    cursor: pointer;
+    background: none;
+  }
+
+  input[type='checkbox'] + label:hover > span, input[type='checkbox']:focus + label > span {
+    background: rgba(255, 255, 255, .1);
+  }
+
+  input[type='checkbox']:checked + label > span {
+    border: .5em solid #FF9061;
+    animation: shrink-bounce 200ms cubic-bezier(.4, .0, .23, 1);
+    background: #FF9061;
+  }
+
+  input[type='checkbox']:checked + label > span:before { //Check mark: v
+    content: "";
+    position: absolute;
+    //margin-top: 4px;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    transform: rotate(45deg);
+    transform-origin: 0% 100%;
+    animation: checkbox-check 125ms 250ms cubic-bezier(.4, .0, .23, 1) forwards;
+  }
+
   .ol-popup {
     animation: bounce 4s ease forwards;
     position: absolute;
@@ -270,64 +328,6 @@ body {
       transform: translateY(0%);
     }
 
-  }
-
-  /* checkbox effect */
-
-  input[type='checkbox'] {
-    display: none
-  }
-
-  //hide original checkbox
-
-  input[type='checkbox'] + label {
-    //position: relative;
-    display: flex;
-    margin: .6em 0;
-    align-items: center;
-    color: #9E9E9E;
-    transition: color 250ms cubic-bezier(.4, .0, .23, 1);
-    background: none;
-  }
-
-  input[type='checkbox'] + label > span {
-    display: flex;
-    align-items: center;
-    margin-right: 1em;
-    width: 1em;
-    height: 1em;
-    background: transparent;
-    border: 2px solid #9E9E9E;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all 250ms cubic-bezier(.4, .0, .23, 1);
-  }
-
-  input[type='checkbox'] + label:hover, input[type='checkbox']:focus + label {
-    color: #FF9061;
-    cursor: pointer;
-    background: none;
-  }
-
-  input[type='checkbox'] + label:hover > span, input[type='checkbox']:focus + label > span {
-    background: rgba(255, 255, 255, .1);
-  }
-
-  input[type='checkbox']:checked + label > span {
-    border: .5em solid #FF9061;
-    animation: shrink-bounce 200ms cubic-bezier(.4, .0, .23, 1);
-    background: #FF9061;
-  }
-
-  input[type='checkbox']:checked + label > span:before { //Check mark: v
-    content: "";
-    position: absolute;
-    //margin-top: 4px;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    transform: rotate(45deg);
-    transform-origin: 0% 100%;
-    animation: checkbox-check 125ms 250ms cubic-bezier(.4, .0, .23, 1) forwards;
   }
 
   @keyframes shrink-bounce {

@@ -11,8 +11,8 @@ body {
   background: #11223B;
   color: #FF9061;
   font-family: nasalization, sans-serif;
-  /* Styling for the popup */
   /* checkbox effect */
+  /* Styling for the popup */
   /* Animation for the button: Go to proximity chat. */
 }
 body .formGroup {
@@ -45,6 +45,51 @@ body #fullscreenLogo {
 }
 body #fullscreenLogo:hover {
   cursor: pointer;
+}
+body input[type=checkbox] {
+  display: none;
+}
+body input[type=checkbox] + label {
+  display: flex;
+  margin: 0.6em 0;
+  align-items: center;
+  color: #9E9E9E;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.23, 1);
+  background: none;
+}
+body input[type=checkbox] + label > span {
+  display: flex;
+  align-items: center;
+  margin-right: 1em;
+  width: 1em;
+  height: 1em;
+  background: transparent;
+  border: 2px solid #9E9E9E;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.23, 1);
+}
+body input[type=checkbox] + label:hover, body input[type=checkbox]:focus + label {
+  color: #FF9061;
+  cursor: pointer;
+  background: none;
+}
+body input[type=checkbox] + label:hover > span, body input[type=checkbox]:focus + label > span {
+  background: rgba(255, 255, 255, 0.1);
+}
+body input[type=checkbox]:checked + label > span {
+  border: 0.5em solid #FF9061;
+  animation: shrink-bounce 200ms cubic-bezier(0.4, 0, 0.23, 1);
+  background: #FF9061;
+}
+body input[type=checkbox]:checked + label > span:before {
+  content: "";
+  position: absolute;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  transform: rotate(45deg);
+  transform-origin: 0% 100%;
+  animation: checkbox-check 125ms 250ms cubic-bezier(0.4, 0, 0.23, 1) forwards;
 }
 body .ol-popup {
   animation: bounce 4s ease forwards;
@@ -227,51 +272,6 @@ body .ol-popup-closer:after {
   30% {
     transform: translateY(0%);
   }
-}
-body input[type=checkbox] {
-  display: none;
-}
-body input[type=checkbox] + label {
-  display: flex;
-  margin: 0.6em 0;
-  align-items: center;
-  color: #9E9E9E;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.23, 1);
-  background: none;
-}
-body input[type=checkbox] + label > span {
-  display: flex;
-  align-items: center;
-  margin-right: 1em;
-  width: 1em;
-  height: 1em;
-  background: transparent;
-  border: 2px solid #9E9E9E;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.23, 1);
-}
-body input[type=checkbox] + label:hover, body input[type=checkbox]:focus + label {
-  color: #FF9061;
-  cursor: pointer;
-  background: none;
-}
-body input[type=checkbox] + label:hover > span, body input[type=checkbox]:focus + label > span {
-  background: rgba(255, 255, 255, 0.1);
-}
-body input[type=checkbox]:checked + label > span {
-  border: 0.5em solid #FF9061;
-  animation: shrink-bounce 200ms cubic-bezier(0.4, 0, 0.23, 1);
-  background: #FF9061;
-}
-body input[type=checkbox]:checked + label > span:before {
-  content: "";
-  position: absolute;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  transform: rotate(45deg);
-  transform-origin: 0% 100%;
-  animation: checkbox-check 125ms 250ms cubic-bezier(0.4, 0, 0.23, 1) forwards;
 }
 @keyframes shrink-bounce {
   0% {
