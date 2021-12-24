@@ -306,7 +306,7 @@ function findTheWay(feature, overlay){
 
 async function getClosestRoute(endLonLat) {
     const API_KEY = '5b3ce3597851110001cf624814086a7454a5498e922d0f028ec7db66';
-    const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${API_KEY}&start=${yourLocation[0]},${yourLocation[1]}&end=${endLonLat[0]},${endLonLat[1]}`
+    const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${API_KEY}&start=${yourLocation[0]},${yourLocation[1]}&end=${endLonLat[0]},${endLonLat[1]}`;
     const response = await fetch(url);
     const result = await response.json();
     return {route: result.features[0]};
