@@ -209,12 +209,7 @@ function addProximityLayer() {
     const proxlayer = new ol.layer.Vector({
         source: new ol.source.Vector({
             projection: 'EPSG:4326',
-            features: [
-                new ol.Feature({
-                    geometry: new ol.geom.Circle(centerLongitudeLatitude, 400),
-                    name: 'Your range'
-                })
-            ]
+            features: [new ol.Feature({geometry: new ol.geom.Circle(centerLongitudeLatitude, 400),name: 'Your range'})]
         }),
         style: [
             new ol.style.Style({
