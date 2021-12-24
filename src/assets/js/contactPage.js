@@ -36,7 +36,7 @@ async function insertContactsIntoHTML(contacts) {
     chats = chats.map((chat) => chat.contactid);
     contacts.forEach(contact => {
         if (chats.includes(contact.contactid)) {
-            const chatid = getChatid(contact, chatidscontactids)
+            const chatid = getChatid(contact, chatidscontactids);
             createHtmlSend(contact, chatid);
         } else {
             createHtmlChat(contact);
@@ -57,8 +57,10 @@ function getChatid(contact, chatidscontactids){
 function createHtmlSend(contact,chatid){
     document.querySelector(ulContactList).innerHTML += `<li><div id="${contact.contactid}" class="contact">
         <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
-        <a href="#" class="contactoption-hidden" data-chatid="${chatid}" data-type="gotochat" data-optiontype="contactoption">Chat<br><img alt="go to chat icon" src="./assets/images/gotochaticon.png"></a>
-        <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-optiontype="contactoption">Remove contact<br><img alt="remove contact" src="./assets/images/removeicon.png"></a>
+        <a href="#" class="contactoption-hidden" data-chatid="${chatid}" data-type="gotochat" data-optiontype="contactoption">
+        Chat<br><img alt="go to chat icon" src="./assets/images/gotochaticon.png"></a>
+        <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-optiontype="contactoption">
+        Remove contact<br><img alt="remove contact" src="./assets/images/removeicon.png"></a>
         </div>
     </li>`;
 }
@@ -66,8 +68,10 @@ function createHtmlSend(contact,chatid){
 function createHtmlChat(contact){
     document.querySelector(ulContactList).innerHTML += `<li><div id="${contact.contactid}" class="contact" >
         <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
-        <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-type="sendrequest" data-optiontype="contactoption">Send chat request<br><img alt="send chat request" src="./assets/images/sendrequesticon.png"></a>
-        <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-optiontype="contactoption">Remove contact<br><img alt="remove contact" src="./assets/images/removeicon.png"></a> 
+        <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-type="sendrequest" data-optiontype="contactoption">
+        Send chat request<br><img alt="send chat request" src="./assets/images/sendrequesticon.png"></a>
+        <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-optiontype="contactoption">Remove contact<br>
+        <img alt="remove contact" src="./assets/images/removeicon.png"></a> 
         </div>
     </li>`;
 }
