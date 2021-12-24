@@ -49,12 +49,73 @@ body input:focus {
   outline: none;
   border-bottom: 5px #f0666e solid;
 }
+body .active img, body .active div {
+  filter: blur(20px);
+  z-index: 1;
+}
+body .active h1 {
+  filter: blur(20px);
+  z-index: 1;
+}
+body .active section {
+  filter: none;
+  z-index: 0;
+  padding: 5%;
+  position: fixed;
+  top: 10%;
+  left: 5%;
+  width: 80vw;
+  height: 60vh;
+  background-color: #0c1a2e;
+  border-radius: 2%;
+}
+body .active section * {
+  z-index: 0;
+}
+body .active section h2 {
+  color: #FF9061;
+}
+body .active section #popup-closer {
+  display: block;
+  text-align: right;
+  margin-left: 90%;
+  margin-bottom: 15%;
+  text-decoration: none;
+  color: #cc3c4f;
+}
+body .active section p {
+  font-size: 50%;
+  margin-bottom: 10%;
+  color: #FF9061;
+  font-weight: bolder;
+}
+body .active section input {
+  margin-top: 5%;
+  width: 90%;
+  height: 10%;
+  border: none;
+  background-image: none;
+  background-color: #070e18;
+  caret-color: #eb5f71;
+  margin-bottom: 10%;
+}
+body .active section #addcontact {
+  text-decoration: underline;
+  margin-top: 5%;
+  display: block;
+  color: #cc3c4f;
+  font-weight: bolder;
+}
 body #contactList {
   border-radius: 30px;
   height: 80vh;
   display: flex;
   justify-content: center;
   margin-top: 10%;
+}
+body #contactList a {
+  text-decoration: none;
+  color: white;
 }
 body #contactList div {
   padding: 2%;
@@ -77,6 +138,10 @@ body #contactList ul li div a img {
 body #contactList .contactItem {
   padding: 2%;
 }
+body #contactList .contactoption {
+  display: block;
+  font-size: 1.5vh;
+}
 body #contactList .contactSlideOpen {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -98,70 +163,8 @@ body #contactList .openAContact {
 body #contactList .openAContact .contactoption {
   animation: open-contact-option 1s linear;
 }
-body #contactList a {
-  text-decoration: none;
-  color: white;
-}
 body #contactList .contactoption-hidden {
   display: none;
-}
-body #contactList .contactoption {
-  display: block;
-  font-size: 1.5vh;
-}
-
-.active img, .active div, .active h1 {
-  filter: blur(20px);
-  z-index: 1;
-}
-.active section {
-  filter: none;
-  z-index: 0;
-  padding: 5%;
-  position: fixed;
-  top: 10%;
-  left: 5%;
-  width: 80vw;
-  height: 60vh;
-  background-color: #0c1a2e;
-  border-radius: 2%;
-}
-.active section * {
-  z-index: 0;
-}
-.active section h2 {
-  color: #FF9061;
-}
-.active section #popup-closer {
-  display: block;
-  text-align: right;
-  margin-left: 90%;
-  margin-bottom: 15%;
-  text-decoration: none;
-  color: #cc3c4f;
-}
-.active section p {
-  font-size: 50%;
-  margin-bottom: 10%;
-  color: #FF9061;
-  font-weight: bolder;
-}
-.active section input {
-  margin-top: 5%;
-  width: 90%;
-  height: 10%;
-  border: none;
-  background-image: none;
-  background-color: #070e18;
-  caret-color: #eb5f71;
-  margin-bottom: 10%;
-}
-.active section #addcontact {
-  text-decoration: underline;
-  margin-top: 5%;
-  display: block;
-  color: #cc3c4f;
-  font-weight: bolder;
 }
 
 @keyframes open-contact-div {

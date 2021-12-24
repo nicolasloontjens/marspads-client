@@ -26,7 +26,7 @@ const CHNL_TO_CLIENTS_BROADCAST = "events.to.clients";
 
 
 function openSocket() {
-    let eb = new EventBus(EVENTBUS_PATH);
+    let eb = new EventBus(EVENTBUS_PATH); // NOSONAR
 
     function sendToServer(message) {
         eb.send(CHNL_TO_SERVER, message);
