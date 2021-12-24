@@ -158,9 +158,6 @@ function addOtherLayers(arrayofcoords){
         closer.blur();
         return false;
     };
-
-
-
     /**
      * Add a click handler to the map to render the popup.
      */
@@ -192,7 +189,6 @@ function addOtherLayers(arrayofcoords){
             closer.blur();
         }
     });
-
 }
 
 function addPopupContent(feature){
