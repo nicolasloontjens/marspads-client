@@ -66,6 +66,7 @@ function getChatid(contact, chatidscontactids){
             chatid = object["chatid"];
         }
     });
+    return chatid;
 }
 
 
