@@ -68,19 +68,17 @@ function getSelectedContactName(e) {
 
     document.querySelectorAll('div a[data-optiontype="contactoption"]').forEach((elem) => {
         elem.setAttribute("class", "contactoption-hidden");
-        elem.classList.remove("contactSlideOpen");
     });
 
     if (e.target.className.toLowerCase() === "contactitem") {
         return openContact(e.target.parentElement);
-
-
     } else {
         return openContact(e.target);
     }
 }
 
 function openContact(parentelem) {
+    document.querySelectorAll("#ulContactList div").forEach(elem => {elem.setAttribute("class","contact");});
     parentelem.classList.add("contactSlideOpen");
     const action1 = parentelem.getElementsByTagName("a")[1];
     action1.setAttribute("class", "contactoption");
