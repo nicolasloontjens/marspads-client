@@ -132,8 +132,4 @@ git clone git@git.ti.howest.be:TI/2021-2022/s3/analysis-and-development-project/
 
 # Video demonstration 
 
-<figure class="video_container">
-  <video controls="true" allowfullscreen="true" poster="./imagesReadme/menu.png">
-    <source src="./imagesReadme/poc_demo.mp4" type="video/mp4">
-  </video>
-</figure>
+[Click here to download the video](imagesReadme/poc_demo.mp4)
