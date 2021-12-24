@@ -36,12 +36,7 @@ async function insertContactsIntoHTML(contacts) {
     chats = chats.map((chat) => chat.contactid);
     contacts.forEach(contact => {
         if (chats.includes(contact.contactid)) {
-            let chatid = 0;
-            chatidscontactids.forEach(object => {
-                if (object["contactid"] === contact.contactid) {
-                    chatid = object["chatid"];
-                }
-            });
+            let chatid = getChatid(contact, chatidscontactids)
             document.querySelector(ulContactList).innerHTML += `<li><div id="${contact.contactid}" class="contact">
                 <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
                 <a href="#" class="contactoption-hidden" data-chatid="${chatid}" data-type="gotochat" data-optiontype="contactoption">Chat<br>
@@ -64,8 +59,13 @@ async function insertContactsIntoHTML(contacts) {
     });
 }
 
-function test(){
-    
+function getChatid(contact, chatidscontactids){
+    let chatid = 0;
+    chatidscontactids.forEach(object => {
+        if (object["contactid"] === contact.contactid) {
+            chatid = object["chatid"];
+        }
+    });
 }
 
 
