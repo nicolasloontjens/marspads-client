@@ -77,13 +77,25 @@ body #contactList ul li div a img {
 body #contactList .contactItem {
   padding: 2%;
 }
-body #contactList div[clicked=true] {
+body #contactList .contactSlideOpen {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   animation: open-contact-div 0.6s linear forwards;
 }
-body #contactList div[clicked=true] .contactoption {
+body #contactList .contactSlideOpen .contactoption {
+  animation: open-contact-option 1s linear;
+}
+body #contactList .contactSlideOpen .contact {
+  z-index: 1;
+}
+body #contactList .openAContact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  animation: open-contact-div 0.6s linear forwards;
+}
+body #contactList .openAContact .contactoption {
   animation: open-contact-option 1s linear;
 }
 body #contactList a {

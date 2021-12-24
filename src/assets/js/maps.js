@@ -200,11 +200,11 @@ function addPopupContent(feature){
     const dataToUpperCase = feature.get('data').charAt(0).toUpperCase() + feature.get('data').slice(1);
 
     if (feature.A.data === "friend" || feature.A.data === "user") {
-        content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>' + '</p>' +
-            '<br><button class="chatbutton">Chat</button> <button class="routeButton" >Fastest route</button>';
+        content.innerHTML = `<p> ${feature.get('dataName')} <br><span>  ${dataToUpperCase} </span> </p>
+            <br><button class="chatbutton">Chat</button> <button class="routeButton" >Fastest route</button>`;
     } else {
-        content.innerHTML = '<p>' + feature.get('dataName') + '<br><span> ' + dataToUpperCase + '</span>' + '</p>' +
-            '<br><button class="audioPopUpMute" >Mute</button> <button class="audioPopUp" >See all noises</button>';
+        content.innerHTML = `<p>  ${feature.get('dataName')} <br><span> ${dataToUpperCase} </span></p>
+            <br><button class="audioPopUpMute" >Mute</button> <button class="audioPopUp" >See all noises</button>`;
     }
 }
 
@@ -306,7 +306,8 @@ function findTheWay(feature, overlay){
 
 async function getClosestRoute(endLonLat) {
     const API_KEY = '5b3ce3597851110001cf624814086a7454a5498e922d0f028ec7db66';
-    const response = await fetch(`https://api.openrouteservice.org/v2/directions/driving-car?api_key=${API_KEY}&start=${yourLocation[0]},${yourLocation[1]}&end=${endLonLat[0]},${endLonLat[1]}`);
+    const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${API_KEY}&start=${yourLocation[0]},${yourLocation[1]}&end=${endLonLat[0]},${endLonLat[1]}`;
+    const response = await fetch(url);
     const result = await response.json();
     return {route: result.features[0]};
 }
