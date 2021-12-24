@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", init);
 let config = null;
 let api = null;
 let sendToServer = null;
+const ulContactList =  "#ulContactList";
 
 async function init() {
     let contacts = await getUserContacts();
@@ -17,7 +18,7 @@ async function init() {
         location.replace("index.html");
     });
     document.querySelector("#addfriend").addEventListener("click", displayAddFriendPopUp);
-    document.querySelector("#ulContactList").addEventListener("click", triggerHandler)
+    document.querySelector(ulContactList).addEventListener("click", triggerHandler);
 }
 
 function triggerHandler(e) {
@@ -41,14 +42,14 @@ async function insertContactsIntoHTML(contacts) {
                     chatid = object["chatid"];
                 }
             });
-            document.querySelector("#ulContactList").innerHTML += `<li><div id="${contact.contactid}" class="contact">
+            document.querySelector(ulContactList).innerHTML += `<li><div id="${contact.contactid}" class="contact">
                 <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
                 <a href="#" class="contactoption-hidden" data-chatid="${chatid}" data-type="gotochat" data-optiontype="contactoption">Chat<br><img alt="go to chat icon" src="./assets/images/gotochaticon.png"></a>
                 <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-optiontype="contactoption">Remove contact<br><img alt="remove contact" src="./assets/images/removeicon.png"></a>
                 </div>
             </li>`;
         } else {
-            document.querySelector("#ulContactList").innerHTML += `<li><div id="${contact.contactid}" class="contact" >
+            document.querySelector(ulContactList).innerHTML += `<li><div id="${contact.contactid}" class="contact" >
             <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
             <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-type="sendrequest" data-optiontype="contactoption">Send chat request<br><img alt="send chat request" src="./assets/images/sendrequesticon.png"></a>
             <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-optiontype="contactoption">Remove contact<br><img alt="remove contact" src="./assets/images/removeicon.png"></a> 
@@ -128,7 +129,7 @@ function searchInputField() {
     let txtValue;
     const input = document.querySelector("#search");
     const filter = input.value.toUpperCase();
-    const ul = document.querySelector("#ulContactList");
+    const ul = document.querySelector(ulContactList);
     const li = ul.getElementsByTagName("li");
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0];
