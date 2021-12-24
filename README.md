@@ -51,7 +51,7 @@ This allows you to navigate to the different pages.
 
 ## Contacts page
 
-Ernst of the contacts page.
+Severity of the contacts page.
 
 On the contacts page, is it possible to add a contact as a friend. 
 
