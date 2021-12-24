@@ -135,3 +135,6 @@ git clone git@git.ti.howest.be:TI/2021-2022/s3/analysis-and-development-project/
 [Click here to download the video](imagesReadme/poc_demo.mp4)
 
 Note: The video is quite large, it takes a while to download and there was something wrong with the sound so there isn't any sound
+It may appear that there are a lot of notifications popping up all the time but this is because both browsers are sending their notifications. As for the notification saying change the screen size, this is purely because we had both browsers next to each other. 
+
+As for the first chat request that was sent in this demo, the recipient accidentally clicked on the notification when I was clicking on remove user. It looks like our remove user doesn't work but we can assure you that it does.
