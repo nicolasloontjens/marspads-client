@@ -158,9 +158,6 @@ function addOtherLayers(arrayofcoords){
         closer.blur();
         return false;
     };
-
-
-
     /**
      * Add a click handler to the map to render the popup.
      */
@@ -169,7 +166,6 @@ function addOtherLayers(arrayofcoords){
         const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
             return feature;
         });
-
         if (feature && feature.A.type === "marker") {
             addPopupContent(feature);
             if (document.querySelector('.routeButton') !== null) {
@@ -183,16 +179,13 @@ function addOtherLayers(arrayofcoords){
             }
             if(document.querySelector(".chatbutton") !== null){
                 document.querySelector(".chatbutton").addEventListener("click", () => {
-                    location.replace("chatroom.html");
-                });
+                    location.replace("chatroom.html");});
             }
             overlay.setPosition(coordinate);
-        } else {
+        }else {
             overlay.setPosition(undefined);
             closer.blur();
-        }
-    });
-
+        }});
 }
 
 function addPopupContent(feature){
@@ -213,12 +206,7 @@ function addProximityLayer() {
     const proxlayer = new ol.layer.Vector({
         source: new ol.source.Vector({
             projection: 'EPSG:4326',
-            features: [
-                new ol.Feature({
-                    geometry: new ol.geom.Circle(centerLongitudeLatitude, 400),
-                    name: 'Your range'
-                })
-            ]
+            features: [new ol.Feature({geometry: new ol.geom.Circle(centerLongitudeLatitude, 400),name: 'Your range'})]
         }),
         style: [
             new ol.style.Style({

@@ -36,27 +36,44 @@ async function insertContactsIntoHTML(contacts) {
     chats = chats.map((chat) => chat.contactid);
     contacts.forEach(contact => {
         if (chats.includes(contact.contactid)) {
-            let chatid = 0;
-            chatidscontactids.forEach(object => {
-                if (object["contactid"] === contact.contactid) {
-                    chatid = object["chatid"];
-                }
-            });
-            document.querySelector(ulContactList).innerHTML += `<li><div id="${contact.contactid}" class="contact">
-                <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
-                <a href="#" class="contactoption-hidden" data-chatid="${chatid}" data-type="gotochat" data-optiontype="contactoption">Chat<br><img alt="go to chat icon" src="./assets/images/gotochaticon.png"></a>
-                <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-optiontype="contactoption">Remove contact<br><img alt="remove contact" src="./assets/images/removeicon.png"></a>
-                </div>
-            </li>`;
+            const chatid = getChatid(contact, chatidscontactids);
+            createHtmlSend(contact, chatid);
         } else {
-            document.querySelector(ulContactList).innerHTML += `<li><div id="${contact.contactid}" class="contact" >
-            <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
-            <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-type="sendrequest" data-optiontype="contactoption">Send chat request<br><img alt="send chat request" src="./assets/images/sendrequesticon.png"></a>
-            <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-optiontype="contactoption">Remove contact<br><img alt="remove contact" src="./assets/images/removeicon.png"></a> 
-            </div>
-        </li>`;
+            createHtmlChat(contact);
         }
     });
+}
+
+function getChatid(contact, chatidscontactids){
+    let chatid = 0;
+    chatidscontactids.forEach(object => {
+        if (object["contactid"] === contact.contactid) {
+            chatid = object["chatid"];
+        }
+    });
+    return chatid;
+}
+
+function createHtmlSend(contact,chatid){
+    document.querySelector(ulContactList).innerHTML += `<li><div id="${contact.contactid}" class="contact">
+        <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
+        <a href="#" class="contactoption-hidden" data-chatid="${chatid}" data-type="gotochat" data-optiontype="contactoption">
+        Chat<br><img alt="go to chat icon" src="./assets/images/gotochaticon.png"></a>
+        <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-optiontype="contactoption">
+        Remove contact<br><img alt="remove contact" src="./assets/images/removeicon.png"></a>
+        </div>
+    </li>`;
+}
+
+function createHtmlChat(contact){
+    document.querySelector(ulContactList).innerHTML += `<li><div id="${contact.contactid}" class="contact" >
+        <a href="#" class="contactItem" data-contactName="${contact.name}">${contact.name}</a>
+        <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-type="sendrequest" data-optiontype="contactoption">
+        Send chat request<br><img alt="send chat request" src="./assets/images/sendrequesticon.png"></a>
+        <a href="#" class="contactoption-hidden" data-contactid="${contact.contactid}" data-optiontype="contactoption">Remove contact<br>
+        <img alt="remove contact" src="./assets/images/removeicon.png"></a> 
+        </div>
+    </li>`;
 }
 
 async function updateContacts() {
@@ -78,7 +95,9 @@ function getSelectedContactName(e) {
 }
 
 function openContact(parentelem) {
-    document.querySelectorAll(`${ulContactList} div`).forEach(elem => {elem.setAttribute("class","contact");});
+    document.querySelectorAll(`${ulContactList} div`).forEach(elem => {
+        elem.setAttribute("class","contact");
+    });
     parentelem.classList.add("contactSlideOpen");
     const action1 = parentelem.getElementsByTagName("a")[1];
     action1.setAttribute("class", "contactoption");
