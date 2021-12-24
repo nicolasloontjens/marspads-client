@@ -8,8 +8,8 @@
 }
 
 body {
-  background: #11223B;
-  color: #FF9061;
+  background: #11223b;
+  color: #ff9061;
   font-family: nasalization, sans-serif;
   /* Styling for the popup */
   /* checkbox effect */
@@ -20,7 +20,7 @@ body .formGroup {
   height: 10vh;
 }
 body h1 {
-  color: #EB7A5E;
+  color: #eb7a5e;
   font-size: 2rem;
   margin-top: 1rem;
 }
@@ -149,7 +149,7 @@ body #echoMapPage #map {
 body .ol-popup {
   animation: bounce 4s ease forwards;
   position: absolute;
-  background-color: #11223B;
+  background-color: #11223b;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   padding: 15px;
   border-radius: 10px;
@@ -172,7 +172,7 @@ body .ol-popup #popup-content button {
   padding: 10px;
   width: 49%;
   border-radius: 10px;
-  background: linear-gradient(90deg, #FF9061 0%, #EB7A5E);
+  background: linear-gradient(90deg, #ff9061 0%, #eb7a5e);
 }
 body .ol-popup:after, body .ol-popup:before {
   top: 100%;
@@ -205,6 +205,123 @@ body .ol-popup-closer:after {
   content: "✖";
   color: #eb5f71;
 }
+body input[type=checkbox] {
+  display: none;
+}
+body input[type=checkbox] + label {
+  display: flex;
+  margin: 0.6em 0;
+  align-items: center;
+  color: #9e9e9e;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.23, 1);
+  background: none;
+}
+body input[type=checkbox] + label > span {
+  display: flex;
+  align-items: center;
+  margin-right: 1em;
+  width: 1em;
+  height: 1em;
+  background: transparent;
+  border: 2px solid #9e9e9e;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.23, 1);
+}
+body input[type=checkbox] + label:hover {
+  color: #ff9061;
+  cursor: pointer;
+  background: none;
+}
+body input[type=checkbox]:focus + label {
+  color: #ff9061;
+  cursor: pointer;
+  background: none;
+}
+body input[type=checkbox]:focus + label > span {
+  background: rgba(255, 255, 255, 0.1);
+}
+body input[type=checkbox] + label:hover > span {
+  background: rgba(255, 255, 255, 0.1);
+}
+body input[type=checkbox]:checked + label > span {
+  border: 0.5em solid #ff9061;
+  animation: shrink-bounce 200ms cubic-bezier(0.4, 0, 0.23, 1);
+  background: #ff9061;
+}
+body input[type=checkbox]:checked + label > span:before {
+  content: "";
+  position: absolute;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  transform: rotate(45deg);
+  transform-origin: 0% 100%;
+  animation: checkbox-check 125ms 250ms cubic-bezier(0.4, 0, 0.23, 1) forwards;
+}
+body .proximityChat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+body .buttonProx {
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #ff9061;
+  background: linear-gradient(90deg, #ff9061 0%, #eb7a5e);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px #ff9061;
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+}
+body .buttonProx::before {
+  content: "";
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.3s ease-in-out 0s;
+}
+body .buttonProx:hover {
+  color: #313133;
+  transform: translateY(-6px);
+}
+body .button:focus {
+  color: #313133;
+  transform: translateY(-6px);
+}
+body .buttonProx:hover::before,
+body button:focus::before {
+  opacity: 1;
+}
+body .buttonProx::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 6px solid #eb7a5e;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+body #menu {
+  line-height: 100%;
+  height: 10%;
+}
+body .buttonProx:hover::after,
+body button:focus::after {
+  animation: none;
+  display: none;
+}
+
 @keyframes bounce {
   0% {
     transform: translateY(0%);
@@ -227,51 +344,6 @@ body .ol-popup-closer:after {
   30% {
     transform: translateY(0%);
   }
-}
-body input[type=checkbox] {
-  display: none;
-}
-body input[type=checkbox] + label {
-  display: flex;
-  margin: 0.6em 0;
-  align-items: center;
-  color: #9E9E9E;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.23, 1);
-  background: none;
-}
-body input[type=checkbox] + label > span {
-  display: flex;
-  align-items: center;
-  margin-right: 1em;
-  width: 1em;
-  height: 1em;
-  background: transparent;
-  border: 2px solid #9E9E9E;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.23, 1);
-}
-body input[type=checkbox] + label:hover, body input[type=checkbox]:focus + label {
-  color: #FF9061;
-  cursor: pointer;
-  background: none;
-}
-body input[type=checkbox] + label:hover > span, body input[type=checkbox]:focus + label > span {
-  background: rgba(255, 255, 255, 0.1);
-}
-body input[type=checkbox]:checked + label > span {
-  border: 0.5em solid #FF9061;
-  animation: shrink-bounce 200ms cubic-bezier(0.4, 0, 0.23, 1);
-  background: #FF9061;
-}
-body input[type=checkbox]:checked + label > span:before {
-  content: "";
-  position: absolute;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  transform: rotate(45deg);
-  transform-origin: 0% 100%;
-  animation: checkbox-check 125ms 250ms cubic-bezier(0.4, 0, 0.23, 1) forwards;
 }
 @keyframes shrink-bounce {
   0% {
@@ -302,63 +374,6 @@ body input[type=checkbox]:checked + label > span:before {
     border-color: #212121;
     transform: translate3d(0, -0.5em, 0) rotate(45deg);
   }
-}
-body .proximityChat {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-}
-body .buttonProx {
-  text-transform: uppercase;
-  letter-spacing: 1.3px;
-  font-weight: 700;
-  color: #313133;
-  background: #FF9061;
-  background: linear-gradient(90deg, #FF9061 0%, #EB7A5E);
-  border: none;
-  border-radius: 1000px;
-  box-shadow: 12px 12px 24px #ff9061;
-  transition: all 0.3s ease-in-out 0s;
-  cursor: pointer;
-  outline: none;
-  position: relative;
-}
-body .buttonProx::before {
-  content: "";
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: all 0.3s ease-in-out 0s;
-}
-body .buttonProx:hover, body .button:focus {
-  color: #313133;
-  transform: translateY(-6px);
-}
-body .buttonProx:hover::before, body button:focus::before {
-  opacity: 1;
-}
-body .buttonProx::after {
-  content: "";
-  width: 30px;
-  height: 30px;
-  border-radius: 100%;
-  border: 6px solid #EB7A5E;
-  position: absolute;
-  z-index: -1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: ring 1.5s infinite;
-}
-body #menu {
-  line-height: 100%;
-  height: 10%;
-}
-body .buttonProx:hover::after, body button:focus::after {
-  animation: none;
-  display: none;
 }
 @keyframes ring {
   0% {
@@ -398,12 +413,12 @@ body .buttonProx:hover::after, body button:focus::after {
 }
 @keyframes border-gradient {
   0% {
-    border-color: #FF9061;
-    color: #FF9061;
+    border-color: #ff9061;
+    color: #ff9061;
   }
   12% {
-    border-color: #EB7A5E;
-    color: #EB7A5E;
+    border-color: #eb7a5e;
+    color: #eb7a5e;
   }
   25% {
     border-color: #f0666e;
@@ -418,12 +433,12 @@ body .buttonProx:hover::after, body button:focus::after {
     color: #f0666e;
   }
   88% {
-    border-color: #EB7A5E;
-    color: #EB7A5E;
+    border-color: #eb7a5e;
+    color: #eb7a5e;
   }
   100% {
-    border-color: #FF9061;
-    color: #FF9061;
+    border-color: #ff9061;
+    color: #ff9061;
   }
 }
 
