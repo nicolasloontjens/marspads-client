@@ -78,7 +78,7 @@ function getSelectedContactName(e) {
 }
 
 function openContact(parentelem) {
-    document.querySelectorAll("#ulContactList div").forEach(elem => {elem.setAttribute("class","contact");});
+    document.querySelectorAll(`${ulContactList} div`).forEach(elem => {elem.setAttribute("class","contact");});
     parentelem.classList.add("contactSlideOpen");
     const action1 = parentelem.getElementsByTagName("a")[1];
     action1.setAttribute("class", "contactoption");
