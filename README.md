@@ -1,12 +1,5 @@
 # MarsPads client
 
-![badge](https://sonar.ti.howest.be/badges/project_badges/quality_gate?project=2021.project-ii:mars-client-17)
-![badge](https://sonar.ti.howest.be/badges/project_badges/measure?project=2021.project-ii:mars-client-17&metric=bugs)
-![badge](https://sonar.ti.howest.be/badges/project_badges/measure?project=2021.project-ii:mars-client-17&metric=code_smells)
-![badge](https://sonar.ti.howest.be/badges/project_badges/measure?project=2021.project-ii:mars-client-17&metric=coverage)
-![badge](https://sonar.ti.howest.be/badges/project_badges/measure?project=2021.project-ii:mars-client-17&metric=vulnerabilities)
-![badge](https://sonar.ti.howest.be/badges/project_badges/measure?project=2021.project-ii:mars-client-17&metric=duplicated_lines_density)
-
 ## Home page
 
 Will start off with a picture of our home page.
@@ -125,7 +118,7 @@ There you can see in what resolution you need to place it and in what orientatio
 - Open a terminal in the location you want.
 - Type in the terminal 
 ```bash
-git clone git@git.ti.howest.be:TI/2021-2022/s3/analysis-and-development-project/projects/group-17/client.git
+git clone [repository link]
 ```
 - This will create a a folder with all the files
 - Now you can open the folder with the desired edit program.
@@ -135,12 +128,3 @@ git clone git@git.ti.howest.be:TI/2021-2022/s3/analysis-and-development-project/
 Sometimes when visiting the site online on https://project-ii.ti.howest.be/mars-17/ you might have to reload the site using ctrl + F5, otherwise certain features might not work.
 
 If the server was rebooted, you will have to clear your localstorage and refresh the index page, this is so that you create a new user locally, this only needs to be done if the server has rebooted.
-
-# Video demonstration 
-
-[Click here to download the video](imagesReadme/poc_demo.mp4)
-
-Note: The video is quite large, it takes a while to download and there was something wrong with the sound so there isn't any sound
-It may appear that there are a lot of notifications popping up all the time but this is because both browsers are sending their notifications. As for the notification saying change the screen size, this is purely because we had both browsers next to each other. 
-
-As for the first chat request that was sent in this demo, the recipient accidentally clicked on the notification when I was clicking on remove user. It looks like our remove user doesn't work but we can assure you that it does.
